@@ -301,7 +301,9 @@ window.SITE_CONFIG = {
                 ["City of Rockingham", "Building permit required for retaining walls exceeding 500mm (0.5m).", "Also required under 500mm where the wall encroaches beyond the boundary, reduces the adjoining land's bearing capacity, damages or reduces the structural adequacy of adjoining buildings, or changes natural site drainage; written consent of all adjoining landowners is required where encroachment or an adverse effect occurs.", "[Fences and retaining walls](https://rockingham.wa.gov.au/planning-and-building/building-and-renovating/fences-and-retaining-walls)", "2026-08-04"]
               ]
             } },
-            { note: "Where a council does not publish a clear threshold, this table records \"not published, contact council\" rather than a guess. Re-check on a fixed schedule — council policy changes without notice." },
+            /* TODO (Brad): re-check every row on a fixed schedule and bump the
+               "Last reviewed" date below each time. */
+            { note: "Where a council does not publish a clear threshold, this table records \"not published, contact council\" rather than a guess. Council policy changes without notice, so confirm the current position with your council before relying on a row." },
             { subheading: "Shared boundaries" },
             "A retaining wall on or near a common boundary raises ownership and cost questions the Building Act does not answer. The Dividing Fences Act 1961 (WA) governs dividing fences and cost sharing between adjoining owners, and a retaining wall is not automatically a dividing fence. Who pays what share, whose land the wall sits on, and the finished levels on both sides are best settled in writing before construction, not after.",
             { subheading: "Engineering and certification" },
@@ -318,7 +320,7 @@ window.SITE_CONFIG = {
               "Is engineering required, and is it included?",
               "For work contracted at $20,000 or more, is the contractor registered with Building and Energy?"
             ] },
-            { note: "Last reviewed: [DATE]. This section is reviewed on a fixed schedule and the date is updated each time." }
+            { note: "Last reviewed: [DATE]. Council and shire policy changes without notice — confirm the current position before relying on anything in this section." }
           ]
         }
       ],

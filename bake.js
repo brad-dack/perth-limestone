@@ -522,12 +522,51 @@ function runCheck() {
     [/\[ABN\]/, "[ABN] placeholder — business ABN not set"],
     [/\[SUBURBS SERVICED\]/, "[SUBURBS SERVICED] placeholder"]
   ];
+  /* -- 1b. author-voice scan over every string VALUE in config -------------
+     Notes written to the operator rather than to a reader: decision logs,
+     "not urgent", "no source found yet", internal marker jargon. Every
+     string value in config is rendered to the public site, so this kind of
+     working note belongs in a "TODO (Brad):" code comment instead.
+
+     The patterns are deliberately narrow — a hit should mean real
+     author-voice copy, not a pattern that needs loosening. If one ever
+     fires on legitimate reader copy, reword the copy. Note there is
+     deliberately no pattern on "worth doing" / "worth getting": those are
+     ordinary reader copy ("when a repair is worth doing") and
+     false-positive in practice. */
+  const AUTHOR_VOICE_PATTERNS = [
+    [/\bDecision \(\d/, "dated decision log"],
+    [/\bnot urgent\b/i, "priority note"],
+    [/\bat some point\b/i, "deferred-work note"],
+    [/\bpending (?:real )?data\b/i, "outstanding-research note"],
+    [/\bno (?:[A-Za-z-]+ )?source (?:has been )?found\b/i, "outstanding-research note"],
+    [/\bis (?:still )?not sourced\b/i, "outstanding-research note"],
+    [/\bstock or generated\b/i, "imagery-sourcing note"],
+    [/\bcredibility upgrade\b/i, "editorial commentary"],
+    [/\btracked separately\b/i, "internal tracking note"],
+    /* A review cadence is something only the operator has. A reader-facing
+       caveat says "re-check before relying on this row"; a note to self says
+       "re-check on a fixed schedule". Both council-table notes keep the
+       former and must keep passing. */
+    [/\bon a fixed schedule\b/i, "maintenance-cadence note"],
+    [/\bdate is updated each time\b/i, "maintenance-cadence note"],
+    [/\bmarker\b/i, "internal marker jargon"],
+    [/\b(?:config|bake)\.js\b/, "reference to the site's own source files"]
+  ];
   (function walk(node, trail) {
     if (typeof node === "string") {
       for (const [re, label] of PLACEHOLDER_PATTERNS) {
         if (re.test(node)) {
           errors.push("config " + trail + ": " + label +
             ' — "' + (node.length > 60 ? node.slice(0, 57) + "..." : node) + '"');
+        }
+      }
+      for (const [re, label] of AUTHOR_VOICE_PATTERNS) {
+        if (re.test(node)) {
+          errors.push("config " + trail + ": author-voice note in reader-facing " +
+            "copy (" + label + ") — move it to a code comment — \"" +
+            (node.length > 60 ? node.slice(0, 57) + "..." : node) + '"');
+          break;   // one report per string, not one per pattern
         }
       }
     } else if (Array.isArray(node)) {
