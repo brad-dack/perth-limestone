@@ -329,6 +329,7 @@
   }
 
   function howItWorksSection(compact) {
+    if (!cfg.howItWorks || !cfg.howItWorks.length) return "";
     var steps = cfg.howItWorks.map(function (s, i) {
       var badge = s.icon && iconSvg(s.icon)
         ? '<span class="step-num" aria-hidden="true">' + iconSvg(s.icon) + "</span>" +

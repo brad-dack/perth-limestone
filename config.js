@@ -4,8 +4,9 @@
      node bake.js          (regenerate pages + CNAME/robots/sitemap/404/favicon)
      node bake.js --check   (preflight — fails on leftover placeholders)
 
-   POSITIONING LEVEL 2. Real brand, "we" voice, no named individual anywhere,
-   no claim to perform trade work. Service pages are written ABOUT the work,
+   POSITIONING LEVEL 2. Real brand, "we" voice site-wide; the About page names
+   the operator (Brad) as a real person, mirroring perthbrickwork.com.au/about.
+   No claim to perform trade work. Service pages are written ABOUT the work,
    not about us doing it. The commercial arrangement is described plainly on
    the About page only — no page carries a disclaimer.
 
@@ -60,7 +61,7 @@ window.SITE_CONFIG = {
       metaTitle: "Limestone Retaining Walls Perth | Get a Quote",
       metaDescription: "Limestone retaining walls, fencing, repairs and capping across the Perth metro area. Tell us about your job and get a quote. No cost and no obligation.",
       headline: "Limestone retaining walls in Perth",
-      subheadline: "Retaining walls, limestone fencing, and wall repairs and capping across the Perth metropolitan area. Tell us about your job and we'll come back to you.",
+      subheadline: "Retaining walls, limestone fencing, and wall repairs and capping across the Perth metropolitan area. Tell us about your job and a local contractor will be in touch if they can help.",
       ctaText: "Tell us about your job",
       /* AI-generated illustrative image. Generic scene — no real address, no
          identifiable property — and never captioned as completed work.
@@ -122,8 +123,8 @@ window.SITE_CONFIG = {
         {
           heading: "Where we cover",
           body: [
-            "The Perth metropolitan area, covering every local government area from Wanneroo and Joondalup in the north to Rockingham and Kwinana in the south, and out to Armadale, Gosnells, Kalamunda and Mundaring in the hills and south-east.",
-            "If your job sits outside that, send it through anyway. We read every enquiry and will tell you either way."
+            "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered.",
+            "Jobs outside the metro area can still be sent through — there is just no guarantee anyone covers that far out."
           ]
         }
       ]
@@ -144,28 +145,13 @@ window.SITE_CONFIG = {
   /* Short value points — each one true before any contractor is attached. */
   valueProps: [
     "Free quotes, no obligation",
-    "Perth metropolitan area",
-    "Every enquiry gets an answer"
+    "Perth metropolitan area"
   ],
 
-  /* --- How it works ------------------------------------------------------- */
-  howItWorks: [
-    {
-      icon: "chat",
-      title: "Tell us about your job",
-      text: "What you need, your suburb, the rough size and your timeframe. It takes about a minute."
-    },
-    {
-      icon: "clipboard",
-      title: "We come back to you",
-      text: "We read every enquiry. If we can't help with your job we'll say so and point you somewhere useful."
-    },
-    {
-      icon: "check",
-      title: "Your job gets quoted",
-      text: "A time is arranged to look at the job and price it properly. No cost, and no obligation to go ahead."
-    }
-  ],
+  /* --- How it works ---------------------------------------------------------
+     Section removed at launch — an empty array hides it everywhere (see
+     howItWorksSection() in js/main.js). */
+  howItWorks: [],
 
   /* --- Services (3) ------------------------------------------------------- */
   services: [
@@ -715,7 +701,7 @@ window.SITE_CONFIG = {
     },
     {
       q: "Do you cover my suburb?",
-      a: "We cover the Perth metropolitan area, including every local government area from Wanneroo and Joondalup in the north to Rockingham and Kwinana in the south, and out to Armadale, Gosnells, Kalamunda and Mundaring in the hills and south-east. If your job is outside that, send it through anyway and we will tell you."
+      a: "We cover the whole Perth metropolitan area — north through Joondalup, Scarborough and Morley, central across Perth and Victoria Park, east to Midland and Kalamunda, west to Fremantle and Cottesloe, and south to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered. Jobs outside the metro area can still be sent through, but there is no guarantee anyone covers that far out."
     },
     {
       q: "Can I get a price over the phone?",
@@ -737,41 +723,57 @@ window.SITE_CONFIG = {
   about: {
     sections: [
       {
-        heading: "What Perth Limestone Group is",
+        heading: "Who runs this",
         body: [
-          "Perth Limestone Group is a limestone walling enquiry service covering the Perth metropolitan area. We take enquiries from homeowners about limestone retaining walls, fencing, and wall repairs and capping, and we get those jobs in front of a limestone contractor working in that part of Perth.",
-          "We are not a building company. We do not build, excavate, lay block, attend site or certify anything. What we do is take the details of a job, get it to someone who can price and build it, and make sure every enquiry gets an answer.",
-          "The other thing we do is publish. The material on this site, including the approval section on the [retaining walls page](limestone-retaining-walls.html) and the [cost guide](cost-guide.html), is written for homeowners who have never bought a limestone wall and do not yet know what to ask."
+          "Perth Limestone Group is run by Brad — raised in country WA and living in Perth now.",
+          "Before this, two years spent around the construction materials trade. I have not laid a limestone block myself and do not claim to, but I can put you in touch with people who have. For how a specific job actually gets built, the contractor doing the work is the one to ask."
         ]
       },
       {
-        heading: "What happens when you enquire",
+        heading: "What this business does",
         body: [
-          "You send through the details of the job: what you need, your suburb, the rough size and your timeframe.",
-          "We read it, and pass it to a limestone contractor working in your area, who comes back to you to arrange a time to look at the job and quote it. If it is not something we can help with, we tell you and point you somewhere useful rather than leaving you without an answer."
+          "We take enquiries from Perth homeowners about limestone retaining walls, fencing, and wall repairs and capping, and get them to a limestone contractor who does that type of work.",
+          "We do not build, excavate, lay block, attend site or certify anything. There is no crew and no equipment. Every physical part of a job is done by the contractor.",
+          "The other half of what we do is research. The approval information on the [retaining walls page](limestone-retaining-walls.html) and the [cost guide](cost-guide.html) is written for homeowners who have never bought a limestone wall and do not yet know what to ask."
+        ]
+      },
+      {
+        heading: "What we don't cover, and why",
+        body: [
+          "We stick to limestone walling: retaining walls, limestone fencing, and wall repairs and capping, including bullnose capping and cladding.",
+          "Brickwork, rendering and paving are a separate trade with different contractors. Sending a brick fence or paving enquiry to a limestone contractor wastes the homeowner's time and the contractor's.",
+          "Landscaping, reticulation, concreting and structural engineering are all adjacent trades we do not handle either."
+        ]
+      },
+      {
+        heading: "What happens after you enquire",
+        body: [
+          "After you submit the form, you will be contacted by a local limestone contractor if they can help with your job. If nothing's a fit, we'll tell you and point you somewhere useful rather than leaving you without an answer.",
+          "Your job goes to one contractor rather than to everyone buying leads that day, so you get one conversation instead of several calls. Your details are not sold, not added to a marketing list, and not shared with advertisers. The full position is in the [privacy policy](privacy.html)."
         ]
       },
       {
         heading: "How the service is paid for",
         body: [
           "The contractor pays for the enquiry. You do not.",
-          "There is no cost to you at any point, the quote is free, and there is no obligation to go ahead with the work. There is nothing unusual in the model: it is how referral services are generally funded, free to the person making the enquiry and paid for by the business that receives it.",
-          "How your details are handled is set out in the [privacy policy](privacy.html)."
+          "There is no cost to you at any point, the quote is free, and there is no obligation to go ahead with the work. There is nothing unusual in the model: it is how referral services are generally funded, free to the person making the enquiry and paid for by the business that receives it."
         ]
       },
       {
         heading: "Where we cover",
         body: [
-          "The Perth metropolitan area, covering every local government area from Wanneroo and Joondalup in the north to Rockingham and Kwinana in the south, and out to Armadale, Gosnells, Kalamunda and Mundaring in the hills and south-east.",
-          "If a job sits outside that area, send it through anyway. We will tell you if we cannot help."
+          "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered.",
+          "Jobs outside the metro area can still be sent through — there is just no guarantee anyone covers that far out."
         ]
       },
       {
-        heading: "Business details",
+        heading: "Contact",
         body: [
+          "Brad",
           "Perth Limestone Group",
           "ABN 78 538 005 810",
-          "Phone (08) 9516 1538"
+          "Phone (08) 9516 1538",
+          "Email hello@perthlimestonegroup.com.au"
         ]
       }
     ]
@@ -843,8 +845,8 @@ window.SITE_CONFIG = {
      phone, email. Rendered on every page — see enquirySection in main.js. */
   contact: {
     formHeadline: "Tell us about your job",
-    reassurance: "We'll come back to you.",
-    formNote: "We read every enquiry and come back to you either way. If we can't help with your job we'll tell you, and point you somewhere useful. Your details are used to get your job quoted and are handled as set out in our [privacy policy](privacy.html).",
+    reassurance: "A local contractor will be in touch if they can help.",
+    formNote: "If a limestone contractor covers your job, they'll be in touch. If nothing's a fit, we'll tell you and point you somewhere useful. Your details are used to get your job quoted and are handled as set out in our [privacy policy](privacy.html).",
     step1Label: "What do you need?",
     step2Label: "Your job and contact details",
     otherServiceLabel: "Not sure",
@@ -853,7 +855,7 @@ window.SITE_CONFIG = {
     timeframeLabel: "Timeframe",
     timeframeOptions: ["ASAP", "Within a month", "1 to 3 months", "Just researching"],
     submitText: "Send my job details",
-    successMessage: "Thanks, your enquiry is in. We'll come back to you.",
+    successMessage: "Thanks, your enquiry is in. A local contractor will be in touch if they can help.",
     errorMessage: "Something went wrong sending your enquiry. Please call us directly and we'll sort it out."
   },
 
