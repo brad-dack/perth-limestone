@@ -652,7 +652,7 @@
         "<h2>How it's used</h2>" +
         "<p>Your details are used for one purpose: to contact you about your quote request. They are not sold, shared with advertisers, or added to any marketing list.</p>" +
         "<h2>Who processes the form</h2>" +
-        "<p>The form is delivered by <a href=\"https://formspree.io\" rel=\"noopener\">Formspree</a>, a form-handling service. When you submit the form, your details pass through Formspree's servers to reach us. Formspree's own privacy policy is available on their website.</p>" +
+        "<p>The form is delivered directly to our own systems for handling enquiries. A free security check (Cloudflare Turnstile) runs in the background to filter out automated spam submissions before your enquiry reaches us.</p>" +
         "<h2>Analytics</h2>" +
         "<p>This site may use Google Analytics to understand how visitors find and use it (for example, which pages are viewed). Google Analytics uses cookies and collects anonymous usage data such as your general location and device type. It does not see anything you type into the quote form.</p>" +
         "<h2>Phone calls</h2>" +
@@ -744,10 +744,29 @@
         '<input id="qf-phone" name="phone" type="tel" autocomplete="tel" required></div>' +
         '<div class="form-field"><label for="qf-email">Email</label>' +
         '<input id="qf-email" name="email" type="email" autocomplete="email" required></div>' +
+        // Honeypot: real visitors never see this (off-screen, not display:none — some bots
+        // skip display:none fields specifically) or fill it in. Server treats any value here
+        // as spam.
+        '<input type="text" id="qf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
+          'style="position:absolute;left:-9999px;top:-9999px">' +
+        (cfg.turnstileSiteKey ? '<div id="turnstile-widget"></div>' : "") +
         '<button class="btn btn-primary btn-block" type="submit">' + esc(cfg.contact.submitText) + "</button>" +
       "</fieldset>" +
       '<p class="form-status" id="form-status" role="status" aria-live="polite"></p>' +
     "</form>";
+  }
+
+  // Turnstile's script may still be loading (async) when the form first renders, and the
+  // form itself is re-rendered on every page navigation in this SPA — so render explicitly
+  // once the API is available, rather than relying on its own auto-render-on-load scan,
+  // which would miss a form injected into the DOM after that scan already ran.
+  function renderTurnstile(container) {
+    if (!container || !cfg.turnstileSiteKey) return;
+    if (window.turnstile) {
+      window.turnstile.render(container, { sitekey: cfg.turnstileSiteKey });
+    } else {
+      setTimeout(function () { renderTurnstile(container); }, 100);
+    }
   }
 
   function wireQuoteForm() {
@@ -755,6 +774,7 @@
     if (!form) return;
     var step2 = document.getElementById("form-step-2");
     var status = document.getElementById("form-status");
+    renderTurnstile(document.getElementById("turnstile-widget"));
 
     form.addEventListener("change", function (e) {
       if (e.target.name === "service" && step2.hidden) {
@@ -779,10 +799,10 @@
         return;
       }
 
-      var id = cfg.formspreeId;
-      if (!id || id.indexOf("YOUR_") === 0) {
-        // Owner hasn't configured Formspree yet — fail gracefully for visitors.
-        console.warn("Formspree ID not set in config.js — form cannot submit.");
+      var ingestUrl = cfg.ingestUrl;
+      if (!ingestUrl || !cfg.ingestSecret || ingestUrl.indexOf("YOUR_") === 0) {
+        // Owner hasn't configured the ingest endpoint yet — fail gracefully for visitors.
+        console.warn("ingestUrl/ingestSecret not set in config.js — form cannot submit.");
         showError();
         return;
       }
@@ -792,20 +812,26 @@
       status.textContent = UI.sending;
       status.className = "form-status";
 
-      var data = new FormData();
-      data.append("service", service.value);
-      data.append("suburb", suburb.value.trim());
-      data.append("size", size.value.trim());
-      data.append("timeframe", timeframe.value);
-      data.append("name", name.value.trim());
-      data.append("phone", phone.value.trim());
-      data.append("email", email.value.trim());
-      data.append("_subject", "New job enquiry: " + service.value + " — " + suburb.value.trim());
+      var gotcha = document.getElementById("qf-gotcha");
+      var turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
+      var payload = {
+        service: service.value,
+        suburb: suburb.value.trim(),
+        size: size.value.trim(),
+        timeframe: timeframe.value,
+        name: name.value.trim(),
+        phone: phone.value.trim(),
+        email: email.value.trim(),
+        subject: "New job enquiry: " + service.value + " — " + suburb.value.trim(),
+        _secret: cfg.ingestSecret,
+        _gotcha: gotcha ? gotcha.value : "",
+        "cf-turnstile-response": turnstileResponse ? turnstileResponse.value : ""
+      };
 
-      fetch("https://formspree.io/f/" + id, {
+      fetch(ingestUrl, {
         method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       }).then(function (res) {
         if (res.ok) {
           form.innerHTML = '<p class="form-status success">' + esc(cfg.contact.successMessage) + "</p>";

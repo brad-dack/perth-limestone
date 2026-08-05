@@ -61,7 +61,11 @@ window.SITE_CONFIG = {
 
   /* --- Tracking / integrations ----------------------------------------- */
   ga4Id: "G-VPF9MGXG4Y",
-  formspreeId: "xwleevrl",
+  // Form submits go straight to our own ingest endpoint now, not Formspree —
+  // see rank-and-rent-backend's docs/DASHBOARD_PLAN.md Phase 2 Stage B.
+  ingestUrl: "https://bnfgnglzswtrvzfqkgjh.functions.supabase.co/ingest-form",
+  ingestSecret: "3dce67ee531a9ab81981de80bcd64862",
+  turnstileSiteKey: "0x4AAAAAAEHD1tLftcrbDXIx",
 
   /* --- Structured data -------------------------------------------------- */
   /* Organization, NOT LocalBusiness — there is no physical trade premises,
