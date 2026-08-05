@@ -91,14 +91,32 @@
   }
 
   /* Builds an <img> from a config image object ({src, alt, width, height}).
-     Returns "" when no image is configured, so sections degrade cleanly. */
+     Returns "" when no image is configured, so sections degrade cleanly.
+
+     Optional `widths` + `sizes` add a srcset over the resized variants that
+     live beside the original as <name>-<width>.webp — the full-size file
+     stays in the list as the largest candidate. Mirrored in bake.js, which
+     bakes the same markup into the hero. */
+  function srcsetAttr(image) {
+    if (!image.widths || !image.widths.length) return "";
+    var dot = image.src.lastIndexOf(".");
+    var base = image.src.slice(0, dot), ext = image.src.slice(dot);
+    var set = image.widths.map(function (w) {
+      return esc(base + "-" + w + ext) + " " + w + "w";
+    });
+    if (image.width) set.push(esc(image.src) + " " + image.width + "w");
+    return ' srcset="' + set.join(", ") + '"' +
+      (image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "");
+  }
+
   function imgTag(image, className, lazy) {
     if (!image || !image.src) return "";
     return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
+      srcsetAttr(image) +
       ' alt="' + esc(image.alt || "") + '"' +
       (image.width ? ' width="' + image.width + '"' : "") +
       (image.height ? ' height="' + image.height + '"' : "") +
-      (lazy ? ' loading="lazy"' : "") + ">";
+      (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ">";
   }
 
   function faqItems(list) {
@@ -210,17 +228,31 @@
     document.documentElement.setAttribute("data-pattern", cfg.brand.pattern || "none");
   }
 
+  /* Deferred to idle time: gtag.js is ~90 KB of third-party JavaScript that
+     competes with rendering for the main thread. Nothing on the page depends
+     on it, so it waits until the browser is free (or 3s, whichever is first).
+     The page_view still fires — just after the visitor can see the page. */
   function injectGA4() {
     var id = cfg.ga4Id;
     if (!id || id.indexOf("XXXX") !== -1 || !/^G-[A-Z0-9]+$/.test(id)) return;
-    var s = document.createElement("script");
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
-    document.head.appendChild(s);
+    /* Queue immediately so a click_to_call in the first second still counts —
+       gtag.js replays dataLayer when it finally loads. */
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-    window.gtag("config", id);
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(loadGA4, { timeout: 1500 });
+    } else {
+      setTimeout(loadGA4, 1200);
+    }
+
+    function loadGA4() {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+      document.head.appendChild(s);
+      window.gtag("js", new Date());
+      window.gtag("config", id);
+    }
   }
 
   /* Click-to-call tracking: fires a GA4 event for any tel: link. gtag only
@@ -312,6 +344,11 @@
   function fillHero(h, image) {
     var dyn = document.querySelector(".hero-dynamic");
     if (!dyn) return;
+    /* Already baked into the page HTML by bake.js — leave it alone. Re-writing
+       it here would tear down and re-request the hero image after first paint,
+       which is exactly what LCP punishes. Hero copy changes therefore need
+       `node bake.js`, same as the H1 and meta tags above. */
+    if (dyn.children.length) return;
     dyn.innerHTML =
       (h.subheadline ? '<p class="hero-sub">' + esc(h.subheadline) + "</p>" : "") +
       '<div class="hero-actions">' +

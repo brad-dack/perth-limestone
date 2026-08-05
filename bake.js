@@ -98,6 +98,26 @@ function brandCss() {
     "}";
 }
 
+/* css/styles.css, inlined into every page's <head> instead of linked.
+   The stylesheet is render-blocking by nature, so linking it costs a full
+   extra round trip before anything can paint — on a phone that was ~380ms of
+   blank screen. It gzips to well under 10 KB inline, and css/styles.css stays
+   the single file you edit. Comments and indentation are stripped; nothing
+   else is touched, because the file contains no url(), string or data-URI
+   that a heavier minifier could break. */
+function inlineCss() {
+  const raw = fs.readFileSync(path.join(__dirname, "css", "styles.css"), "utf8");
+  const css = raw
+    .replace(/\/\*[\s\S]*?\*\//g, "")   // comments
+    .replace(/^[ \t]+/gm, "")           // indentation
+    .replace(/\n\s*\n/g, "\n")          // blank lines
+    .trim();
+  if (/<\/style/i.test(css)) {
+    throw new Error("css/styles.css contains '</style' — it can't be inlined safely");
+  }
+  return css;
+}
+
 /* Core pages that always exist; area slugs must not collide with these. */
 const CORE_PAGES = ["index.html", "faq.html", "about.html", "privacy.html", "404.html"];
 
@@ -205,8 +225,7 @@ function head({ title, description, file, faqs, extraSchemas }) {
     '  <meta property="og:image:width" content="1200">',
     '  <meta property="og:image:height" content="630">',
     '  <meta name="twitter:card" content="summary_large_image">',
-    '  <link rel="stylesheet" href="css/styles.css">',
-    "  <style>" + brandCss() + "</style>",
+    "  <style>" + inlineCss() + "\n" + brandCss() + "</style>",
     "  " + jsonLd(bizSchema),
     faqs && faqs.length ? "  " + jsonLd(faqSchema(faqs)) : null,
     ...(extraSchemas || []).map(s => "  " + jsonLd(s)),
@@ -220,17 +239,70 @@ const noscript =
   esc(cfg.business.name) + ' &mdash; call <a href="tel:' + cfg.business.phone + '">' +
   esc(cfg.business.phoneDisplay) + "</a> for a free quote.</p></noscript>";
 
-// Hero pages (home, services, areas): static H1 inside the hero; main.js
-// fills .hero-dynamic and #page-content around it.
-const heroMain = headline => `    <section class="hero">
+/* ---------- baked hero ---------------------------------------------------
+   Everything above the fold is baked: headline, sub-headline, both CTAs, the
+   value props and the hero image. It used to be written by main.js after
+   config.js downloaded and parsed, which meant the visitor's most important
+   screen waited on ~120 KB of JavaScript, and the hero image wasn't even
+   discoverable by the preload scanner until then.
+
+   These builders mirror main.js (fillHero, imgTag, callButton, quoteButton)
+   — the markup must match, because main.js still renders the hero on any
+   page that hasn't been baked. main.js skips .hero-dynamic when it already
+   has children, so nothing is rendered twice. */
+
+const telHref = () => "tel:" + cfg.business.phone;
+
+const heroActions = ctaText =>
+  '<div class="hero-actions">' +
+    '<a class="btn btn-primary" href="#quote">' + esc(ctaText) + "</a>" +
+    '<a class="btn btn-outline" href="' + telHref() + '">Call ' +
+      esc(cfg.business.phoneDisplay) + "</a>" +
+  "</div>";
+
+const valueProps = () =>
+  '<ul class="value-props">' +
+    cfg.valueProps.map(v => "<li>" + esc(v) + "</li>").join("") +
+  "</ul>";
+
+/* Mirrors imgTag()/srcsetAttr() in main.js: optional `widths` become a srcset
+   over the images/<name>-<width>.webp variants, with the full-size file as
+   the largest candidate. */
+function heroImg(image) {
+  if (!image || !image.src) return "";
+  const dot = image.src.lastIndexOf(".");
+  const base = image.src.slice(0, dot), ext = image.src.slice(dot);
+  const set = (image.widths || []).map(w => base + "-" + w + ext + " " + w + "w");
+  if (set.length && image.width) set.push(image.src + " " + image.width + "w");
+  return '<img class="hero-img" src="' + esc(image.src) + '"' +
+    (set.length ? ' srcset="' + esc(set.join(", ")) + '"' : "") +
+    (set.length && image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "") +
+    ' alt="' + esc(image.alt || "") + '"' +
+    (image.width ? ' width="' + image.width + '"' : "") +
+    (image.height ? ' height="' + image.height + '"' : "") +
+    ' fetchpriority="high">';
+}
+
+/* Hero pages (home, services, areas). `p` is the page/service/area entry;
+   `image` is passed only for the homepage — a service's own image belongs to
+   its intro section (.service-img), which main.js still renders, not to the
+   hero. This mirrors main.js: fillHero(p, p.image) on home, fillHero(svc)
+   everywhere else. */
+function heroMain(p, image) {
+  const media = heroImg(image);
+  const sub = p.subheadline
+    ? '<p class="hero-sub">' + esc(p.subheadline) + "</p>" : "";
+  return `    <section class="hero${media ? " has-media" : ""}">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <h1>${esc(headline)}</h1>
-          <div class="hero-dynamic"></div>
-        </div>
+          <h1>${esc(p.headline)}</h1>
+          <div class="hero-dynamic">${sub}${heroActions(p.ctaText || cfg.pages.home.ctaText)}${valueProps()}</div>
+        </div>${media ? `
+        <div class="hero-media">${media}</div>` : ""}
       </div>
     </section>
     <div id="page-content"></div>`;
+}
 
 // Simple pages (faq/about/privacy): static H1 in the page header band.
 const pageHeadMain = headline => `    <section class="page-head">
@@ -262,7 +334,7 @@ function buildPages() {
 
   files.push(["index.html", page("home",
     head({ title: cfg.pages.home.metaTitle, description: cfg.pages.home.metaDescription, file: "index.html" }),
-    heroMain(cfg.pages.home.headline))]);
+    heroMain(cfg.pages.home, cfg.pages.home.image))]);
 
   for (const svc of cfg.services) {
     files.push([svc.page, page("service",
@@ -273,7 +345,7 @@ function buildPages() {
           breadcrumbSchema(svc.name, canonicalFor(svc.page))
         ]
       }),
-      heroMain(svc.headline))]);
+      heroMain(svc))]);
   }
 
   for (const area of cfg.areas || []) {
@@ -283,7 +355,7 @@ function buildPages() {
         title: area.metaTitle, description: area.metaDescription, file: file, faqs: area.faqs,
         extraSchemas: [breadcrumbSchema(area.name, canonicalFor(file))]
       }),
-      heroMain(area.headline))]);
+      heroMain(area))]);
   }
 
   for (const guide of cfg.guides || []) {
@@ -660,6 +732,20 @@ function runCheck() {
         if (!exists(node.src)) errors.push("config " + trail + ": image file not found: " + node.src);
         if (!node.width || !node.height) {
           errors.push("config " + trail + ": image entry missing width/height (" + node.src + ")");
+        }
+        /* Responsive variants must exist too, or the browser 404s the srcset
+           candidate it picked and shows a broken hero. */
+        for (const w of node.widths || []) {
+          const dot = node.src.lastIndexOf(".");
+          const variant = node.src.slice(0, dot) + "-" + w + node.src.slice(dot);
+          if (!exists(variant)) {
+            errors.push("config " + trail + ": srcset variant not found: " + variant +
+              " (listed in widths)");
+          }
+        }
+        if ((node.widths || []).length && !node.sizes) {
+          errors.push("config " + trail + ": image has widths but no sizes — " +
+            "the browser would assume 100vw and pick a file that's too big");
         }
       }
       Object.keys(node).forEach(k => walkImages(node[k], trail ? trail + "." + k : k));

@@ -19,6 +19,21 @@
    and Formspree ids are set; run `node bake.js --check` to confirm.
 ============================================================================= */
 
+/* --- Responsive image slot widths -------------------------------------
+   Every image entry with a `widths` array needs a matching `sizes` string:
+   it tells the browser how wide the image will actually be BEFORE any CSS
+   has loaded, so it can pick the right file from the srcset on its first
+   guess. Get it wrong and the phone downloads the desktop-sized file.
+
+   These two cover the layouts in css/styles.css:
+     FIGURE — in-article figures, full width of .container.narrow (720px cap)
+     INTRO  — the service page intro image, which shares a row with the copy
+              on desktop and so is never wider than ~390px there
+   If those CSS widths change, change these too. */
+const FIGURE_SIZES = "(min-width: 760px) 720px, calc(100vw - 40px)";
+const INTRO_SIZES =
+  "(min-width: 900px) 390px, (min-width: 560px) 520px, calc(100vw - 40px)";
+
 window.SITE_CONFIG = {
 
   /* --- Core business identity ---------------------------------------- */
@@ -70,7 +85,13 @@ window.SITE_CONFIG = {
         src: "images/retainingwall434knl.webp",
         alt: "A limestone retaining wall holding back a raised garden bed in a Perth backyard",
         width: 1259,
-        height: 747
+        height: 747,
+        /* Responsive variants on disk as images/<name>-<width>.webp. The hero
+           slot is never wider than 450px on desktop or 520px on tablet, so a
+           phone that downloaded the full 1259px file was wasting ~130 KB.
+           `node bake.js --check` verifies every listed variant exists. */
+        widths: [400, 560, 720, 960],
+        sizes: "(min-width: 900px) 450px, (min-width: 560px) 520px, calc(100vw - 40px)"
       },
       sections: [
         {
@@ -180,6 +201,8 @@ window.SITE_CONFIG = {
               alt: "Diagram comparing a garden wall with level ground on both sides to a retaining wall holding back higher ground",
               width: 1123,
               height: 768,
+              widths: [400, 560, 720, 960],
+              sizes: FIGURE_SIZES,
               caption: "Diagram, not a specific wall or job."
             } }
           ]
@@ -216,6 +239,8 @@ window.SITE_CONFIG = {
               alt: "Diagram of a limestone retaining wall showing limestone blocks, gravel backfill and a drainage pipe behind the wall",
               width: 1408,
               height: 768,
+              widths: [400, 560, 720, 960],
+              sizes: FIGURE_SIZES,
               caption: "Diagram, not a specific wall or job."
             } },
             "What should be there:",
@@ -356,7 +381,9 @@ window.SITE_CONFIG = {
         src: "images/fence463km3e3.webp",
         alt: "A limestone pier and rendered infill fence in a Perth garden",
         width: 1147,
-        height: 722
+        height: 722,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
       },
       intro: [
         "A limestone fence is a front or boundary fence, not a retaining wall. With level ground on both sides it holds up only itself, which means a lighter footing, no drainage system behind it, and a different cost profile.",
@@ -403,7 +430,9 @@ window.SITE_CONFIG = {
               src: "images/Fencing3j5b4k.webp",
               alt: "A limestone and rendered front fence with piers, in a Perth street setting",
               width: 1183,
-              height: 768
+              height: 768,
+              widths: [400, 560, 720, 960],
+              sizes: FIGURE_SIZES
             } },
             "Front fence provisions in particular catch people out, because the height allowed within the front setback is often lower than elsewhere on the block, and there are sometimes requirements about visual permeability, meaning how much can be seen through the fence.",
             { note: "This table was originally researched for a companion site covering brick front fences, by contacting each local government individually. Front fence height, permeability and sightline provisions are set by planning policy against the fence structure itself, not the construction material: several councils' own pages (for example the City of Melville's) name limestone alongside brick and block under the same masonry rule, so the figures apply equally to limestone fencing. Re-check any row before relying on it; council policy changes without notice." },
@@ -486,7 +515,9 @@ window.SITE_CONFIG = {
         src: "images/Repairs_er54ne.webp",
         alt: "Close-up of a weathered limestone wall showing surface erosion and mortar wear",
         width: 1152,
-        height: 768
+        height: 768,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
       },
       intro: [
         "Limestone walls last a long time, but they are not maintenance free. Repairs to an existing wall, new capping, and limestone cladding are distinct jobs from building a new wall, and they are quoted differently.",
@@ -606,6 +637,8 @@ window.SITE_CONFIG = {
               alt: "Diagram showing three limestone wall categories: garden or boundary wall, retaining wall, and taller engineered wall",
               width: 1408,
               height: 768,
+              widths: [400, 560, 720, 960],
+              sizes: FIGURE_SIZES,
               caption: "Diagram, not a specific wall or job. It shows categories only, with no heights and no prices."
             } }
           ]
