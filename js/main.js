@@ -731,6 +731,23 @@
 
   /* ---------- two-step quote form ---------------------------------------- */
 
+  /* One id per page load, shared by every render of the form. crypto.randomUUID
+     needs a secure context; the fallback is not cryptographically strong, but
+     this only has to be unique enough to dedupe one visitor's retries. */
+  var _submissionId = null;
+  function submissionId() {
+    if (_submissionId) return _submissionId;
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      _submissionId = window.crypto.randomUUID();
+    } else {
+      _submissionId = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0;
+        return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+    return _submissionId;
+  }
+
   function renderQuoteFormHtml() {
     var options = cfg.services.map(function (s) { return s.name; })
       .concat([cfg.contact.otherServiceLabel]);
@@ -773,6 +790,11 @@
         // as spam.
         '<input type="text" id="qf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
           'style="position:absolute;left:-9999px;top:-9999px">' +
+        // Idempotency key, generated once per page load. The ingest function dedupes on
+        // (channel, source_ref), so a retry after a failed submit updates the same lead
+        // instead of creating a second one. Without it the server falls back to a random
+        // id per request, and every retry is a new lead.
+        '<input type="hidden" id="qf-id" name="_id" value="' + esc(submissionId()) + '">' +
         (cfg.turnstileSiteKey ? '<div id="turnstile-widget"></div>' : "") +
         '<button class="btn btn-primary btn-block" type="submit">' + esc(cfg.contact.submitText) + "</button>" +
       "</fieldset>" +
@@ -837,6 +859,7 @@
       status.className = "form-status";
 
       var gotcha = document.getElementById("qf-gotcha");
+      var submissionIdField = document.getElementById("qf-id");
       var turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
       var payload = {
         service: service.value,
@@ -849,6 +872,7 @@
         subject: "New job enquiry: " + service.value + " — " + suburb.value.trim(),
         _secret: cfg.ingestSecret,
         _gotcha: gotcha ? gotcha.value : "",
+        _id: submissionIdField ? submissionIdField.value : submissionId(),
         "cf-turnstile-response": turnstileResponse ? turnstileResponse.value : ""
       };
 
