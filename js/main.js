@@ -273,35 +273,51 @@
   /* ---------- header / footer ------------------------------------------ */
 
   function renderHeader() {
-    var file = currentFile();
-    var links = [
-      { href: "index.html", label: "Home" },
-      { href: "index.html#services", label: "Services" },
-      { href: "cost-guide.html", label: "Cost Guide" },
-      { href: "about.html", label: "About" }
-    ];
-    var nav = links.map(function (l) {
-      var active = l.href === file ? ' class="active"' : "";
-      return "<li><a" + active + ' href="' + l.href + '">' + l.label + "</a></li>";
-    }).join("");
+    var el = document.getElementById("site-header");
+    if (!el) return;
 
-    document.getElementById("site-header").innerHTML =
-      '<div class="container header-inner">' +
-        '<a class="logo" href="index.html">' + esc(cfg.business.name) + "</a>" +
-        '<div class="header-actions">' +
-          '<a class="btn btn-primary nav-phone" href="' + telHref() + '">' +
-            UI.callLabel + " " + esc(cfg.business.phoneDisplay) + "</a>" +
-          '<button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="' + UI.menuLabel + '">' +
-            '<span></span><span></span><span></span>' +
-          "</button>" +
-        "</div>" +
-        '<nav id="site-nav" class="site-nav" aria-label="Main">' +
-          "<ul>" + nav + "</ul>" +
-        "</nav>" +
-      "</div>";
+    /* Unlike the hero and footer, a baked header still needs work here: the
+       markup is already correct, but .nav-toggle has no click handler until
+       wireNavToggle() runs. Skip only the innerHTML write — returning early
+       would leave the mobile menu button dead. Header markup changes need
+       `node bake.js`. */
+    if (!el.children.length) {
+      var file = currentFile();
+      var links = [
+        { href: "index.html", label: "Home" },
+        { href: "index.html#services", label: "Services" },
+        { href: "cost-guide.html", label: "Cost Guide" },
+        { href: "about.html", label: "About" }
+      ];
+      var nav = links.map(function (l) {
+        var active = l.href === file ? ' class="active"' : "";
+        return "<li><a" + active + ' href="' + l.href + '">' + l.label + "</a></li>";
+      }).join("");
 
+      el.innerHTML =
+        '<div class="container header-inner">' +
+          '<a class="logo" href="index.html">' + esc(cfg.business.name) + "</a>" +
+          '<div class="header-actions">' +
+            '<a class="btn btn-primary nav-phone" href="' + telHref() + '">' +
+              UI.callLabel + " " + esc(cfg.business.phoneDisplay) + "</a>" +
+            '<button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="' + UI.menuLabel + '">' +
+              '<span></span><span></span><span></span>' +
+            "</button>" +
+          "</div>" +
+          '<nav id="site-nav" class="site-nav" aria-label="Main">' +
+            "<ul>" + nav + "</ul>" +
+          "</nav>" +
+        "</div>";
+    }
+
+    wireNavToggle();
+  }
+
+  /* Split out of renderHeader so it runs against baked markup too. */
+  function wireNavToggle() {
     var toggle = document.querySelector(".nav-toggle");
     var navEl = document.getElementById("site-nav");
+    if (!toggle || !navEl) return;
     toggle.addEventListener("click", function () {
       var open = navEl.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");

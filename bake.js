@@ -324,12 +324,46 @@ const pageHeadMain = headline => `    <section class="page-head">
    main.js skips #site-footer when it already has children, so nothing is
    rendered twice. Footer copy changes therefore need `node bake.js`.
 
-   FOOTER_UI duplicates the three generic labels renderFooter() reads off the
-   UI object in main.js. Keep them in step. */
-const FOOTER_UI = {
+   CHROME_UI duplicates the generic labels renderHeader()/renderFooter() read
+   off the UI object in main.js. Keep them in step. */
+const CHROME_UI = {
   services: "Our Services",
   serviceAreaLabel: "Service area",
-  hoursLabel: "Hours"
+  hoursLabel: "Hours",
+  callLabel: "Call",
+  menuLabel: "Menu"
+};
+
+/* Mirrors renderHeader() in main.js, including the per-page `active` class —
+   which is why this takes the page's filename. main.js skips the innerHTML
+   write when #site-header already has children, but still wires the
+   .nav-toggle click handler against this markup, so the mobile menu keeps
+   working. Change one and you must change the other. */
+const bakedHeader = file => {
+  const links = [
+    { href: "index.html", label: "Home" },
+    { href: "index.html#services", label: "Services" },
+    { href: "cost-guide.html", label: "Cost Guide" },
+    { href: "about.html", label: "About" }
+  ];
+  const nav = links.map(l =>
+    "<li><a" + (l.href === file ? ' class="active"' : "") +
+    ' href="' + l.href + '">' + l.label + "</a></li>").join("");
+
+  return '<div class="container header-inner">' +
+      '<a class="logo" href="index.html">' + esc(cfg.business.name) + "</a>" +
+      '<div class="header-actions">' +
+        '<a class="btn btn-primary nav-phone" href="' + telHref() + '">' +
+          CHROME_UI.callLabel + " " + esc(cfg.business.phoneDisplay) + "</a>" +
+        '<button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="' +
+          CHROME_UI.menuLabel + '">' +
+          "<span></span><span></span><span></span>" +
+        "</button>" +
+      "</div>" +
+      '<nav id="site-nav" class="site-nav" aria-label="Main">' +
+        "<ul>" + nav + "</ul>" +
+      "</nav>" +
+    "</div>";
 };
 
 /* The year is frozen at bake time. `node bake.js --check` fails once it falls
@@ -345,10 +379,10 @@ const bakedFooter = () => {
         '<p class="footer-brand">' + esc(cfg.business.name) + "</p>" +
         '<p><a href="' + telHref() + '">' + esc(cfg.business.phoneDisplay) + "</a><br>" +
         '<a href="mailto:' + esc(cfg.business.email) + '">' + esc(cfg.business.email) + "</a></p>" +
-        "<p>" + FOOTER_UI.serviceAreaLabel + ": " + esc(cfg.business.serviceArea) + "<br>" +
-        FOOTER_UI.hoursLabel + ": " + esc(cfg.business.hours) + "</p>" +
+        "<p>" + CHROME_UI.serviceAreaLabel + ": " + esc(cfg.business.serviceArea) + "<br>" +
+        CHROME_UI.hoursLabel + ": " + esc(cfg.business.hours) + "</p>" +
       "</div>" +
-      '<div><p class="footer-title">' + FOOTER_UI.services + "</p><ul>" + serviceLinks + "</ul></div>" +
+      '<div><p class="footer-title">' + CHROME_UI.services + "</p><ul>" + serviceLinks + "</ul></div>" +
       '<div><p class="footer-title">Pages</p><ul>' +
         '<li><a href="index.html">Home</a></li>' +
         '<li><a href="cost-guide.html">Cost Guide</a></li>' +
@@ -362,7 +396,7 @@ const bakedFooter = () => {
     "</div>";
 };
 
-const page = (dataPage, headHtml, mainInner) => `<!DOCTYPE html>
+const page = (dataPage, file, headHtml, mainInner) => `<!DOCTYPE html>
 <html lang="en" data-style="${themeStyle()}" data-pattern="${themePattern()}">
 <head>
 ${headHtml}
@@ -370,7 +404,7 @@ ${headHtml}
 <body data-page="${dataPage}">
   <a class="skip-link" href="#main">Skip to content</a>
   ${noscript}
-  <header id="site-header"></header>
+  <header id="site-header">${bakedHeader(file)}</header>
   <main id="main">
 ${mainInner}
   </main>
@@ -384,12 +418,12 @@ ${mainInner}
 function buildPages() {
   const files = [];
 
-  files.push(["index.html", page("home",
+  files.push(["index.html", page("home", "index.html",
     head({ title: cfg.pages.home.metaTitle, description: cfg.pages.home.metaDescription, file: "index.html" }),
     heroMain(cfg.pages.home, cfg.pages.home.image))]);
 
   for (const svc of cfg.services) {
-    files.push([svc.page, page("service",
+    files.push([svc.page, page("service", svc.page,
       head({
         title: svc.metaTitle, description: svc.metaDescription, file: svc.page, faqs: svc.faqs,
         extraSchemas: [
@@ -402,7 +436,7 @@ function buildPages() {
 
   for (const area of cfg.areas || []) {
     const file = areaFile(area);
-    files.push([file, page("area",
+    files.push([file, page("area", file,
       head({
         title: area.metaTitle, description: area.metaDescription, file: file, faqs: area.faqs,
         extraSchemas: [breadcrumbSchema(area.name, canonicalFor(file))]
@@ -412,7 +446,7 @@ function buildPages() {
 
   for (const guide of cfg.guides || []) {
     const file = guideFile(guide);
-    files.push([file, page("guide",
+    files.push([file, page("guide", file,
       head({
         title: guide.metaTitle, description: guide.metaDescription, file: file, faqs: guide.faqs,
         extraSchemas: [
@@ -423,14 +457,14 @@ function buildPages() {
       pageHeadMain(guide.headline))]);
   }
 
-  files.push(["about.html", page("about",
+  files.push(["about.html", page("about", "about.html",
     head({
       title: cfg.pages.about.metaTitle, description: cfg.pages.about.metaDescription, file: "about.html",
       extraSchemas: [breadcrumbSchema(cfg.pages.about.headline, canonicalFor("about.html"))]
     }),
     pageHeadMain(cfg.pages.about.headline))]);
 
-  files.push(["privacy.html", page("privacy",
+  files.push(["privacy.html", page("privacy", "privacy.html",
     head({
       title: cfg.pages.privacy.metaTitle, description: cfg.pages.privacy.metaDescription, file: "privacy.html",
       extraSchemas: [breadcrumbSchema(cfg.pages.privacy.headline, canonicalFor("privacy.html"))]
@@ -711,11 +745,15 @@ function runCheck() {
     errors.push("turnstileSiteKey is unset — the form has no spam protection");
   }
 
-  /* -- baked footer is present and current --------------------------------- */
+  /* -- baked header/footer are present and current -------------------------- */
   {
     const year = String(new Date().getFullYear());
     const homeRaw = read("index.html");
     if (homeRaw !== null) {
+      if (/<header id="site-header">\s*<\/header>/.test(homeRaw)) {
+        errors.push("index.html has an empty <header id=\"site-header\"> — the" +
+          " nav renders only in JavaScript (run node bake.js)");
+      }
       if (/<footer id="site-footer">\s*<\/footer>/.test(homeRaw)) {
         errors.push("index.html has an empty <footer id=\"site-footer\"> — the" +
           " service-page links exist only in JavaScript (run node bake.js)");
