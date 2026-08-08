@@ -313,6 +313,55 @@ const pageHeadMain = headline => `    <section class="page-head">
     </section>
     <div id="page-content"></div>`;
 
+/* ---------- baked footer -------------------------------------------------
+   The footer is baked for the same reason the hero is, but the payoff is
+   crawlability rather than LCP: it holds the only links to the service pages,
+   and until it was baked those links existed nowhere in the served HTML —
+   Googlebot had to render ~120 KB of JavaScript before it could discover that
+   the service pages existed at all.
+
+   This mirrors renderFooter() in main.js and the markup must match exactly.
+   main.js skips #site-footer when it already has children, so nothing is
+   rendered twice. Footer copy changes therefore need `node bake.js`.
+
+   FOOTER_UI duplicates the three generic labels renderFooter() reads off the
+   UI object in main.js. Keep them in step. */
+const FOOTER_UI = {
+  services: "Our Services",
+  serviceAreaLabel: "Service area",
+  hoursLabel: "Hours"
+};
+
+/* The year is frozen at bake time. `node bake.js --check` fails once it falls
+   behind the current year, so a stale copyright line can't reach production
+   unnoticed. */
+const bakedFooter = () => {
+  const serviceLinks = cfg.services
+    .map(s => '<li><a href="' + esc(s.page) + '">' + esc(s.name) + "</a></li>")
+    .join("");
+
+  return '<div class="container footer-grid">' +
+      "<div>" +
+        '<p class="footer-brand">' + esc(cfg.business.name) + "</p>" +
+        '<p><a href="' + telHref() + '">' + esc(cfg.business.phoneDisplay) + "</a><br>" +
+        '<a href="mailto:' + esc(cfg.business.email) + '">' + esc(cfg.business.email) + "</a></p>" +
+        "<p>" + FOOTER_UI.serviceAreaLabel + ": " + esc(cfg.business.serviceArea) + "<br>" +
+        FOOTER_UI.hoursLabel + ": " + esc(cfg.business.hours) + "</p>" +
+      "</div>" +
+      '<div><p class="footer-title">' + FOOTER_UI.services + "</p><ul>" + serviceLinks + "</ul></div>" +
+      '<div><p class="footer-title">Pages</p><ul>' +
+        '<li><a href="index.html">Home</a></li>' +
+        '<li><a href="cost-guide.html">Cost Guide</a></li>' +
+        '<li><a href="about.html">About</a></li>' +
+        '<li><a href="privacy.html">Privacy Policy</a></li>' +
+      "</ul></div>" +
+    "</div>" +
+    '<div class="container footer-bottom">' +
+      "<p>&copy; " + new Date().getFullYear() + " " + esc(cfg.business.name) +
+      ". Serving " + esc(cfg.business.city) + ", " + esc(cfg.business.state) + ".</p>" +
+    "</div>";
+};
+
 const page = (dataPage, headHtml, mainInner) => `<!DOCTYPE html>
 <html lang="en" data-style="${themeStyle()}" data-pattern="${themePattern()}">
 <head>
@@ -325,7 +374,7 @@ ${headHtml}
   <main id="main">
 ${mainInner}
   </main>
-  <footer id="site-footer"></footer>
+  <footer id="site-footer">${bakedFooter()}</footer>
 </body>
 </html>
 `;
@@ -660,6 +709,21 @@ function runCheck() {
   }
   if (!cfg.turnstileSiteKey) {
     errors.push("turnstileSiteKey is unset — the form has no spam protection");
+  }
+
+  /* -- baked footer is present and current --------------------------------- */
+  {
+    const year = String(new Date().getFullYear());
+    const homeRaw = read("index.html");
+    if (homeRaw !== null) {
+      if (/<footer id="site-footer">\s*<\/footer>/.test(homeRaw)) {
+        errors.push("index.html has an empty <footer id=\"site-footer\"> — the" +
+          " service-page links exist only in JavaScript (run node bake.js)");
+      } else if (homeRaw.indexOf("&copy; " + year) === -1) {
+        errors.push("baked footer copyright year is stale (expected " + year +
+          ") — run node bake.js");
+      }
+    }
   }
 
   /* -- 3. service page files <-> config ------------------------------------ */

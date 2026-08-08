@@ -309,11 +309,19 @@
   }
 
   function renderFooter() {
+    var el = document.getElementById("site-footer");
+    if (!el) return;
+    /* Already baked into the page HTML by bake.js — leave it alone. The footer
+       carries the only links to the service pages, and re-writing it here would
+       tear those links out of the DOM and rebuild them after first paint. Footer
+       copy changes therefore need `node bake.js`, same as the hero. */
+    if (el.children.length) return;
+
     var serviceLinks = cfg.services.map(function (s) {
       return '<li><a href="' + esc(s.page) + '">' + esc(s.name) + "</a></li>";
     }).join("");
 
-    document.getElementById("site-footer").innerHTML =
+    el.innerHTML =
       '<div class="container footer-grid">' +
         "<div>" +
           '<p class="footer-brand">' + esc(cfg.business.name) + "</p>" +
