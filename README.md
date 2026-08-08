@@ -75,11 +75,15 @@ What to edit in `config.js`:
    contains `XXXX`, the tracking snippet is not injected, so you get no
    analytics and no `click_to_call` events — meaning no call-volume proof
    to show a future renter. (The placeholder is safe to develop with.)
-5. **formspreeId** — create a free form at [formspree.io](https://formspree.io),
-   copy the ID after `/f/` in the endpoint. **Required before launch: the
-   site cannot capture web form leads until this is a real ID.** Until
-   then, submitting the form shows a polite error with the phone number as
-   fallback — phone calls work, web leads are silently lost.
+5. **ingestUrl / ingestSecret / turnstileSiteKey** — form leads post to our
+   own ingest endpoint, not to a third-party form service. `ingestUrl` is the
+   endpoint, `ingestSecret` is the shared secret it checks, and
+   `turnstileSiteKey` is the Cloudflare Turnstile key for spam filtering.
+   **Required before launch: the site cannot capture web form leads until
+   `ingestUrl` and `ingestSecret` are real values.** Until then, submitting
+   the form shows a polite error with the phone number as fallback — phone
+   calls work, web leads are silently lost. Whichever service hosts the
+   endpoint receives enquiry data, so name it in the privacy policy.
 6. **schema.type** — a [LocalBusiness subtype](https://schema.org/LocalBusiness)
    matching the niche (`Plumber`, `Electrician`, `RoofingContractor`, …).
 7. **pages** — meta titles/descriptions and message-matched headlines. Make

@@ -15,8 +15,9 @@
    cost-guide, about. Plus privacy (legal requirement for a form collecting
    personal information; not a ranking page).
 
-   PRE-LAUNCH: the remaining [DATE] review dates. Business details, GA4
-   and Formspree ids are set; run `node bake.js --check` to confirm.
+   PRE-LAUNCH: nothing outstanding. Business details, GA4, the ingest
+   endpoint and the Turnstile key are set, and the review dates are filled;
+   run `node bake.js --check` to confirm.
 ============================================================================= */
 
 /* --- Responsive image slot widths -------------------------------------
@@ -163,7 +164,7 @@ window.SITE_CONFIG = {
       metaTitle: "Privacy Policy | Perth Limestone Group",
       metaDescription: "How Perth Limestone Group collects, uses and shares the details you submit through this website, and how to access, correct or delete them.",
       headline: "Privacy policy",
-      lastUpdated: "[DATE]"
+      lastUpdated: "09/08/2026"
     }
   },
 
@@ -349,7 +350,7 @@ window.SITE_CONFIG = {
               "Is engineering required, and is it included?",
               "For work contracted at $20,000 or more, is the contractor registered with Building and Energy?"
             ] },
-            { note: "Last reviewed: [DATE]. Council and shire policy changes without notice; confirm the current position before relying on anything in this section." }
+            { note: "Last reviewed: 27/07/2026. Council and shire policy changes without notice; confirm the current position before relying on anything in this section." }
           ]
         }
       ],
@@ -624,7 +625,7 @@ window.SITE_CONFIG = {
          bake.js falls back to the Organization as the Article author. */
       datePublished: "2026-07-27",
       dateModified: "2026-07-27",
-      lastReviewed: "[DATE]",
+      lastReviewed: "27/07/2026",
       intro: [
         "Most cost pages give a per metre figure and stop. That figure is close to useless on its own, because the same wall on two different blocks can differ substantially in price for reasons that have nothing to do with its length.",
         "This page explains what actually moves the number, so that when quotes arrive you can tell the difference between one that is cheap and one that has left something out."
@@ -849,7 +850,7 @@ window.SITE_CONFIG = {
             "We do not use your details to market unrelated products or services.",
             "We do not pass your details to anyone other than the contractor handling your enquiry, except where required by law."
           ] },
-          "The enquiry form is delivered by Formspree, a form handling service, so your details pass through their servers to reach us. Their own privacy policy is on their website."
+          "The enquiry form submits to our own system rather than to a third-party form service. That system is hosted on Supabase, so your details pass through their servers to reach us, and a Cloudflare Turnstile check runs in your browser first to filter out automated spam. Both companies publish their own privacy policies on their websites."
         ]
       },
       {
