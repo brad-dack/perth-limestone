@@ -483,6 +483,15 @@
     var p = cfg.pages.home;
     fillHero(p, p.image);
 
+    /* Already baked into the page HTML by bake.js — leave it alone. Only the
+       form's per-page-load idempotency id still needs wiring (see
+       wireQuoteForm). Content changes therefore need `node bake.js`, same as
+       the hero and footer. */
+    if (content.children.length) {
+      wireQuoteForm();
+      return;
+    }
+
     var homeSections = (p.sections && p.sections.length)
       ? '<section class="section"><div class="container narrow prose guide">' +
           sectionsHtml(p.sections) +
@@ -523,6 +532,12 @@
     }
 
     fillHero(svc);
+
+    // Already baked into the page HTML by bake.js — see renderHome for why.
+    if (content.children.length) {
+      wireQuoteForm();
+      return;
+    }
 
     var svcMedia = imgTag(svc.image, "service-img", true);
 
@@ -588,6 +603,10 @@
 
     fillHero(area);
 
+    // Already baked into the page HTML by bake.js — see renderHome for why.
+    // (Area pages carry no form, so there's nothing left to wire.)
+    if (content.children.length) return;
+
     // localDetail accepts a single string or an array of paragraphs.
     var detail = area.localDetail
       ? [].concat(area.localDetail).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("")
@@ -627,6 +646,12 @@
   }
 
   function renderAbout(content) {
+    // Already baked into the page HTML by bake.js — see renderHome for why.
+    if (content.children.length) {
+      wireQuoteForm();
+      return;
+    }
+
     // Rich, sectioned About body (with markdown links) when provided; falls
     // back to the plain paragraph list for a generic template deployment.
     var body = (cfg.about.sections && cfg.about.sections.length)
@@ -654,6 +679,10 @@
   }
 
   function renderPrivacy(content) {
+    // Already baked into the page HTML by bake.js — see renderHome for why.
+    // (Privacy carries no form, so there's nothing left to wire.)
+    if (content.children.length) return;
+
     var p = cfg.pages.privacy;
     var name = esc(cfg.business.name);
 
@@ -705,6 +734,12 @@
         "Add an entry with <code>slug: \"" + esc(file.replace(/\.html$/, "")) + "\"</code>, or delete this file.</p>" +
         '<p><a class="btn btn-primary" href="index.html">' + UI.backHome + "</a></p>" +
       "</div></section>";
+      return;
+    }
+
+    // Already baked into the page HTML by bake.js — see renderHome for why.
+    if (content.children.length) {
+      wireQuoteForm();
       return;
     }
 
@@ -820,6 +855,14 @@
     if (!form) return;
     var step2 = document.getElementById("form-step-2");
     var status = document.getElementById("form-status");
+
+    /* The _id field is baked empty by bake.js (a page-load-unique id can't
+       be baked ahead of time), and on a freshly-JS-rendered form it's
+       already correct but redundant to set again. Either way, stamp it here
+       so every page load — baked or not — gets a fresh idempotency key. */
+    var idField = document.getElementById("qf-id");
+    if (idField) idField.value = submissionId();
+
     renderTurnstile(document.getElementById("turnstile-widget"));
 
     form.addEventListener("change", function (e) {

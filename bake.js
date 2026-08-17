@@ -291,7 +291,7 @@ function heroImg(image) {
    its intro section (.service-img), which main.js still renders, not to the
    hero. This mirrors main.js: fillHero(p, p.image) on home, fillHero(svc)
    everywhere else. */
-function heroMain(p, image) {
+function heroMain(p, image, contentHtml) {
   const media = heroImg(image);
   const sub = p.subheadline
     ? '<p class="hero-sub">' + esc(p.subheadline) + "</p>" : "";
@@ -304,14 +304,14 @@ function heroMain(p, image) {
         <div class="hero-media">${media}</div>` : ""}
       </div>
     </section>
-    <div id="page-content"></div>`;
+    <div id="page-content">${contentHtml || ""}</div>`;
 }
 
 // Simple pages (faq/about/privacy): static H1 in the page header band.
-const pageHeadMain = headline => `    <section class="page-head">
+const pageHeadMain = (headline, contentHtml) => `    <section class="page-head">
       <div class="container"><h1>${esc(headline)}</h1></div>
     </section>
-    <div id="page-content"></div>`;
+    <div id="page-content">${contentHtml || ""}</div>`;
 
 /* ---------- baked footer -------------------------------------------------
    The footer is baked for the same reason the hero is, but the payoff is
@@ -396,6 +396,409 @@ const bakedFooter = () => {
     "</div>";
 };
 
+/* ---------- baked page content ---------------------------------------
+   Everything that used to live only in <div id="page-content"></div>,
+   filled in by main.js after config.js parsed and JS ran. Baked for the
+   same crawlability reason as the hero and footer above: Google's first
+   pass sees the page shell — nearly identical across every page — but not
+   the content that actually differentiates one page from another, so
+   service/guide pages read as thin near-duplicates before JS ever runs.
+
+   These builders mirror the render* functions in js/main.js — the markup
+   must match exactly, because main.js still renders content on any page
+   that hasn't been baked (or whose config entry is missing). main.js skips
+   #page-content when it already has children, same as it does for the
+   hero and footer, so nothing is rendered twice. Content changes therefore
+   need `node bake.js`, same as everywhere else in this file.
+
+   The one exception is the quote form's hidden `_id` field: it has to be a
+   fresh value per page LOAD (it's the idempotency key retries dedupe on),
+   so it can't be meaningfully baked. It's baked empty and main.js's
+   wireQuoteForm() unconditionally overwrites it on load, baked or not. */
+
+/* Duplicates the generic labels UI reads in main.js — same duplication
+   CHROME_UI above does for the header/footer. Keep them in step. */
+const CONTENT_UI = {
+  howItWorks: "How It Works",
+  services: "Our Services",
+  faqTitle: "Frequently Asked Questions",
+  serviceDetails: "Pricing & details",
+  included: "What's included",
+  pricing: "Typical Pricing",
+  ctaBandTitle: "Ready to get started?",
+  callLabel: "Call",
+  orText: "or",
+  testimonialsTitle: "What Customers Say",
+  photosTitle: "Recent Work",
+  serviceAreaLabel: "Service area",
+  hoursLabel: "Hours",
+  areasTitle: "Areas We Serve",
+  servicesInPrefix: "Services available in",
+  backHome: "Back to homepage"
+};
+
+// Mirrors the ICONS map in main.js (how-it-works step icons).
+const ICONS = {
+  phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  clipboard: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/>',
+  check: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  bolt: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  home: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'
+};
+
+function iconSvg(name) {
+  if (!name || !ICONS[name]) return "";
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + "</svg>";
+}
+
+// Escapes first, then re-applies **bold** and [text](href) — mirrors inline() in main.js.
+function inline(s) {
+  return esc(s)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+const faqItems = list => list.map(f =>
+  '<details class="faq-item"><summary>' + esc(f.q) + "</summary>" +
+  '<div class="faq-answer"><p>' + esc(f.a) + "</p></div></details>"
+).join("");
+
+const quoteButtonHtml = (text, extraClass) =>
+  '<a class="btn btn-primary ' + (extraClass || "") + '" href="#quote">' + esc(text) + "</a>";
+
+/* Mirrors imgTag() in main.js — content images (service intro, guide
+   figures, photos). The hero has its own heroImg() above because it's
+   always fetchpriority=high and never lazy; content images are the
+   opposite, so this always sets loading="lazy". */
+function contentImg(image, className) {
+  if (!image || !image.src) return "";
+  const dot = image.src.lastIndexOf(".");
+  const base = image.src.slice(0, dot), ext = image.src.slice(dot);
+  const set = (image.widths || []).map(w => base + "-" + w + ext + " " + w + "w");
+  if (set.length && image.width) set.push(image.src + " " + image.width + "w");
+  return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
+    (set.length ? ' srcset="' + esc(set.join(", ")) + '"' : "") +
+    (set.length && image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "") +
+    ' alt="' + esc(image.alt || "") + '"' +
+    (image.width ? ' width="' + image.width + '"' : "") +
+    (image.height ? ' height="' + image.height + '"' : "") +
+    ' loading="lazy">';
+}
+
+// Renders one content block: a string (paragraph) or {list|olist|table|subheading|note|image}.
+function blockHtml(b) {
+  if (b == null) return "";
+  if (typeof b === "string") return "<p>" + inline(b) + "</p>";
+  if (b.subheading) return "<h3>" + inline(b.subheading) + "</h3>";
+  if (b.note) return '<p class="guide-note">' + inline(b.note) + "</p>";
+  if (b.image) {
+    const fig = contentImg(b.image, "guide-img");
+    if (!fig) return "";
+    return '<figure class="photo guide-figure">' + fig +
+      (b.image.caption ? "<figcaption>" + esc(b.image.caption) + "</figcaption>" : "") +
+      "</figure>";
+  }
+  if (b.list) {
+    return '<ul class="check-list">' +
+      b.list.map(i => "<li>" + inline(i) + "</li>").join("") + "</ul>";
+  }
+  if (b.olist) {
+    return '<ol class="guide-steps">' +
+      b.olist.map(i => "<li>" + inline(i) + "</li>").join("") + "</ol>";
+  }
+  if (b.table) {
+    const t = b.table;
+    const thead = "<thead><tr>" +
+      (t.head || []).map(h => "<th>" + inline(h) + "</th>").join("") + "</tr></thead>";
+    const tbody = "<tbody>" +
+      (t.rows || []).map(row =>
+        "<tr>" + row.map(c => "<td>" + inline(c) + "</td>").join("") + "</tr>"
+      ).join("") + "</tbody>";
+    return '<div class="table-wrap"><table class="guide-table">' + thead + tbody + "</table></div>";
+  }
+  return "";
+}
+
+const sectionsHtml = sections => (sections || []).map(sec =>
+  (sec.heading ? "<h2>" + inline(sec.heading) + "</h2>" : "") +
+  (sec.body || []).map(blockHtml).join("")
+).join("");
+
+function howItWorksSection(compact) {
+  if (!cfg.howItWorks || !cfg.howItWorks.length) return "";
+  const steps = cfg.howItWorks.map((s, i) => {
+    const badge = s.icon && iconSvg(s.icon)
+      ? '<span class="step-num" aria-hidden="true">' + iconSvg(s.icon) + "</span>" +
+        '<span class="step-label">Step ' + (i + 1) + "</span>"
+      : '<span class="step-num" aria-hidden="true">' + (i + 1) + "</span>";
+    return '<li class="step">' + badge +
+      "<h3>" + esc(s.title) + "</h3>" +
+      "<p>" + esc(s.text) + "</p>" +
+    "</li>";
+  }).join("");
+  return '<section class="section how-it-works' + (compact ? " compact" : "") + '" id="how-it-works">' +
+    '<div class="container">' +
+      "<h2>" + CONTENT_UI.howItWorks + "</h2>" +
+      '<ol class="steps">' + steps + "</ol>" +
+    "</div></section>";
+}
+
+function testimonialsSection() {
+  if (!cfg.testimonials || !cfg.testimonials.length) return "";
+  const items = cfg.testimonials.map(t =>
+    '<figure class="testimonial"><blockquote>' + esc(t.quote) + "</blockquote>" +
+    "<figcaption>" + esc(t.name) + (t.detail ? " — " + esc(t.detail) : "") + "</figcaption></figure>"
+  ).join("");
+  return '<section class="section"><div class="container">' +
+    "<h2>" + CONTENT_UI.testimonialsTitle + '</h2><div class="grid-3">' + items + "</div></div></section>";
+}
+
+function photosSection() {
+  if (!cfg.photos || !cfg.photos.length) return "";
+  const items = cfg.photos.map(p =>
+    '<figure class="photo"><img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.alt) + '">' +
+    (p.caption ? "<figcaption>" + esc(p.caption) + "</figcaption>" : "") + "</figure>"
+  ).join("");
+  return '<section class="section"><div class="container">' +
+    "<h2>" + CONTENT_UI.photosTitle + '</h2><div class="grid-3">' + items + "</div></div></section>";
+}
+
+const serviceCards = services => services.map(s =>
+  '<article class="card">' +
+    '<h3><a href="' + esc(s.page) + '">' + esc(s.name) + "</a></h3>" +
+    "<p>" + esc(s.shortDescription) + "</p>" +
+    '<a class="card-link" href="' + esc(s.page) + '">' + CONTENT_UI.serviceDetails + " &rarr;</a>" +
+  "</article>"
+).join("");
+
+function areasSection() {
+  if (!cfg.areas || !cfg.areas.length) return "";
+  const links = cfg.areas.map(a =>
+    '<li><a href="' + esc(a.slug) + '.html">' + esc(a.name) + "</a></li>"
+  ).join("");
+  return '<section class="section" id="areas"><div class="container">' +
+    "<h2>" + CONTENT_UI.areasTitle + '</h2><ul class="area-links">' + links + "</ul>" +
+  "</div></section>";
+}
+
+const ctaBand = ctaText => '<section class="cta-band"><div class="container">' +
+  "<h2>" + CONTENT_UI.ctaBandTitle + "</h2>" +
+  "<p>" + CONTENT_UI.callLabel + ' <a href="' + telHref() + '">' + esc(cfg.business.phoneDisplay) +
+  "</a> " + CONTENT_UI.orText + " request your free quote online.</p>" +
+  quoteButtonHtml(ctaText, "btn-invert") +
+"</div></section>";
+
+/* Baked with an empty `_id` — see the note at the top of this section.
+   Everything else mirrors renderQuoteFormHtml() in main.js exactly. */
+function quoteFormHtml() {
+  const options = cfg.services.map(s => s.name).concat([cfg.contact.otherServiceLabel]);
+  const radios = options.map(name =>
+    '<label class="service-option">' +
+      '<input type="radio" name="service" value="' + esc(name) + '" required>' +
+      "<span>" + esc(name) + "</span>" +
+    "</label>"
+  ).join("");
+  const tfOpts = (cfg.contact.timeframeOptions || [])
+    .map(t => '<option value="' + esc(t) + '">' + esc(t) + "</option>").join("");
+
+  return '<form id="quote-form" novalidate>' +
+    '<fieldset class="form-step" id="form-step-1">' +
+      "<legend>" + esc(cfg.contact.step1Label) + "</legend>" +
+      '<div class="service-options">' + radios + "</div>" +
+    "</fieldset>" +
+    '<fieldset class="form-step" id="form-step-2" hidden>' +
+      "<legend>" + esc(cfg.contact.step2Label) + "</legend>" +
+      '<div class="form-field"><label for="qf-suburb">Suburb</label>' +
+      '<input id="qf-suburb" name="suburb" type="text" autocomplete="address-level2" required></div>' +
+      '<div class="form-field"><label for="qf-size">' + esc(cfg.contact.sizeLabel || "Rough size") + "</label>" +
+      '<input id="qf-size" name="size" type="text"' +
+        (cfg.contact.sizePlaceholder ? ' placeholder="' + esc(cfg.contact.sizePlaceholder) + '"' : "") +
+      "></div>" +
+      '<div class="form-field"><label for="qf-timeframe">' + esc(cfg.contact.timeframeLabel || "Timeframe") + "</label>" +
+      '<select id="qf-timeframe" name="timeframe" required>' +
+        '<option value="" disabled selected>Choose one</option>' + tfOpts +
+      "</select></div>" +
+      '<div class="form-field"><label for="qf-name">Name</label>' +
+      '<input id="qf-name" name="name" type="text" autocomplete="name" required></div>' +
+      '<div class="form-field"><label for="qf-phone">Phone</label>' +
+      '<input id="qf-phone" name="phone" type="tel" autocomplete="tel" required></div>' +
+      '<div class="form-field"><label for="qf-email">Email</label>' +
+      '<input id="qf-email" name="email" type="email" autocomplete="email" required></div>' +
+      '<input type="text" id="qf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
+        'style="position:absolute;left:-9999px;top:-9999px">' +
+      '<input type="hidden" id="qf-id" name="_id" value="">' +
+      (cfg.turnstileSiteKey ? '<div id="turnstile-widget"></div>' : "") +
+      '<button class="btn btn-primary btn-block" type="submit">' + esc(cfg.contact.submitText) + "</button>" +
+    "</fieldset>" +
+    '<p class="form-status" id="form-status" role="status" aria-live="polite"></p>' +
+  "</form>";
+}
+
+function enquirySection() {
+  const note = cfg.contact.formNote ? '<p class="form-note">' + inline(cfg.contact.formNote) + "</p>" : "";
+  return '<section class="section section-alt" id="quote"><div class="container narrow">' +
+    "<h2>" + esc(cfg.contact.formHeadline) + "</h2>" +
+    '<p class="reassurance">' + esc(cfg.contact.reassurance) + "</p>" +
+    quoteFormHtml() + note +
+  "</div></section>";
+}
+
+/* ---- per-page-type content (mirrors renderHome/renderService/renderArea/
+   renderGuide/renderAbout/renderPrivacy in main.js) ---- */
+
+function homeContent() {
+  const p = cfg.pages.home;
+  const homeSections = (p.sections && p.sections.length)
+    ? '<section class="section"><div class="container narrow prose guide">' +
+        sectionsHtml(p.sections) +
+      "</div></section>"
+    : "";
+  return '<section class="section" id="services"><div class="container">' +
+      "<h2>" + CONTENT_UI.services + '</h2><div class="grid-3">' + serviceCards(cfg.services) + "</div></div></section>" +
+    homeSections +
+    areasSection() +
+    howItWorksSection(false) +
+    testimonialsSection() +
+    '<section class="section"><div class="container narrow">' +
+      "<h2>" + CONTENT_UI.faqTitle + "</h2>" +
+      faqItems(cfg.faqs) +
+    "</div></section>" +
+    enquirySection() +
+    ctaBand(p.ctaText);
+}
+
+function serviceContent(svc) {
+  const svcMedia = contentImg(svc.image, "service-img");
+  const includedBlock = (svc.included && svc.included.length)
+    ? '<section class="section section-alt"><div class="container narrow">' +
+        '<div class="grid-2">' +
+          "<div><h2>" + CONTENT_UI.included + '</h2><ul class="check-list">' +
+            svc.included.map(i => "<li>" + esc(i) + "</li>").join("") +
+          "</ul></div>" +
+          '<div><h2>' + CONTENT_UI.pricing + '</h2><p class="price-note">' +
+            esc(svc.priceNote || "") + "</p>" + quoteButtonHtml(svc.ctaText) +
+        "</div></div>" +
+      "</div></section>"
+    : "";
+  const sectionsBlock = (svc.sections && svc.sections.length)
+    ? '<section class="section"><div class="container narrow prose guide">' +
+        sectionsHtml(svc.sections) +
+      "</div></section>"
+    : "";
+  return '<section class="section"><div class="container' + (svcMedia ? " intro-grid" : " narrow") + '">' +
+      '<div class="intro-copy">' +
+        svc.intro.map(t => '<p class="lead">' + esc(t) + "</p>").join("") +
+      "</div>" +
+      (svcMedia ? '<div class="intro-media">' + svcMedia + "</div>" : "") +
+    "</div></section>" +
+    includedBlock +
+    sectionsBlock +
+    howItWorksSection(true) +
+    testimonialsSection() +
+    '<section class="section"><div class="container narrow">' +
+      "<h2>" + esc(svc.name) + ": " + CONTENT_UI.faqTitle + "</h2>" +
+      faqItems(svc.faqs) +
+    "</div></section>" +
+    enquirySection() +
+    ctaBand(svc.ctaText);
+}
+
+function areaContent(area) {
+  const detail = area.localDetail
+    ? [].concat(area.localDetail).map(t => "<p>" + esc(t) + "</p>").join("")
+    : "";
+  const featured = area.services && area.services.length
+    ? cfg.services.filter(s => area.services.indexOf(s.page) !== -1)
+    : cfg.services;
+  return '<section class="section"><div class="container narrow">' +
+      area.intro.map(t => '<p class="lead">' + esc(t) + "</p>").join("") +
+      detail +
+    "</div></section>" +
+    '<section class="section section-alt"><div class="container">' +
+      "<h2>" + CONTENT_UI.servicesInPrefix + " " + esc(area.name) + "</h2>" +
+      '<div class="grid-3">' + serviceCards(featured) + "</div>" +
+      '<p class="center"><a class="text-link" href="index.html">' + CONTENT_UI.backHome + " &rarr;</a></p>" +
+    "</div></section>" +
+    howItWorksSection(true) +
+    (area.faqs && area.faqs.length
+      ? '<section class="section section-alt"><div class="container narrow">' +
+          "<h2>" + esc(area.name) + " — " + CONTENT_UI.faqTitle + "</h2>" +
+          faqItems(area.faqs) +
+        "</div></section>"
+      : "") +
+    ctaBand(area.ctaText || cfg.pages.home.ctaText);
+}
+
+function guideContent(g) {
+  const byline = g.byline ? '<p class="guide-byline">' + inline(g.byline) + "</p>" : "";
+  const reviewed = g.lastReviewed
+    ? '<p class="guide-reviewed">Last reviewed: ' + esc(g.lastReviewed) + "</p>" : "";
+  const intro = (g.intro || []).map(t => '<p class="lead">' + inline(t) + "</p>").join("");
+  return '<section class="section"><div class="container narrow prose guide">' +
+      byline + reviewed + intro +
+      sectionsHtml(g.sections) +
+      (g.faqs && g.faqs.length
+        ? "<h2>" + CONTENT_UI.faqTitle + "</h2>" + faqItems(g.faqs)
+        : "") +
+    "</div></section>" +
+    enquirySection() +
+    ctaBand(g.cta || cfg.pages.home.ctaText);
+}
+
+function aboutContent() {
+  const body = (cfg.about.sections && cfg.about.sections.length)
+    ? '<div class="prose guide">' + sectionsHtml(cfg.about.sections) + "</div>"
+    : (cfg.about.paragraphs || []).map(t => '<p class="lead">' + esc(t) + "</p>").join("");
+  return '<section class="section"><div class="container narrow">' +
+      body +
+      '<p class="contact-lines">' +
+        "<strong>" + CONTENT_UI.callLabel + ":</strong> " +
+        '<a href="' + telHref() + '">' + esc(cfg.business.phoneDisplay) + "</a><br>" +
+        "<strong>Email:</strong> " +
+        '<a href="mailto:' + esc(cfg.business.email) + '">' + esc(cfg.business.email) + "</a><br>" +
+        "<strong>" + CONTENT_UI.serviceAreaLabel + ":</strong> " + esc(cfg.business.serviceArea) + "<br>" +
+        "<strong>" + CONTENT_UI.hoursLabel + ":</strong> " + esc(cfg.business.hours) +
+      "</p>" +
+    "</div></section>" +
+    photosSection() +
+    enquirySection();
+}
+
+function privacyContent() {
+  const p = cfg.pages.privacy;
+  if (cfg.privacy && cfg.privacy.sections && cfg.privacy.sections.length) {
+    return '<section class="section"><div class="container narrow prose guide">' +
+      (p.lastUpdated ? '<p class="guide-reviewed">Last reviewed: ' + esc(p.lastUpdated) + "</p>" : "") +
+      sectionsHtml(cfg.privacy.sections) +
+    "</div></section>";
+  }
+  const name = esc(cfg.business.name);
+  return '<section class="section"><div class="container narrow prose">' +
+    "<p><em>Last updated: " + esc(p.lastUpdated) + "</em></p>" +
+    "<h2>What this website collects</h2>" +
+    "<p>When you use the quote form on this site, we collect three things: your <strong>name</strong>, your <strong>phone number</strong>, and the <strong>service you need</strong>. That's it — the form has no other fields.</p>" +
+    "<h2>How it's used</h2>" +
+    "<p>Your details are used for one purpose: to contact you about your quote request. They are not sold, shared with advertisers, or added to any marketing list.</p>" +
+    "<h2>Who processes the form</h2>" +
+    "<p>The form is delivered directly to our own systems for handling enquiries. A free security check (Cloudflare Turnstile) runs in the background to filter out automated spam submissions before your enquiry reaches us.</p>" +
+    "<h2>Analytics</h2>" +
+    "<p>This site may use Google Analytics to understand how visitors find and use it (for example, which pages are viewed). Google Analytics uses cookies and collects anonymous usage data such as your general location and device type. It does not see anything you type into the quote form.</p>" +
+    "<h2>Phone calls</h2>" +
+    "<p>If you call the number on this site, standard call records apply. We don't record calls.</p>" +
+    "<h2>Your choices</h2>" +
+    "<p>If you'd like the details you submitted to be deleted, call " +
+    '<a href="' + telHref() + '">' + esc(cfg.business.phoneDisplay) + "</a> or email " +
+    '<a href="mailto:' + esc(cfg.business.email) + '">' + esc(cfg.business.email) + "</a> and ask — they'll be removed.</p>" +
+    "<h2>Contact</h2>" +
+    "<p>Questions about this policy can be sent to " + name + " at " +
+    '<a href="mailto:' + esc(cfg.business.email) + '">' + esc(cfg.business.email) + "</a>.</p>" +
+  "</div></section>";
+}
+
 const page = (dataPage, file, headHtml, mainInner) => `<!DOCTYPE html>
 <html lang="en" data-style="${themeStyle()}" data-pattern="${themePattern()}">
 <head>
@@ -420,7 +823,7 @@ function buildPages() {
 
   files.push(["index.html", page("home", "index.html",
     head({ title: cfg.pages.home.metaTitle, description: cfg.pages.home.metaDescription, file: "index.html" }),
-    heroMain(cfg.pages.home, cfg.pages.home.image))]);
+    heroMain(cfg.pages.home, cfg.pages.home.image, homeContent()))]);
 
   for (const svc of cfg.services) {
     files.push([svc.page, page("service", svc.page,
@@ -431,7 +834,7 @@ function buildPages() {
           breadcrumbSchema(svc.name, canonicalFor(svc.page))
         ]
       }),
-      heroMain(svc))]);
+      heroMain(svc, undefined, serviceContent(svc)))]);
   }
 
   for (const area of cfg.areas || []) {
@@ -441,7 +844,7 @@ function buildPages() {
         title: area.metaTitle, description: area.metaDescription, file: file, faqs: area.faqs,
         extraSchemas: [breadcrumbSchema(area.name, canonicalFor(file))]
       }),
-      heroMain(area))]);
+      heroMain(area, undefined, areaContent(area)))]);
   }
 
   for (const guide of cfg.guides || []) {
@@ -454,7 +857,7 @@ function buildPages() {
           breadcrumbSchema(guide.name, canonicalFor(file))
         ]
       }),
-      pageHeadMain(guide.headline))]);
+      pageHeadMain(guide.headline, guideContent(guide)))]);
   }
 
   files.push(["about.html", page("about", "about.html",
@@ -462,14 +865,14 @@ function buildPages() {
       title: cfg.pages.about.metaTitle, description: cfg.pages.about.metaDescription, file: "about.html",
       extraSchemas: [breadcrumbSchema(cfg.pages.about.headline, canonicalFor("about.html"))]
     }),
-    pageHeadMain(cfg.pages.about.headline))]);
+    pageHeadMain(cfg.pages.about.headline, aboutContent()))]);
 
   files.push(["privacy.html", page("privacy", "privacy.html",
     head({
       title: cfg.pages.privacy.metaTitle, description: cfg.pages.privacy.metaDescription, file: "privacy.html",
       extraSchemas: [breadcrumbSchema(cfg.pages.privacy.headline, canonicalFor("privacy.html"))]
     }),
-    pageHeadMain(cfg.pages.privacy.headline))]);
+    pageHeadMain(cfg.pages.privacy.headline, privacyContent()))]);
 
   return files;
 }
@@ -745,21 +1148,26 @@ function runCheck() {
     errors.push("turnstileSiteKey is unset — the form has no spam protection");
   }
 
-  /* -- baked header/footer are present and current -------------------------- */
+  /* -- baked header/footer/page-content are present and current ------------ */
   {
     const year = String(new Date().getFullYear());
-    const homeRaw = read("index.html");
-    if (homeRaw !== null) {
-      if (/<header id="site-header">\s*<\/header>/.test(homeRaw)) {
-        errors.push("index.html has an empty <header id=\"site-header\"> — the" +
+    for (const name of buildPages().map(([n]) => n)) {
+      const raw = read(name);
+      if (raw === null) continue; // reported separately below (file missing)
+      if (/<header id="site-header">\s*<\/header>/.test(raw)) {
+        errors.push(name + " has an empty <header id=\"site-header\"> — the" +
           " nav renders only in JavaScript (run node bake.js)");
       }
-      if (/<footer id="site-footer">\s*<\/footer>/.test(homeRaw)) {
-        errors.push("index.html has an empty <footer id=\"site-footer\"> — the" +
+      if (/<footer id="site-footer">\s*<\/footer>/.test(raw)) {
+        errors.push(name + " has an empty <footer id=\"site-footer\"> — the" +
           " service-page links exist only in JavaScript (run node bake.js)");
-      } else if (homeRaw.indexOf("&copy; " + year) === -1) {
-        errors.push("baked footer copyright year is stale (expected " + year +
+      } else if (raw.indexOf("&copy; " + year) === -1) {
+        errors.push(name + ": baked footer copyright year is stale (expected " + year +
           ") — run node bake.js");
+      }
+      if (/<div id="page-content">\s*<\/div>/.test(raw)) {
+        errors.push(name + " has an empty <div id=\"page-content\"> — the" +
+          " page body renders only in JavaScript (run node bake.js)");
       }
     }
   }
