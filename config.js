@@ -156,7 +156,7 @@ window.SITE_CONFIG = {
       ]
     },
     about: {
-      metaTitle: "About Perth Limestone Group",
+      metaTitle: "About Perth Limestone Group | Limestone Walls in Perth",
       metaDescription: "What Perth Limestone Group is, the area it covers, what happens when you enquire, and how the service is paid for. A plain description of how it works.",
       headline: "About Perth Limestone Group"
     },

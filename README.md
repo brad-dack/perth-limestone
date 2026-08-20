@@ -112,7 +112,10 @@ What to edit in `config.js`:
       [squoosh.app](https://squoosh.app)).
     - Keep `width`/`height` accurate to prevent layout shift.
     - Write `alt` text that literally describes the image (good for
-      accessibility and image SEO).
+      accessibility and image SEO). Every rendered `<img>` also gets a
+      `title` attribute — it defaults to `alt`, so you don't need to set
+      anything, but add an optional `title` field on the image entry if you
+      ever want the tooltip text to read differently from the alt text.
     - **Responsive variants.** An image entry may also carry
       `widths: [400, 560, 720, 960]` and a `sizes` string (use the shared
       `FIGURE_SIZES` / `INTRO_SIZES` constants at the top of config). That

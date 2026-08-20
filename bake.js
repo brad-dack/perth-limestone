@@ -275,12 +275,18 @@ function heroImg(image) {
   if (!image || !image.src) return "";
   const dot = image.src.lastIndexOf(".");
   const base = image.src.slice(0, dot), ext = image.src.slice(dot);
+  /* The full-size image.src is deliberately NOT added to the srcset here: doing
+     so would make it a normal pick under high-DPR/mobile sizes math, defeating
+     the resized variants below it (see the comment on the hero image in
+     config.js — they exist specifically so a phone isn't served the full file).
+     The full-size file stays only in the plain src= below, as a fallback for
+     browsers that ignore srcset. */
   const set = (image.widths || []).map(w => base + "-" + w + ext + " " + w + "w");
-  if (set.length && image.width) set.push(image.src + " " + image.width + "w");
   return '<img class="hero-img" src="' + esc(image.src) + '"' +
     (set.length ? ' srcset="' + esc(set.join(", ")) + '"' : "") +
     (set.length && image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "") +
     ' alt="' + esc(image.alt || "") + '"' +
+    ' title="' + esc(image.title || image.alt || "") + '"' +
     (image.width ? ' width="' + image.width + '"' : "") +
     (image.height ? ' height="' + image.height + '"' : "") +
     ' fetchpriority="high">';
@@ -478,12 +484,14 @@ function contentImg(image, className) {
   if (!image || !image.src) return "";
   const dot = image.src.lastIndexOf(".");
   const base = image.src.slice(0, dot), ext = image.src.slice(dot);
+  // See heroImg() above: the full-size image.src is deliberately kept out of
+  // the srcset candidate list, so it can't be picked over the smaller variants.
   const set = (image.widths || []).map(w => base + "-" + w + ext + " " + w + "w");
-  if (set.length && image.width) set.push(image.src + " " + image.width + "w");
   return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
     (set.length ? ' srcset="' + esc(set.join(", ")) + '"' : "") +
     (set.length && image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "") +
     ' alt="' + esc(image.alt || "") + '"' +
+    ' title="' + esc(image.title || image.alt || "") + '"' +
     (image.width ? ' width="' + image.width + '"' : "") +
     (image.height ? ' height="' + image.height + '"' : "") +
     ' loading="lazy">';
@@ -560,7 +568,8 @@ function testimonialsSection() {
 function photosSection() {
   if (!cfg.photos || !cfg.photos.length) return "";
   const items = cfg.photos.map(p =>
-    '<figure class="photo"><img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.alt) + '">' +
+    '<figure class="photo"><img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.alt) +
+    '" title="' + esc(p.title || p.alt || "") + '">' +
     (p.caption ? "<figcaption>" + esc(p.caption) + "</figcaption>" : "") + "</figure>"
   ).join("");
   return '<section class="section"><div class="container">' +
@@ -1288,6 +1297,24 @@ function runCheck() {
         errors.push("duplicate " + field + " shared by " + byValue[v].join(", ") +
           ': "' + (v.length > 60 ? v.slice(0, 57) + "..." : v) + '"');
       }
+    }
+  }
+
+  /* metaTitle length: under ~30 chars reads as thin to on-page SEO tools
+     (DataForSEO flags it); over ~60 gets truncated in the Google SERP. About
+     and privacy are the usual culprits since it's tempting to just write
+     "About {Business Name}". Warn, don't fail — a short title is sometimes
+     a deliberate choice. */
+  for (const [label, obj] of metas) {
+    const t = obj.metaTitle;
+    if (!t) continue;
+    if (t.length < 30) {
+      warnings.push(label + " metaTitle is only " + t.length +
+        ' chars ("' + t + '") — likely to read as thin/duplicate-prone to SEO ' +
+        "tools; aim for 30-60, e.g. \"About {Business Name} | {Service} in {City}\"");
+    } else if (t.length > 60) {
+      warnings.push(label + " metaTitle is " + t.length +
+        ' chars ("' + t + '") — likely to get truncated in the Google search result');
     }
   }
 

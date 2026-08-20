@@ -104,7 +104,11 @@
     var set = image.widths.map(function (w) {
       return esc(base + "-" + w + ext) + " " + w + "w";
     });
-    if (image.width) set.push(esc(image.src) + " " + image.width + "w");
+    /* Deliberately NOT adding the full-size image.src as a "w" candidate here:
+       that would make it a normal pick for the browser under high-DPR/mobile
+       sizes math, defeating the whole point of the resized variants (see the
+       comment on the hero image in config.js). The full-size file stays only
+       in the plain src= above, as a fallback for browsers that ignore srcset. */
     return ' srcset="' + set.join(", ") + '"' +
       (image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "");
   }
@@ -114,6 +118,7 @@
     return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
       srcsetAttr(image) +
       ' alt="' + esc(image.alt || "") + '"' +
+      ' title="' + esc(image.title || image.alt || "") + '"' +
       (image.width ? ' width="' + image.width + '"' : "") +
       (image.height ? ' height="' + image.height + '"' : "") +
       (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ">";
@@ -446,7 +451,8 @@
   function photosSection() {
     if (!cfg.photos || !cfg.photos.length) return "";
     var items = cfg.photos.map(function (p) {
-      return '<figure class="photo"><img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.alt) + '">' +
+      return '<figure class="photo"><img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.alt) +
+        '" title="' + esc(p.title || p.alt || "") + '">' +
         (p.caption ? "<figcaption>" + esc(p.caption) + "</figcaption>" : "") + "</figure>";
     }).join("");
     return '<section class="section"><div class="container">' +
