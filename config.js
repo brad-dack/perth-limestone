@@ -540,6 +540,15 @@ window.SITE_CONFIG = {
               "**Impact or added load.** A vehicle, tree roots, or a surcharge load the wall was never designed for, such as a driveway or paving added later.",
               "**Cosmetic weathering.** Staining, surface wear or a tired grey mortar line, where the block itself is sound."
             ] },
+            { image: {
+              src: "images/wall-settlement-crack.webp",
+              alt: "Limestone block wall with a stepped vertical crack where one section has settled lower than the next",
+              width: 999,
+              height: 751,
+              widths: [400, 560, 720, 960],
+              sizes: FIGURE_SIZES,
+              caption: "Example of settlement crack."
+            } },
             "Diagnosing the cause before quoting the repair is the difference between a fix and a patch."
           ]
         },
