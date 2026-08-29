@@ -933,6 +933,68 @@ function validateGuideSlugs() {
   return problems;
 }
 
+/* Redirect `from` must not collide with any currently-live page (it's meant
+   for a RETIRED url), and `to` must point at a page that actually exists. */
+function validateRedirects() {
+  const servicePages = cfg.services.map(s => s.page);
+  const areaFiles = (cfg.areas || []).map(areaFile);
+  const guideFiles = (cfg.guides || []).map(guideFile);
+  const livePages = new Set([...CORE_PAGES, ...servicePages, ...areaFiles, ...guideFiles]);
+  const seen = new Set();
+  const problems = [];
+  for (const r of cfg.redirects || []) {
+    if (!r.from || !r.to) {
+      problems.push('redirect entry missing "from" or "to": ' + JSON.stringify(r));
+      continue;
+    }
+    if (livePages.has(r.from)) {
+      problems.push('redirect from "' + r.from + '" collides with a live page — ' +
+        "a redirect is for a RETIRED url, not a current one");
+    }
+    if (!livePages.has(r.to)) {
+      problems.push('redirect to "' + r.to + '" (from "' + r.from +
+        '") does not match any current page');
+    }
+    if (seen.has(r.from)) {
+      problems.push('duplicate redirect from "' + r.from + '"');
+    }
+    seen.add(r.from);
+  }
+  return problems;
+}
+
+const redirectFroms = () => (cfg.redirects || []).map(r => r.from);
+
+/* Self-contained client-side redirect stub for a retired page URL — see the
+   comment on `redirects` in config.js for why this exists and why it's a
+   meta-refresh rather than a true HTTP 301 (GitHub Pages can't issue one;
+   the real fix is a Cloudflare Redirect Rule, which this can't configure). */
+function redirectContent(r) {
+  const target = canonicalFor(r.to);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page moved | ${esc(cfg.business.name)}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="${target}">
+  <meta http-equiv="refresh" content="0; url=${esc(r.to)}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #1b2430; padding: 40px 20px; text-align: center; }
+    a { color: ${cfg.brand.color}; }
+  </style>
+</head>
+<body>
+  <p>This page has moved. If you are not redirected automatically,
+    <a href="${esc(r.to)}">follow this link</a>.</p>
+</body>
+</html>
+`;
+}
+
 /* ---------- derived static files ----------------------------------------- */
 
 const cnameContent = () => hostOf(cfg.domain) + "\n";
@@ -1023,7 +1085,7 @@ const faviconContent = () => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0
 /* ---------- bake (write mode) --------------------------------------------- */
 
 function bake() {
-  const problems = [...validateTheme(), ...validateAreaSlugs(), ...validateGuideSlugs()];
+  const problems = [...validateTheme(), ...validateAreaSlugs(), ...validateGuideSlugs(), ...validateRedirects()];
   if (problems.length) {
     console.error("Cannot bake — fix these entries in config.js first:");
     problems.forEach(p => console.error("  ✖ " + p));
@@ -1050,9 +1112,14 @@ function bake() {
     console.log("baked " + name);
   }
 
+  for (const r of cfg.redirects || []) {
+    fs.writeFileSync(path.join(__dirname, r.from), redirectContent(r), "utf8");
+    console.log("baked " + r.from + " (redirect stub -> " + r.to + ")");
+  }
+
   // Flag leftover pages (e.g. an area removed from config, or a renamed
   // service stub) — they aren't in the sitemap and should be deleted.
-  const expected = new Set([...pageNames, "404.html"]);
+  const expected = new Set([...pageNames, "404.html", ...redirectFroms()]);
   const stale = fs.readdirSync(__dirname)
     .filter(f => f.endsWith(".html") && !expected.has(f));
   if (stale.length) {
@@ -1199,9 +1266,21 @@ function runCheck() {
   validateAreaSlugs().forEach(p => errors.push(p));
   validateGuideSlugs().forEach(p => errors.push(p));
   validateTheme().forEach(p => errors.push(p));
+  validateRedirects().forEach(p => errors.push(p));
+
+  /* -- redirect stubs: present on disk, and not stale ----------------------- */
+  for (const r of cfg.redirects || []) {
+    const raw = read(r.from);
+    if (raw === null) {
+      errors.push("redirect stub missing from disk: " + r.from + " (run node bake.js)");
+    } else if (raw !== redirectContent(r)) {
+      errors.push("redirect stub " + r.from + " is stale (target or content changed) — run node bake.js");
+    }
+  }
 
   /* -- 4. sitemap <-> disk -------------------------------------------------- */
   const expectedPages = buildPages().map(([name]) => name);
+  const redirectFromSet = new Set(redirectFroms());
   const sitemapRaw = read("sitemap.xml");
   if (sitemapRaw === null) {
     errors.push("sitemap.xml is missing (run node bake.js)");
@@ -1213,9 +1292,11 @@ function runCheck() {
     });
     for (const f of locFiles) {
       if (!exists(f)) errors.push("sitemap.xml lists a page that doesn't exist on disk: " + f);
+      if (redirectFromSet.has(f)) errors.push("sitemap.xml lists " + f +
+        ", which is a noindex redirect stub and shouldn't be indexed");
     }
     const htmlOnDisk = fs.readdirSync(__dirname)
-      .filter(f => f.endsWith(".html") && f !== "404.html");
+      .filter(f => f.endsWith(".html") && f !== "404.html" && !redirectFromSet.has(f));
     for (const f of htmlOnDisk) {
       if (!locFiles.includes(f)) errors.push("page on disk missing from sitemap.xml: " + f);
     }

@@ -11,9 +11,16 @@
    the About page only — no page carries a disclaimer.
 
    PAGE SET (verified-keyword brief): home, limestone-retaining-walls (council
-   approval is a SECTION inside it), limestone-fencing, limestone-wall-repairs,
-   cost-guide, about. Plus privacy (legal requirement for a form collecting
-   personal information; not a ranking page).
+   approval is a SECTION inside it), limestone-fencing, limestone-crack-repair,
+   limestone-capping-cladding, limestone-restoration, cost-guide, about. Plus
+   privacy (legal requirement for a form collecting personal information; not
+   a ranking page).
+
+   2026-08-30: limestone-wall-repairs.html was split into the three service
+   pages above (GSC showed it absorbing three distinct query intents at
+   ~position 67 with almost no clicks). The old URL is kept on disk as a
+   redirect stub — see the `redirects` array below — rather than deleted, so
+   old inbound links and bookmarks don't 404 mid-transition.
 
    PRE-LAUNCH: nothing outstanding. Business details, GA4, the ingest
    endpoint and the Turnstile key are set, and the review dates are filled;
@@ -143,7 +150,7 @@ window.SITE_CONFIG = {
           heading: "Fencing, repairs and capping",
           body: [
             "Not every limestone job is a retaining wall. Limestone fencing, wall repairs, capping and cladding are all common in Perth and are a different build with a different cost profile.",
-            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Repairs to an existing wall, new capping including bullnose, and limestone cladding are on the [wall repairs and capping page](limestone-wall-repairs.html)."
+            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping including bullnose and limestone cladding are on the [capping and cladding page](limestone-capping-cladding.html), and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html)."
           ]
         },
         {
@@ -507,14 +514,20 @@ window.SITE_CONFIG = {
         }
       ]
     },
+    /* 2026-08-30: split out of the former limestone-wall-repairs.html — GSC
+       showed it absorbing three distinct query intents (crack/structural
+       repair, capping/cladding, restoration) at ~position 67 with almost no
+       clicks. The old file now redirects here (see `redirects` below); the
+       causes/repair-or-rebuild content stays on this page, capping/cladding
+       moved to their own page, and restoration is new. */
     {
-      page: "limestone-wall-repairs.html",
-      name: "Wall Repairs and Capping",
-      shortDescription: "Limestone wall repairs, new capping including bullnose, and cladding in Perth. What fails, why, and when repair makes sense.",
-      metaTitle: "Limestone Wall Repairs Perth | Capping and Cladding",
-      metaDescription: "Limestone wall repairs, capping and bullnose capping, and limestone cladding in Perth. What fails and why, repair versus rebuild, and what to ask on a quote.",
-      headline: "Limestone wall repairs and capping in Perth",
-      subheadline: "What fails, why it fails, and when a repair is worth doing.",
+      page: "limestone-crack-repair.html",
+      name: "Limestone Crack & Structural Repair",
+      shortDescription: "Cracked, leaning or settled limestone walls in Perth: what causes it, how to tell a repair from a rebuild, and what a repair should fix.",
+      metaTitle: "Limestone Repairs Perth | Crack & Structural Repair",
+      metaDescription: "Limestone crack and structural repair in Perth: what causes a wall to crack, lean or settle, how to tell a repair from a rebuild, and what a repair should fix.",
+      headline: "Limestone crack and structural repair in Perth",
+      subheadline: "What causes a limestone wall to crack, lean or settle, and how to tell a repair from a rebuild.",
       ctaText: "Tell us about your job",
       image: {
         src: "images/Repairs_er54ne.webp",
@@ -525,20 +538,19 @@ window.SITE_CONFIG = {
         sizes: INTRO_SIZES
       },
       intro: [
-        "Limestone walls last a long time, but they are not maintenance free. Repairs to an existing wall, new capping, and limestone cladding are distinct jobs from building a new wall, and they are quoted differently.",
-        "This page explains what typically goes wrong, how to tell a repair from a rebuild, and what capping and cladding actually do."
+        "A crack, a lean or a step in a limestone wall is usually a symptom, not the problem itself. What is behind the wall, and what it is doing, matters more than how the crack looks.",
+        "This page covers what typically causes structural movement in a limestone wall, how to tell a repair from a rebuild, and what a proper structural repair actually involves. Fixing the appearance of an older but sound wall is a different job, covered on the [limestone restoration page](limestone-restoration.html)."
       ],
       sections: [
         {
-          heading: "Why limestone walls fail or need work",
+          heading: "Why limestone walls crack, lean or settle",
           body: [
-            "Most limestone wall problems trace back to one of a few causes, and knowing which one matters because the cause decides whether a repair will hold.",
+            "Most structural problems trace back to one of a few causes, and knowing which one matters, because the cause decides whether a repair will hold.",
             { list: [
-              "**Drainage.** The most common cause of retaining wall movement. Water building up behind a wall that cannot drain pushes it out of line. A repair that does not fix the drainage will not last.",
-              "**Footing or ground movement.** Settlement, or a footing that was undersized for the wall, lets it lean, crack or step.",
-              "**Mortar erosion.** Over years, mortar joints weather and wash out, particularly where water runs over them.",
-              "**Impact or added load.** A vehicle, tree roots, or a surcharge load the wall was never designed for, such as a driveway or paving added later.",
-              "**Cosmetic weathering.** Staining, surface wear or a tired grey mortar line, where the block itself is sound."
+              "**Drainage.** The most common cause of retaining wall movement. Water building up behind a wall that cannot drain adds pressure the wall was never designed to resist, and pushes it out of line. A repair that does not fix the drainage will not last.",
+              "**Footing or ground movement.** Settlement, or a footing that was undersized for the wall, lets it lean, crack or step. This is sometimes described as limestone foundation repair, since the footing is doing the job a foundation does.",
+              "**Mortar erosion.** Joints that have weathered and washed out over years can let blocks shift against each other, which is a structural issue once it goes beyond the surface.",
+              "**Impact or added load.** A vehicle, tree roots, or a surcharge load the wall was never designed for, such as a driveway or paving added later."
             ] },
             { image: {
               src: "images/wall-settlement-crack.webp",
@@ -549,7 +561,7 @@ window.SITE_CONFIG = {
               sizes: FIGURE_SIZES,
               caption: "Example of settlement crack."
             } },
-            "Diagnosing the cause before quoting the repair is the difference between a fix and a patch."
+            "Diagnosing the cause before quoting the repair is the difference between a fix and a patch. This is also why searches for limestone repair or stone wall repair rarely have a single right answer without seeing the wall."
           ]
         },
         {
@@ -561,37 +573,27 @@ window.SITE_CONFIG = {
           ]
         },
         {
-          heading: "Capping and bullnose capping",
+          heading: "What a structural repair involves",
           body: [
-            "Capping is the finishing course along the top of a limestone wall. It is not only cosmetic. It sheds water off the top of the wall rather than letting it soak into the joints, which is a genuine durability difference.",
-            "**Bullnose capping** has a rounded front edge rather than a square one. It is a common Perth finish, it softens the look of the wall, and it leaves no sharp edge along the top.",
-            "Capping is sometimes included in a wall quote and sometimes an extra, so it is worth confirming which. Recapping an existing wall, where the original capping has cracked, lifted or was never installed, is a job on its own."
+            "A genuine structural repair addresses the cause, not just the visible crack or lean.",
+            { list: [
+              "**Fixing the drainage,** ag pipe, aggregate and a discharge point, where a lack of drainage is the underlying cause",
+              "**Extending or rebuilding the footing** under the affected section, where the original footing was undersized",
+              "**Rebuilding the affected section** to line and level, matching the block and mortar of the rest of the wall where possible",
+              "**Backfilling correctly** with free draining material rather than the material that failed the first time"
+            ] },
+            "If a repair effectively means rebuilding a significant length of wall, or increasing its height, it can trigger the same council or shire approval questions as a new wall. That is covered in the approval section on the [limestone retaining walls page](limestone-retaining-walls.html)."
           ]
         },
         {
-          heading: "Limestone cladding",
-          body: [
-            "Cladding is a limestone face applied over an existing structure, a besser block wall, a pier or a rendered wall, rather than a structural limestone wall in its own right.",
-            "It is a finish, not a retaining element, so it is priced differently. It is a way to get the limestone look on an existing wall without rebuilding it, provided the wall behind is sound and can carry the cladding."
-          ]
-        },
-        {
-          heading: "Mortar colour matching",
-          body: [
-            "On any repair, mortar colour is the difference between work that disappears and work that announces itself.",
-            "Mortar can be left the default grey, or tinted to match the limestone. Matched mortar reads as one material and the wall looks like stone. Grey mortar reads as block and lines. On a repair it matters more than on a new wall, because fresh grey mortar against weathered limestone stands out permanently.",
-            "It is worth asking directly whether mortar colour will be matched to the existing wall."
-          ]
-        },
-        {
-          heading: "What drives the cost of a repair",
+          heading: "What drives the cost of a structural repair",
           body: [
             { list: [
               "**The cause,** and whether it has to be fixed as well as the visible damage",
               "**Extent,** a few joints versus a full section rebuilt",
+              "**Whether drainage or footing work is involved,** which turns a smaller job into a larger one",
               "**Matching the existing wall,** block colour, face and mortar, which is harder on an older wall",
-              "**Access,** the same machine versus barrow question as any limestone job",
-              "**Whether drainage or footing work is involved,** which turns a cosmetic repair into a structural one"
+              "**Access,** the same machine versus barrow question as any limestone job"
             ] },
             "How cost works across limestone jobs generally is on the [cost guide](cost-guide.html)."
           ]
@@ -603,19 +605,202 @@ window.SITE_CONFIG = {
           a: "It depends on the cause. A small section pushed out by a blocked drain is often a repair. A wall that has moved along its full length, usually because of drainage or footing, is often better rebuilt, because a patch on a bad footing fails again."
         },
         {
+          q: "What causes a limestone wall to crack?",
+          a: "Most often drainage: water building up behind the wall that cannot escape. Footing or ground movement, mortar erosion and added load such as a driveway are the other common causes. The cause decides whether a repair will hold."
+        },
+        {
+          q: "Is a crack in a limestone wall always serious?",
+          a: "Not always, but it is worth having assessed. A hairline crack in mortar can be cosmetic; a crack that steps, widens, or runs with a lean usually points to drainage or footing movement underneath, which will not fix itself."
+        },
+        {
+          q: "How much does limestone wall repair cost in Perth?",
+          a: "It depends on the cause and the extent of the work, which is why a figure quoted without seeing the wall is not reliable. The cost guide sets out the considerations that move the price on any limestone job — height, access, drainage, extent of work — so you know what a fair quote should account for."
+        }
+      ]
+    },
+    /* [NEEDS INPUT: a real photo of limestone capping (ideally a bullnose
+       course) or a cladded wall, once one exists — no stock/AI image
+       substituted, matching the standing rule for this site (see the
+       homepage image comment). Until then this page has no intro image;
+       serviceContent() renders fine without one. */
+    {
+      page: "limestone-capping-cladding.html",
+      name: "Limestone Capping & Cladding",
+      shortDescription: "New and replacement limestone capping including bullnose, and limestone cladding over an existing wall or pier, in Perth.",
+      metaTitle: "Limestone Capping Perth | Wall Capping & Cladding",
+      metaDescription: "Limestone capping and cladding in Perth: bullnose capping, recapping a wall whose original capping has failed, and cladding an existing structure in limestone.",
+      headline: "Limestone capping and cladding in Perth",
+      subheadline: "Bullnose and standard capping, recapping an existing wall, and limestone cladding over an existing structure.",
+      ctaText: "Tell us about your job",
+      intro: [
+        "Capping and cladding are finishing jobs, not retaining work. Capping is the course along the top of a wall; cladding is a limestone face applied over an existing structure. Neither is holding back soil, so both are quoted and built differently from a retaining wall.",
+        "This page covers what each one is, what it involves, and what moves the price. Repairs to an existing wall's structure are on the [crack and structural repair page](limestone-crack-repair.html)."
+      ],
+      sections: [
+        {
+          heading: "What limestone capping does",
+          body: [
+            "Capping is the finishing course along the top of a limestone wall. It is not only cosmetic: it sheds water off the top of the wall rather than letting it soak into the joints below, which is a genuine durability difference over the life of the wall.",
+            "**Bullnose capping** has a rounded front edge rather than a square one. It is a common Perth finish, it softens the look of the wall, and it leaves no sharp edge along the top. Standard square capping is the plainer, generally cheaper alternative.",
+            "This work is sometimes searched for as stone wall capping services rather than limestone capping specifically. It is the same job regardless of what it is called.",
+            "Capping is sometimes included in a new wall's quote and sometimes priced as an extra, so it is worth confirming which before comparing quotes."
+          ]
+        },
+        {
+          heading: "Recapping an existing wall",
+          body: [
+            "Recapping is fitting new capping to a wall whose original capping has cracked, lifted, weathered away, or was never installed in the first place. It is a job on its own, separate from building a new wall.",
+            "The main consideration on a recap is matching: block colour and face, and capping profile, against a wall that has already weathered. An exact match is not always possible, particularly on an older wall, and it is worth asking what the finish will look like against the existing block before committing."
+          ]
+        },
+        {
+          heading: "Limestone cladding",
+          body: [
+            "Cladding is a limestone face applied over an existing structure, a besser block wall, a pier, or a rendered wall, rather than a structural limestone wall in its own right.",
+            "It is a finish, not a retaining or load-bearing element, so it is priced differently to a wall. It is a way to get the limestone look on an existing structure without rebuilding it, provided the structure behind is sound and can carry the cladding. A structure that is not sound needs to be addressed first; cladding does not fix an underlying structural problem, it sits on top of it."
+          ]
+        },
+        {
+          heading: "Mortar colour on capping and cladding",
+          body: [
+            "The top course and the face are the most visible parts of a wall, so mortar colour matters more here than almost anywhere else on the job.",
+            "Mortar can be left the default grey, or tinted to match the limestone. Matched mortar reads as one material; grey mortar reads as block and lines, and on a capping or cladding job that line sits at eye level. It is worth asking directly whether mortar colour will be matched."
+          ]
+        },
+        {
+          heading: "What drives the cost",
+          body: [
+            { list: [
+              "**Linear metres of capping,** or area of cladding",
+              "**Bullnose versus standard profile** on capping",
+              "**Block matching** against an existing wall, harder the older the wall",
+              "**Condition of the substrate** on a cladding job, whether it needs preparation before cladding goes on",
+              "**Access,** the same machine versus barrow question as any limestone job"
+            ] },
+            "How cost works across limestone jobs generally is on the [cost guide](cost-guide.html)."
+          ]
+        }
+      ],
+      faqs: [
+        {
           q: "What is bullnose capping?",
           a: "Capping is the finishing course along the top of a wall, and it sheds water off the top rather than letting it soak into the joints. Bullnose capping has a rounded front edge rather than a square one, a common Perth finish."
+        },
+        {
+          q: "Is capping included when a limestone wall is built?",
+          a: "Sometimes, sometimes it is priced as an extra. It is worth confirming which when comparing quotes for a new wall."
         },
         {
           q: "Is limestone cladding the same as a limestone wall?",
           a: "No. Cladding is a limestone face applied over an existing structure. It is a finish rather than a structural or retaining wall, and it is priced differently."
         },
         {
-          q: "Why does mortar colour matter on a repair?",
-          a: "Mortar tinted to match the limestone reads as one material, while default grey mortar shows every joint. On a repair it matters more, because fresh grey mortar against a weathered wall stands out permanently."
+          q: "Can cladding be added to any wall?",
+          a: "Only if the structure behind it is sound enough to carry it. Cladding is a finish, not a repair, so an unsound wall needs to be addressed first."
+        }
+      ]
+    },
+    /* [NEEDS INPUT: a real before/after or in-progress limestone restoration
+       photo, once one exists — same no-stock-image rule as above. No intro
+       image on this page until then. */
+    {
+      page: "limestone-restoration.html",
+      name: "Limestone Restoration",
+      shortDescription: "Restoring an older limestone wall's appearance in Perth: repointing, cleaning and colour matching a wall that is still structurally sound.",
+      metaTitle: "Limestone Restoration Perth | Restore a Wall",
+      metaDescription: "Limestone restoration in Perth: repointing eroded mortar, cleaning and matching an ageing wall's colour, and how to tell restoration from a structural repair.",
+      headline: "Limestone restoration in Perth",
+      subheadline: "Restoring the appearance of an ageing limestone wall that is still structurally sound.",
+      ctaText: "Tell us about your job",
+      intro: [
+        "Limestone restoration is cosmetic and surface work on a wall that is structurally sound but showing its age: worn mortar, staining, or a tired grey line where the block itself is fine. It is a different job from fixing a wall that is actually moving.",
+        "This page covers what restoration typically involves and how to tell it apart from a structural repair. If the wall is cracking, leaning or stepping, that is covered on the [crack and structural repair page](limestone-crack-repair.html) instead."
+      ],
+      sections: [
+        {
+          heading: "Restoration or structural repair",
+          body: [
+            "The distinction matters because it changes what the job actually is.",
+            "**Restoration** is for a wall that is standing straight and doing its job, but looks its age: eroded mortar joints, surface staining, a dull or uneven colour. Nothing here is a safety issue, and the work is cosmetic.",
+            "**Structural repair** is for a wall that is cracking, leaning, stepping or has moved. That points to a cause underneath, usually drainage or the footing, and covering it over does not fix it. See the [crack and structural repair page](limestone-crack-repair.html).",
+            "It is common for a wall to need a bit of both: a genuinely sound wall with one section that has moved. Worth being upfront about which parts of the wall are which when asking for a quote."
+          ]
+        },
+        {
+          heading: "What ages a limestone wall",
+          body: [
+            "None of the following affects whether the wall is standing up, only how it looks.",
+            { list: [
+              "**Mortar erosion.** Joints wash out and weather over years, especially where water runs over them repeatedly, leaving a worn, gappy line even when the blocks themselves are fine.",
+              "**Staining.** Efflorescence, grime, moss or general Perth weather leaves marks on the block face over time.",
+              "**Colour fade or unevenness.** Sun and weather can leave a wall looking patchier than it did when new, even without any damage."
+            ] }
+          ]
+        },
+        {
+          heading: "Repointing",
+          body: [
+            "Repointing is removing the old, eroded mortar from between the blocks to a consistent depth and replacing it with fresh mortar. It is the main restoration technique for a wall whose joints have worn but whose blocks and footing are sound.",
+            "Done well, repointing restores both the look of the wall and the mortar's job of shedding water at the joint, which slows the same erosion happening again."
+          ]
+        },
+        {
+          heading: "Cleaning and colour matching",
+          body: [
+            "Surface staining and grime can often be cleaned off a limestone wall without touching the mortar at all, depending on what has caused the staining and how long it has been there.",
+            "Mortar colour matters here as much as on any other limestone job. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar dropped into an otherwise restored wall looks like a patch rather than a finish. It is worth asking directly whether colour matching is included."
+          ]
+        },
+        {
+          heading: "What drives the cost of restoration",
+          body: [
+            { list: [
+              "**Extent,** a section of joints versus the whole wall",
+              "**Wall length and height**",
+              "**Cleaning method,** where staining needs more than a straightforward clean",
+              "**Colour matching,** harder on an older or sun-faded wall",
+              "**Access,** the same machine versus barrow question as any limestone job"
+            ] },
+            "How cost works across limestone jobs generally is on the [cost guide](cost-guide.html)."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "What does limestone wall restoration involve?",
+          a: "Mainly repointing eroded mortar joints, cleaning staining off the block face, and matching new mortar colour to the existing, weathered limestone. It is surface and cosmetic work on a wall that is otherwise sound."
+        },
+        {
+          q: "Is restoration the same as repair?",
+          a: "No. Restoration is cosmetic work on a wall that is standing straight and structurally sound. Repair addresses a wall that is cracking, leaning or moving, which points to a cause such as drainage or the footing that restoration alone will not fix."
+        },
+        {
+          q: "Can staining be cleaned off a limestone wall?",
+          a: "Often, yes, depending on the cause and how long it has been there. It's worth having the wall looked at before assuming a full restoration is needed."
+        },
+        {
+          q: "Does mortar colour matter on a restoration?",
+          a: "Yes, more than on most limestone jobs. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar in an otherwise restored wall looks like a patch rather than a finish."
         }
       ]
     }
+  ],
+
+  /* --- Redirects for retired page URLs ------------------------------------
+     Each entry keeps the OLD file on disk as a static, noindex, meta-refresh
+     stub pointing at the NEW page, so an old inbound link or bookmark lands
+     somewhere useful instead of 404ing. bake.js writes/refreshes the stub
+     file and `--check` verifies it isn't stale and isn't also listed in
+     sitemap.xml.
+
+     IMPORTANT — this is a client-side stand-in, not a real HTTP 301. GitHub
+     Pages can't issue one, and this site sits behind Cloudflare, so the
+     correct production fix is a Cloudflare Redirect Rule (Rules > Redirect
+     Rules > create a 301 from /limestone-wall-repairs.html to
+     /limestone-crack-repair.html) — add that in the Cloudflare dashboard;
+     it isn't something this file can configure. */
+  redirects: [
+    { from: "limestone-wall-repairs.html", to: "limestone-crack-repair.html" }
   ],
 
   /* --- Service-area pages (none — suburb pages failed the keyword test and
