@@ -1079,7 +1079,20 @@ window.SITE_CONFIG = {
      phone, email. Rendered on every page — see enquirySection in main.js. */
   contact: {
     formHeadline: "Tell us about your job",
-    reassurance: "A local contractor will be in touch if they can help.",
+    /* COLLECTION NOTICE - this is not just reassurance copy, so read before
+       editing. The site relies on the Privacy Act small business exemption,
+       and the "trading in personal information" carve-out (OAIC: disclosing
+       personal information for a benefit, service or advantage) only bites
+       where the individual has NOT consented. Consent can be implied, but
+       OAIC requires it to be informed - the person has to understand what
+       happens to their details. That means this line must say, at the point
+       of collection, that the details go to a contractor and that the
+       contractor pays. The previous wording ("A local contractor will be in
+       touch if they can help") gave no notice at all. The privacy policy link
+       sits in formNote directly below the form, so it is not repeated here.
+       Backported from the Canberra Tiling build, 2 September 2026.
+       See the template's LAUNCH_PLAYBOOK.md, phase 2, for the full position. */
+    reassurance: "No spam and no obligation. Your details go to a limestone contractor in your area so they can quote your job - the contractor pays for the enquiry, you do not. We never sell your details or add you to a marketing list.",
     formNote: "If a limestone contractor covers your job, they'll be in touch. If nothing's a fit, we'll tell you and point you somewhere useful. Your details are used to get your job quoted and are handled as set out in our [privacy policy](privacy.html).",
     step1Label: "What do you need?",
     step2Label: "Your job and contact details",

@@ -422,7 +422,9 @@
       : "";
     return '<section class="section section-alt" id="quote"><div class="container narrow">' +
       "<h2>" + esc(cfg.contact.formHeadline) + "</h2>" +
-      '<p class="reassurance">' + esc(cfg.contact.reassurance) + "</p>" +
+      /* inline, not esc: collection notice, must be able to link. Keep in
+         step with enquirySection in bake.js — two renderers on this build. */
+      '<p class="reassurance">' + inline(cfg.contact.reassurance) + "</p>" +
       renderQuoteFormHtml() + note +
     "</div></section>";
   }

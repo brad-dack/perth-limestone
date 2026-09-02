@@ -651,7 +651,11 @@ function enquirySection() {
   const note = cfg.contact.formNote ? '<p class="form-note">' + inline(cfg.contact.formNote) + "</p>" : "";
   return '<section class="section section-alt" id="quote"><div class="container narrow">' +
     "<h2>" + esc(cfg.contact.formHeadline) + "</h2>" +
-    '<p class="reassurance">' + esc(cfg.contact.reassurance) + "</p>" +
+    /* inline, not esc: this line is the collection notice sitting directly
+       above the form, and it has to be able to link. Keep this in step with
+       the same line in js/main.js — this build still has two renderers.
+       See the consent note on contact.reassurance in config. */
+    '<p class="reassurance">' + inline(cfg.contact.reassurance) + "</p>" +
     quoteFormHtml() + note +
   "</div></section>";
 }
