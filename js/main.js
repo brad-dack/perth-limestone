@@ -574,7 +574,7 @@
     content.innerHTML =
       '<section class="section"><div class="container' + (svcMedia ? " intro-grid" : " narrow") + '">' +
         '<div class="intro-copy">' +
-          svc.intro.map(function (t) { return '<p class="lead">' + esc(t) + "</p>"; }).join("") +
+          svc.intro.map(function (t) { return '<p class="lead">' + inline(t) + "</p>"; }).join("") +
         "</div>" +
         (svcMedia ? '<div class="intro-media">' + svcMedia + "</div>" : "") +
       "</div></section>" +
@@ -627,7 +627,7 @@
 
     content.innerHTML =
       '<section class="section"><div class="container narrow">' +
-        area.intro.map(function (t) { return '<p class="lead">' + esc(t) + "</p>"; }).join("") +
+        area.intro.map(function (t) { return '<p class="lead">' + inline(t) + "</p>"; }).join("") +
         detail +
       "</div></section>" +
       '<section class="section section-alt"><div class="container">' +
