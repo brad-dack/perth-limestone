@@ -704,7 +704,7 @@ function serviceContent(svc) {
     : "";
   return '<section class="section"><div class="container' + (svcMedia ? " intro-grid" : " narrow") + '">' +
       '<div class="intro-copy">' +
-        svc.intro.map(t => '<p class="lead">' + esc(t) + "</p>").join("") +
+        svc.intro.map(t => '<p class="lead">' + inline(t) + "</p>").join("") +
       "</div>" +
       (svcMedia ? '<div class="intro-media">' + svcMedia + "</div>" : "") +
     "</div></section>" +
@@ -728,7 +728,7 @@ function areaContent(area) {
     ? cfg.services.filter(s => area.services.indexOf(s.page) !== -1)
     : cfg.services;
   return '<section class="section"><div class="container narrow">' +
-      area.intro.map(t => '<p class="lead">' + esc(t) + "</p>").join("") +
+      area.intro.map(t => '<p class="lead">' + inline(t) + "</p>").join("") +
       detail +
     "</div></section>" +
     '<section class="section section-alt"><div class="container">' +

@@ -11,10 +11,21 @@
    the About page only — no page carries a disclaimer.
 
    PAGE SET (verified-keyword brief): home, limestone-retaining-walls (council
-   approval is a SECTION inside it), limestone-fencing, limestone-crack-repair,
-   limestone-capping-cladding, limestone-restoration, cost-guide, about. Plus
-   privacy (legal requirement for a form collecting personal information; not
-   a ranking page).
+   approval is a SECTION inside it), limestone-fencing, limestone-steps-stairs,
+   limestone-garden-beds-edging, limestone-crack-repair,
+   limestone-capping-cladding, limestone-restoration, cost-guide,
+   limestone-vs-concrete-vs-sandstone, about. Plus privacy (legal requirement
+   for a form collecting personal information; not a ranking page).
+
+   2026-09-03: competitive content-gap pass against 15 competitor sites. Two
+   new service pages (steps/stairs, garden beds/edging) and one comparison
+   guide (limestone-vs-concrete-vs-sandstone) intended as a linkable asset,
+   plus capping-profile, sealing and dry-stacked/mortared subsections on the
+   existing pages. Nothing location-specific was taken from any competitor.
+   Three [VERIFY] items sit in reader-facing copy deliberately, so the
+   preflight blocks a live bake until they are resolved: the handrail and
+   egress trigger heights on the steps page, and the cost ranking and the
+   sandstone supply position on the comparison guide.
 
    2026-08-30: limestone-wall-repairs.html was split into the three service
    pages above (GSC showed it absorbing three distinct query intents at
@@ -112,7 +123,7 @@ window.SITE_CONFIG = {
             "Perth sits on the Swan Coastal Plain, which is broadly sand over limestone. The material is quarried locally, and that local supply is much of why limestone is the default retaining material here in a way it is not in other Australian capitals.",
             "**Natural quarried limestone block** varies in size, colour and face. That variation is the aesthetic appeal, and it is also why a natural block wall takes longer to lay. Natural block is lighter than reconstituted, which matters where access is tight.",
             "**Reconstituted limestone block** is manufactured to consistent dimensions. Uniform face, faster to lay, and more predictable to quote.",
-            "Neither is the right answer in general. Which one suits depends on the look, the wall height, the access and the budget. There is more on both on the [limestone retaining walls page](limestone-retaining-walls.html)."
+            "Neither is the right answer in general. Which one suits depends on the look, the wall height, the access and the budget. There is more on both on the [limestone retaining walls page](limestone-retaining-walls.html), and limestone is compared with concrete and sandstone on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html)."
           ]
         },
         {
@@ -150,7 +161,8 @@ window.SITE_CONFIG = {
           heading: "Fencing, repairs and capping",
           body: [
             "Not every limestone job is a retaining wall. Limestone fencing, wall repairs, capping and cladding are all common in Perth and are a different build with a different cost profile.",
-            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping including bullnose and limestone cladding are on the [capping and cladding page](limestone-capping-cladding.html), and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html)."
+            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping including bullnose and limestone cladding are on the [capping and cladding page](limestone-capping-cladding.html), and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html).",
+            "Steps built into a wall or cut into a slope are on the [steps and stairs page](limestone-steps-stairs.html), and low garden bed walls, raised planters and edging are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
           ]
         },
         {
@@ -186,7 +198,7 @@ window.SITE_CONFIG = {
      howItWorksSection() in js/main.js). */
   howItWorks: [],
 
-  /* --- Services (3) ------------------------------------------------------- */
+  /* --- Services (7) ------------------------------------------------------- */
   services: [
     {
       page: "limestone-retaining-walls.html",
@@ -207,7 +219,7 @@ window.SITE_CONFIG = {
           body: [
             "A retaining wall holds back soil that would otherwise move. If the finished ground level is higher on one side than the other, the wall is retaining, and it has to be built to resist that load.",
             "The load is not static. Soil is heavier when it is wet, and Perth sand behaves differently saturated than it does dry. A wall designed only for the weight of dry sand is a wall designed for the easy half of the year.",
-            "If ground levels are equal on both sides, it is a boundary or garden wall instead. Different footing, different price, usually a different approval position.",
+            "If ground levels are equal on both sides, it is a boundary or garden wall instead. Different footing, different price, usually a different approval position. Low garden bed walls and edging are on the [garden beds and edging page](limestone-garden-beds-edging.html), and steps cut into a wall or a slope are on the [steps and stairs page](limestone-steps-stairs.html).",
             { image: {
               src: "images/explanatory_diagram_retaining_vs_garden_wall.webp",
               alt: "Diagram comparing a garden wall with level ground on both sides to a retaining wall holding back higher ground",
@@ -225,7 +237,7 @@ window.SITE_CONFIG = {
             "**Natural quarried limestone.** Cut from Perth quarries. Block dimensions, colour and face vary from block to block and pallet to pallet, so each block is selected and placed to suit. That is why the wall looks the way it does and why it takes longer to build. Natural block is also lighter than reconstituted, which makes it easier to place cleanly where access is tight.",
             "**Reconstituted limestone.** Manufactured block, consistent size and face. Faster to lay because there is no selection process, generally cheaper to install for the same wall, and easier to quote accurately because the labour is predictable.",
             "Availability is worth asking about separately, because it moves. Natural block is quarried rather than manufactured, so what is available at any point depends on what the quarries are producing and how much of it comes out as usable walling block. Reconstituted is made to consistent dimensions and can be produced to meet demand, which makes it the more predictable of the two to source. Ask your contractor or a supplier what is actually available when you are planning the job, rather than relying on what any website tells you, including this one. It matters most if you want a consistent look across a long wall or need a large quantity.",
-            "Height, budget, access and appearance decide it, and it is a question worth settling on site rather than in advance."
+            "Height, budget, access and appearance decide it, and it is a question worth settling on site rather than in advance. How limestone compares with concrete and sandstone for the same wall is on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html)."
           ]
         },
         {
@@ -271,6 +283,24 @@ window.SITE_CONFIG = {
           body: [
             "The footing does the structural work. It is sized to the wall, not to a rule of thumb, and it is where the money goes on a taller wall. Perth's sandy profile drains well, which helps, but it offers different bearing behaviour to clay and it moves when it is not confined.",
             "One quality difference a homeowner would not know to ask about is mortar colour. A wall can be pointed with default grey mortar, or with mortar tinted to match the limestone. Matched mortar reads as one material; grey mortar reads as block and lines. It is a real and visible difference, and worth raising when comparing quotes."
+          ]
+        },
+        {
+          heading: "Dry-stacked or mortared",
+          body: [
+            "Mortared construction is the normal way a structural limestone retaining wall is built in Perth. The blocks are bedded and jointed in mortar, which ties the courses together so the wall resists the soil load as one structure rather than as a stack of separate blocks.",
+            "**Dry-stacked** work has no mortar at all: the blocks are laid to line and held by their own weight and by how well they are fitted. It is a legitimate technique and it is a distinct look, but its place is low garden and feature walls rather than structural retaining. With nothing tying a course to the one above it, height, any surcharge load behind the wall, and anything that needs engineering certification all point back to mortared construction.",
+            "Manufactured segmental retaining systems are designed to stack without mortar, which is sometimes offered as a counter-example. They are an engineered product with interlocking geometry holding the courses together, which is a different thing from limestone block laid dry.",
+            "So if a quote for a retaining wall describes dry-stacked construction, that is worth asking about specifically rather than treating as a finish preference. Low bed walls, where the technique does belong, are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+          ]
+        },
+        {
+          heading: "How limestone weathers, and where sealing comes in",
+          body: [
+            "Natural limestone is a porous stone. Water moves into the face and back out of it, and on a wall that stays damp for long stretches, a shaded southern face, a wall under trees, or a section the reticulation hits every morning, that gives mould, algae and lichen somewhere to establish. None of it is structural. It changes how a wall looks over a few years rather than what it is doing.",
+            "A penetrating sealer is the usual response. It reduces how much water the face takes up, which slows staining and growth, and it goes onto a clean, dry wall rather than over existing growth. It is not permanent either: sealers are reapplied on a cycle, and the interval depends on the product and on how exposed the wall is, so ask whoever supplies it rather than assuming it is a one-off.",
+            "**Reconstituted block behaves differently here.** The cement binder holds the block colour more consistently over time than natural stone does, and it is generally the less demanding of the two to leave unsealed. It is one of the quieter reasons people choose it for a long run of wall in an exposed position.",
+            "Sealing is a maintenance decision rather than part of building the wall, and it is not work arranged through this site. Where an older wall has already stained or gone patchy, cleaning and repointing are on the [limestone restoration page](limestone-restoration.html)."
           ]
         },
         {
@@ -408,7 +438,8 @@ window.SITE_CONFIG = {
             "There are two common formats, and the choice drives most of the cost.",
             "**Solid limestone fence.** Limestone the full length and height, for privacy, noise and appearance. Perth block sizes and the appetite for solid front walls make this a frequent job. It is the more expensive format per metre because it is block the whole way.",
             "**Pier and infill.** Limestone piers with infill panels between them, commonly steel, aluminium slat, timber or rendered panel. This is the front fence format seen repeatedly across the western and southern suburbs. It costs less across a full frontage because the piers carry the structure and the infill is cheaper per metre.",
-            "A limestone pier and slat infill fence still reads as a limestone fence from the street, at a lower cost than solid block."
+            "A limestone pier and slat infill fence still reads as a limestone fence from the street, at a lower cost than solid block.",
+            "A low limestone wall in the front setback gets assessed against the same fence provisions even where it is really holding a garden bed in off the street. That overlap is covered on the [garden beds and edging page](limestone-garden-beds-edging.html)."
           ]
         },
         {
@@ -511,6 +542,214 @@ window.SITE_CONFIG = {
         {
           q: "Can a limestone fence be built on the boundary?",
           a: "Usually, subject to the council or shire's provisions and the neighbour question. Cost sharing sits under the Dividing Fences Act 1961 (WA) and is best agreed in writing first."
+        }
+      ]
+    },
+    /* AI-generated illustrative image. Generic scene — no real address, no
+       identifiable property — and never captioned as completed work.
+       Replace with real Perth photography when it exists. */
+    {
+      page: "limestone-steps-stairs.html",
+      name: "Limestone Steps & Stairs",
+      shortDescription: "Limestone steps built into a retaining wall or standing alone in a garden, what drives the cost, and where handrails and approval come into it.",
+      metaTitle: "Limestone Steps Perth | Garden Stairs and Treads",
+      metaDescription: "Limestone steps and stairs in Perth: steps built into a retaining wall against standalone garden steps, rise and run, tread choices, handrails and what drives the cost.",
+      headline: "Limestone steps and stairs in Perth",
+      subheadline: "Steps built into a retaining wall, standalone garden steps, and what moves the price.",
+      ctaText: "Tell us about your job",
+      image: {
+        src: "images/steps-native-garden.webp",
+        alt: "Limestone steps built into a limestone retaining wall in a Perth backyard, with native planting either side",
+        width: 1376,
+        height: 768,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
+      },
+      intro: [
+        "Limestone steps come up in two quite different situations: as part of a wall that is already being built into a slope, or as a standalone flight through a garden. Which one you have changes the build, the cost, and the approval position.",
+        "This page covers how to tell them apart, what rise and run actually mean for the price, the choice of tread material, and where handrails and council or shire approval start to matter."
+      ],
+      sections: [
+        {
+          heading: "Steps in a retaining wall, or steps in a garden",
+          body: [
+            "The two are quoted differently because they are different pieces of work, and the same flight of steps can be either depending on what is happening either side of it.",
+            "**Steps built into a retaining wall.** The flight is part of the wall. It interrupts the wall line, the footing has to carry it, and the block courses either side have to resolve around it. It is designed and priced with the wall rather than after it, which is why adding a flight to a wall that has already been set out costs more than allowing for it from the start.",
+            "**Standalone garden steps.** A flight through a slope, a lawn or a path, with nothing holding back soil either side. Each step still needs a stable base and something to stop it creeping downhill, but there is no retained load behind the flight and no drainage system, so the requirements are lighter and the price sits a long way below the first case.",
+            "**The in-between case,** and the common one, is a short flight cut into a bank with low cheek walls either side holding the bank off the treads. Whether those cheek walls are retaining is decided the same way as any other wall: by whether the finished ground is higher on one side. If it is, everything on the [limestone retaining walls page](limestone-retaining-walls.html) applies to them.",
+            "Working out which of the three you have before quotes arrive is the single most useful thing you can do here, because a quote for a garden flight and a quote for steps built into a retaining wall are not comparable numbers."
+          ]
+        },
+        {
+          heading: "Rise, run and why they drive the cost",
+          body: [
+            "Rise is the height of each step. Run is the depth of the tread you walk on. Together with the total height being climbed they decide how many steps there are, and the step count is where most of the labour goes.",
+            "Two things follow from that:",
+            { list: [
+              "**A shallower rise means more steps** for the same slope. More block, more setting out, more time, and a flight that is more comfortable to walk.",
+              "**A longer run means each step uses more material** and the flight takes up more ground, which matters on a small block where the steps have to fit between a wall and a path."
+            ] },
+            "Every rise in a flight should be the same height and every run the same depth. Uneven steps are the ones people trip on, and getting them even across a sloping Perth block is set-out work done before a single block is laid. It does not show in the finished flight, which is exactly why it is easy to leave out of a cheap quote.",
+            "**Width** is the third dimension and it multiplies everything else: a flight twice as wide is roughly twice the block and twice the tread material, with the same set-out behind it."
+          ]
+        },
+        {
+          heading: "Treads: matching block or a finished tread",
+          body: [
+            "The tread is the surface underfoot, and it is a real choice rather than a detail left to the contractor.",
+            "**Matching limestone.** The step is finished in the same block as the wall it sits in, so the flight and the wall read as one structure. Limestone is a relatively soft stone, so on a heavily used flight the front edge of the tread shows wear sooner than a harder material would.",
+            "**A paved, stone or tiled tread.** A harder finish laid over the step. This is common where the steps continue a paved area, a pool surround or an alfresco, because the tread then matches what it runs into rather than what it is built from. It usually means a second trade, so it is worth being clear about who is quoting which part.",
+            "**A hybrid** is common too: limestone risers with a paved tread, which keeps the limestone face visible from the front and puts the harder material where the wear is.",
+            "Whichever it is, ask whether the tread falls slightly forward. A tread laid dead level holds water on it, and a step that holds water is the one that goes slippery."
+          ]
+        },
+        {
+          heading: "Handrails, and where approval comes into it",
+          body: [
+            "There are two separate questions here, and they get run together often enough to be worth splitting.",
+            { subheading: "Handrails and balustrades" },
+            "A handrail is worth having on a flight of any real height, or anywhere there is a drop beside it, as a matter of safety rather than because a rule demands it on every flight. Two steps up into a garden is not the same proposition as a flight running up the side of a retaining wall with a drop off one edge, and it is worth fitting one on the taller case even where nothing requires it.",
+            "Whether one is formally required is a separate question, set by the building rules rather than by preference, and it can depend on the flight's height and on whether it forms part of a required exit path from the dwelling. Confirm the position for your flight with your council or building surveyor rather than assuming either way.",
+            "Where a handrail is fitted it is usually a separate trade, in steel or aluminium, and it may or may not sit inside the limestone quote. Ask which.",
+            { subheading: "Approval" },
+            "Steps built into a retaining wall are part of that wall. The wall's approval position covers them, which means the height thresholds, the boundary provisions and any engineering requirement apply to the structure as a whole rather than to the wall minus the steps. Those thresholds are set by each council or shire and are listed in the approval section on the [limestone retaining walls page](limestone-retaining-walls.html).",
+            "A standalone garden flight that retains nothing is usually a much simpler question, but it is still worth asking your council or shire rather than assuming, particularly close to a boundary or where the flight changes ground levels."
+          ]
+        },
+        {
+          heading: "What drives the cost",
+          body: [
+            { list: [
+              "**Total height climbed,** which sets the number of steps",
+              "**Width,** which multiplies the block and the tread material in every step",
+              "**Whether the flight is part of a retaining wall,** which brings footing, drainage and possibly engineering with it",
+              "**Tread material,** matching block against paving, stone or tile, and whether a second trade is involved",
+              "**Handrail or balustrade,** where one is fitted",
+              "**Set-out and ground conditions,** because even rises across an uneven slope are work done before anything is laid",
+              "**Access,** the same machine against barrow question as any limestone job"
+            ] },
+            "How cost works across limestone jobs generally, and what tends to be left out of a quote, is on the [cost guide](cost-guide.html). Low garden bed walls and edging, which often run alongside a flight of steps, are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "Do limestone steps need a handrail?",
+          a: "A handrail is recommended as good practice on any flight with real height or a drop beside it, even where nothing formally requires one. Whether one is formally required depends on the building rules and can vary with the flight's height and whether it forms part of a required exit path, so confirm the position for your flight with your council or building surveyor."
+        },
+        {
+          q: "Can steps be added to a limestone retaining wall after it is built?",
+          a: "Usually, but it costs more than allowing for them at the start. The wall line, the footing and the block courses all have to resolve around the flight, and doing that in a finished wall means taking part of it apart first."
+        },
+        {
+          q: "What is the difference between rise and run?",
+          a: "Rise is the height of each step and run is the depth of the tread you walk on. Together with the total height being climbed they set how many steps there are, and the step count drives most of the labour in the quote."
+        },
+        {
+          q: "Should the treads be limestone or pavers?",
+          a: "Both are common. Matching limestone reads as one structure with the wall. A paved, stone or tiled tread is harder wearing and suits steps that continue a paved area or a pool surround. It is a choice about appearance and wear rather than a right answer."
+        }
+      ]
+    },
+    /* AI-generated illustrative image. Generic scene — no real address, no
+       identifiable property — and never captioned as completed work.
+       Replace with real Perth photography when it exists. */
+    {
+      page: "limestone-garden-beds-edging.html",
+      name: "Limestone Garden Beds & Edging",
+      shortDescription: "Limestone garden bed walls, raised planters and edging in Perth, how they differ from a retaining wall, and what drives the cost on a small job.",
+      metaTitle: "Limestone Garden Edging Perth | Beds and Low Walls",
+      metaDescription: "Limestone garden beds and edging in Perth: where a bed wall stops being a bed wall and becomes retaining, curved against straight runs, raised planters, and what it costs.",
+      headline: "Limestone garden beds and edging in Perth",
+      subheadline: "Low bed walls, raised planters and edging, and where they differ from a retaining wall.",
+      ctaText: "Tell us about your job",
+      image: {
+        src: "images/garden-bed-edging.webp",
+        alt: "A curved low limestone garden bed wall edging a lawn in a Perth backyard",
+        width: 1376,
+        height: 768,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
+      },
+      intro: [
+        "Garden bed walls and edging are the smallest and least committing limestone jobs on this site. A course or two of block around a bed is a different proposition to a retaining wall in what it has to do, what it costs, and what is required of it.",
+        "This page covers where the line between a bed wall and a retaining wall actually sits, curved against straight runs, raised planters, and where this work overlaps with limestone fencing and where it does not."
+      ],
+      sections: [
+        {
+          heading: "Garden bed wall, or retaining wall",
+          body: [
+            "This decides everything else, and it is the same test used everywhere else on this site: what is the ground doing on each side of the wall.",
+            "**A garden bed wall holds its own bed together.** The ground beyond it is unchanged, the soil behind it is soil you have put there, and it is not holding back the block's natural ground level. It holds up itself and the bed. That means a shallower footing, no agricultural pipe and aggregate system behind it, and generally no engineering, which is most of why it costs a fraction of a retaining wall per metre.",
+            "**A retaining wall holds back ground that would otherwise move,** because the finished level is higher on one side. That brings the footing, the drainage and possibly the engineering with it, along with the approval position that goes with them. All of it is set out on the [limestone retaining walls page](limestone-retaining-walls.html).",
+            "**Where it blurs is height and cut.** A bed built up high enough is holding a real volume of soil that gets heavier every time it is watered, and a bed formed by cutting into a slope is retaining that slope whether or not anyone calls it a garden bed. Both of those are retaining, regardless of what the job is called on the quote.",
+            "This matters more than it sounds, because approval thresholds are set as heights above natural ground level rather than by what a wall is for. A raised bed can cross a threshold without anyone thinking of it as a retaining wall. The thresholds council by council are in the approval section on the [limestone retaining walls page](limestone-retaining-walls.html). If a bed is more than a course or two high, or is cut into a slope, check rather than assume."
+          ]
+        },
+        {
+          heading: "Curved or straight",
+          body: [
+            "Limestone suits a curve better than most walling materials do at this height, because a low bed wall is only a course or two and each block can be set at a slight angle to its neighbour to work the curve around. There is no reinforcement to bend and no panel that has to stay straight.",
+            "**A straight run** is faster to set out and faster to lay, and it is the cheaper of the two per metre.",
+            "**A curve** takes longer, and how much longer depends on the radius. A gentle sweep costs little more than a straight run. A tight radius means more joints, more cutting and more setting out, and in a large block it reads as a series of straight facets rather than a curve, so block size and radius are worth settling together rather than separately.",
+            "Natural block, with its varied face, suits an informal or meandering bed. Reconstituted block, being uniform, gives a cleaner line on a formal or geometric layout. Neither is the right answer in general, and both are covered in more detail on the [limestone retaining walls page](limestone-retaining-walls.html)."
+          ]
+        },
+        {
+          heading: "Edging, low walls and raised planters",
+          body: [
+            "The same job description covers three fairly different things.",
+            { list: [
+              "**Edging.** A single course defining a bed against lawn or paving, doing little more than keeping mulch in and grass out. The cheapest limestone work there is, and priced largely by the metre.",
+              "**A low bed wall.** Two or three courses, enough to lift the bed, give it a defined face and make it something you can sit on the edge of.",
+              "**A raised planter.** Higher again, and a different proposition, because it holds a full depth of soil that is watered regularly."
+            ] },
+            "The raised planter is the one worth thinking about. The back face of that wall is wet for much of the year, which is not the case for edging or a low bed wall, and soil washing out through the joints is the usual complaint. Ask what is proposed behind the face and where the water is expected to go, because it is not the same detail as a wall with dry ground behind it.",
+            "As a planter gets taller, the volume of wet soil behind it stops being trivial and it turns into the retaining question in the section above."
+          ]
+        },
+        {
+          heading: "Where this overlaps with limestone fencing",
+          body: [
+            "A low limestone wall along a front boundary can read as either a garden bed wall or a fence, and the distinction matters because front fences are regulated on height and on how much can be seen through them.",
+            "**In the front setback,** a low wall is generally assessed against the same street wall and fence provisions whether or not there is a garden behind it. Height limits, visual permeability and driveway sightline requirements can all apply. Those are set by each council and shire and are tabled on the [limestone fencing page](limestone-fencing.html).",
+            "**Inside the block,** away from the street and away from a boundary, none of that applies. A bed wall around a tree or along a path is not a fence question at all.",
+            "Pier and infill fencing, where limestone piers carry a cheaper infill panel between them, is a different job again and is on the [limestone fencing page](limestone-fencing.html)."
+          ]
+        },
+        {
+          heading: "What drives the cost",
+          body: [
+            { list: [
+              "**Height,** meaning how many courses",
+              "**Length,** which matters more on a job this small than it does on a retaining wall, because there is little else in the price to spread across",
+              "**Curves,** and how tight they are",
+              "**Block type and size,** natural or reconstituted, and whether the block suits the radius",
+              "**What is under the bed line,** lawn, paving to be lifted, existing roots or reticulation",
+              "**Access,** the same machine against barrow question as any limestone job",
+              "**Materials in and spoil out,** including getting soil and mulch to the bed once it is built"
+            ] },
+            "One thing is specific to small jobs. Getting a crew and materials to site costs much the same whether the job takes half a day or three days, so it is a far larger share of the total on edging than it is on a retaining wall. Several small jobs done in one visit generally come in below the same jobs done separately, which is worth raising if there is anything else you want done.",
+            "How cost works across limestone jobs generally is on the [cost guide](cost-guide.html), and steps through a bed or a slope are on the [steps and stairs page](limestone-steps-stairs.html)."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "Is a garden bed wall a retaining wall?",
+          a: "Not if it only holds the bed you have built behind it and the ground beyond it is unchanged. It becomes a retaining wall once it holds back ground that would otherwise move, which usually means it has been built up high or cut into a slope. Approval thresholds are measured as height above natural ground level regardless of what the wall is called."
+        },
+        {
+          q: "Can limestone be laid in a curve?",
+          a: "Yes, and it suits a curve well at bed height because each block can be set at a slight angle to the next. A tight radius in a large block reads as facets rather than a smooth curve, so block size and radius are worth settling together."
+        },
+        {
+          q: "Do I need approval for a limestone garden bed?",
+          a: "A low bed wall inside the block usually raises fewer questions than a retaining wall, but the thresholds are set by height above natural ground level and by each council or shire, not by what the wall is for. A tall raised planter, or a bed cut into a slope, is worth checking before it is built."
+        },
+        {
+          q: "Is edging cheaper if it is done with a bigger job?",
+          a: "Usually. On a job this small the cost of getting a crew and materials to site is a real share of the total, so edging done at the same time as a wall or a paving job generally costs less than the same edging as a separate visit."
         }
       ]
     },
@@ -618,11 +857,9 @@ window.SITE_CONFIG = {
         }
       ]
     },
-    /* [NEEDS INPUT: a real photo of limestone capping (ideally a bullnose
-       course) or a cladded wall, once one exists — no stock/AI image
-       substituted, matching the standing rule for this site (see the
-       homepage image comment). Until then this page has no intro image;
-       serviceContent() renders fine without one. */
+    /* AI-generated illustrative image. Generic scene — no real address, no
+       identifiable property — and never captioned as completed work.
+       Replace with real Perth photography when it exists. */
     {
       page: "limestone-capping-cladding.html",
       name: "Limestone Capping & Cladding",
@@ -632,6 +869,14 @@ window.SITE_CONFIG = {
       headline: "Limestone capping and cladding in Perth",
       subheadline: "Bullnose and standard capping, recapping an existing wall, and limestone cladding over an existing structure.",
       ctaText: "Tell us about your job",
+      image: {
+        src: "images/capping-bullnose.webp",
+        alt: "Close-up of bullnose capping along the top of a limestone wall, showing the rounded profile",
+        width: 1376,
+        height: 768,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
+      },
       intro: [
         "Capping and cladding are finishing jobs, not retaining work. Capping is the course along the top of a wall; cladding is a limestone face applied over an existing structure. Neither is holding back soil, so both are quoted and built differently from a retaining wall.",
         "This page covers what each one is, what it involves, and what moves the price. Repairs to an existing wall's structure are on the [crack and structural repair page](limestone-crack-repair.html)."
@@ -641,9 +886,19 @@ window.SITE_CONFIG = {
           heading: "What limestone capping does",
           body: [
             "Capping is the finishing course along the top of a limestone wall. It is not only cosmetic: it sheds water off the top of the wall rather than letting it soak into the joints below, which is a genuine durability difference over the life of the wall.",
-            "**Bullnose capping** has a rounded front edge rather than a square one. It is a common Perth finish, it softens the look of the wall, and it leaves no sharp edge along the top. Standard square capping is the plainer, generally cheaper alternative.",
+            "Capping comes in more than one profile. The two seen most often in Perth are bullnose and split-face, and they are compared in the next section.",
             "This work is sometimes searched for as stone wall capping services rather than limestone capping specifically. It is the same job regardless of what it is called.",
             "Capping is sometimes included in a new wall's quote and sometimes priced as an extra, so it is worth confirming which before comparing quotes."
+          ]
+        },
+        {
+          heading: "Bullnose or split-face",
+          body: [
+            "Capping is made in a few profiles, and two of them account for most of what goes on a Perth wall. Neither is better than the other. They are different finishes suited to different situations, and the choice is worth making deliberately rather than leaving to whatever the supplier has on the pallet.",
+            "**Bullnose capping** has a rounded front edge. It softens the top line of the wall, and because there is no square edge to catch a hand or a shin it is the usual choice anywhere people are in contact with the wall: pool surrounds, seating walls, steps, and walls along a path. The rounded edge also sheds water off the front face rather than holding it on a flat lip.",
+            "**Split-face capping** keeps the rugged, broken face that splitting the stone produces rather than being dressed to a rounded edge. It reads as heavier and more textured, closer to the face of the wall below it, and it is the more common choice on a standard boundary or garden wall where nobody is leaning on it.",
+            "The practical difference is wear and touch rather than performance. Both shed water off the top of the wall and both are laid the same way, so the decision usually comes down to how the wall is used and what the rest of the property looks like. Say which profile you want when asking for a quote, because it affects the price of the block.",
+            "Steps and seating walls, where the bullnose question comes up most often, are on the [steps and stairs page](limestone-steps-stairs.html)."
           ]
         },
         {
@@ -672,7 +927,7 @@ window.SITE_CONFIG = {
           body: [
             { list: [
               "**Linear metres of capping,** or area of cladding",
-              "**Bullnose versus standard profile** on capping",
+              "**Capping profile,** bullnose, split-face or a plain square edge",
               "**Block matching** against an existing wall, harder the older the wall",
               "**Condition of the substrate** on a cladding job, whether it needs preparation before cladding goes on",
               "**Access,** the same machine versus barrow question as any limestone job"
@@ -685,6 +940,10 @@ window.SITE_CONFIG = {
         {
           q: "What is bullnose capping?",
           a: "Capping is the finishing course along the top of a wall, and it sheds water off the top rather than letting it soak into the joints. Bullnose capping has a rounded front edge rather than a square one, a common Perth finish."
+        },
+        {
+          q: "What is split-face capping?",
+          a: "Capping left with the rugged, broken face that splitting the stone produces, rather than dressed to a rounded edge. It reads as heavier and more textured than bullnose and sits closer to the look of the wall below it. Both shed water off the top of the wall equally well, so it is a choice about appearance and about whether people are in contact with the wall."
         },
         {
           q: "Is capping included when a limestone wall is built?",
@@ -700,9 +959,9 @@ window.SITE_CONFIG = {
         }
       ]
     },
-    /* [NEEDS INPUT: a real before/after or in-progress limestone restoration
-       photo, once one exists — same no-stock-image rule as above. No intro
-       image on this page until then. */
+    /* AI-generated illustrative image. Generic scene — no real address, no
+       identifiable property — and never captioned as completed work.
+       Replace with real Perth photography when it exists. */
     {
       page: "limestone-restoration.html",
       name: "Limestone Restoration",
@@ -712,6 +971,14 @@ window.SITE_CONFIG = {
       headline: "Limestone restoration in Perth",
       subheadline: "Restoring the appearance of an ageing limestone wall that is still structurally sound.",
       ctaText: "Tell us about your job",
+      image: {
+        src: "images/restoration-repointing.webp",
+        alt: "A limestone wall part-way through restoration, with freshly repointed mortar joints next to older, weathered joints",
+        width: 1376,
+        height: 768,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
+      },
       intro: [
         "Limestone restoration is cosmetic and surface work on a wall that is structurally sound but showing its age: worn mortar, staining, or a tired grey line where the block itself is fine. It is a different job from fixing a wall that is actually moving.",
         "This page covers what restoration typically involves and how to tell it apart from a structural repair. If the wall is cracking, leaning or stepping, that is covered on the [crack and structural repair page](limestone-crack-repair.html) instead."
@@ -741,7 +1008,8 @@ window.SITE_CONFIG = {
           heading: "Repointing",
           body: [
             "Repointing is removing the old, eroded mortar from between the blocks to a consistent depth and replacing it with fresh mortar. It is the main restoration technique for a wall whose joints have worn but whose blocks and footing are sound.",
-            "Done well, repointing restores both the look of the wall and the mortar's job of shedding water at the joint, which slows the same erosion happening again."
+            "Done well, repointing restores both the look of the wall and the mortar's job of shedding water at the joint, which slows the same erosion happening again.",
+            "One thing to establish first is whether the wall was mortared at all. A dry-stacked wall, laid without mortar, has no joints to repoint, so restoring it is a matter of cleaning it and resetting anything that has shifted. Dry-stacked work belongs to low garden and feature walls; a structural limestone retaining wall in Perth is normally mortared, and that is the wall repointing is for."
           ]
         },
         {
@@ -749,6 +1017,15 @@ window.SITE_CONFIG = {
           body: [
             "Surface staining and grime can often be cleaned off a limestone wall without touching the mortar at all, depending on what has caused the staining and how long it has been there.",
             "Mortar colour matters here as much as on any other limestone job. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar dropped into an otherwise restored wall looks like a patch rather than a finish. It is worth asking directly whether colour matching is included."
+          ]
+        },
+        {
+          heading: "Sealing after a restoration",
+          body: [
+            "Sealing comes up most often at the end of a restoration, for a practical reason: a wall that has just been cleaned and repointed is the one moment it is clean and dry enough to seal properly.",
+            "The reason to consider it is that natural limestone is porous. Water soaking into the face is what lets mould, algae and lichen take hold on a wall that sits in shade or gets watered by the reticulation, and it is what carries staining into the stone rather than leaving it on the surface. A penetrating sealer slows that down. It does not stop it, and it is reapplied on a cycle rather than done once, so it is worth asking what is being applied and how long it is expected to hold.",
+            "Reconstituted block is less demanding on this front: the cement binder holds its original colour longer than natural stone does with nothing applied to it at all.",
+            "Sealing is not work arranged through this site, so treat the above as background for a conversation with whoever does the restoration rather than as something on offer here."
           ]
         },
         {
@@ -852,7 +1129,7 @@ window.SITE_CONFIG = {
               "**Drainage and discharge.** Ag pipe, aggregate, geotextile, and where the water is taken. A discharge point a few metres away is a different job to one piped around the house to the front verge.",
               "**Ground conditions.** Perth's sand is generally straightforward to excavate, but limestone shelf, rock, fill, existing footings or services in the wall line all add time.",
               "**Spoil removal.** Excavated material has to go somewhere. Truck movements and tip fees are real costs, and spoil remaining on site versus spoil removed is a common source of quote difference.",
-              "**Block type.** Natural block generally costs more to install than reconstituted for the same wall, because selection and fitting take longer.",
+              "**Block type.** Natural block generally costs more to install than reconstituted for the same wall, because selection and fitting take longer. Limestone against concrete and sandstone is compared on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html).",
               "**Length.** It matters, but less than people expect on a per metre basis, because mobilisation, setup and access costs spread across it.",
               "**Approval and engineering.** Application fees, engineering fees and the time to lodge. Sometimes in the price, sometimes on top."
             ] }
@@ -924,6 +1201,119 @@ window.SITE_CONFIG = {
           a: "No, it costs more than proportionally. Footing depth and engineering requirements step up with height rather than scaling smoothly, so a wall twice as tall generally costs considerably more than twice as much."
         }
       ]
+    },
+    {
+      slug: "limestone-vs-concrete-vs-sandstone",
+      name: "Limestone vs concrete vs sandstone",
+      metaTitle: "Limestone vs Concrete vs Sandstone Retaining Walls",
+      metaDescription: "Comparing limestone, concrete and sandstone for a retaining wall in Perth: how they differ on look, install cost, weight, curves and drainage, and where each one suits.",
+      headline: "Limestone, concrete or sandstone for a Perth retaining wall",
+      /* No author or byline, same as the cost guide: no individual is named
+         anywhere on this site. */
+      datePublished: "2026-09-03",
+      dateModified: "2026-09-03",
+      lastReviewed: "03/09/2026",
+      intro: [
+        "Most comparisons of walling materials are written by someone who sells one of them. This one sits on a site about limestone, so read it with that in mind. The aim is to set out what actually separates these materials on a Perth block, including the situations where limestone is the wrong answer.",
+        "In scope are the materials that realistically get quoted for a domestic retaining wall here: natural and reconstituted limestone, concrete in its two common forms, and sandstone, with bluestone and granite as the occasional premium option."
+      ],
+      sections: [
+        {
+          heading: "Start with the wall, not the material",
+          body: [
+            "The variables that move a retaining wall quote most are the same whatever the wall is made of: retained height, whether a machine can reach the wall line, drainage, ground conditions and spoil removal. They are set out on the [cost guide](cost-guide.html), and on the same job they will usually outweigh the difference between two materials.",
+            "Material choice decides three things: what the wall looks like, what the block costs to buy and to handle, and how the wall goes together. It does not change what the soil behind the wall is doing, and it does not change what the council or shire asks of you."
+          ]
+        },
+        {
+          heading: "The materials, one at a time",
+          body: [
+            { subheading: "Natural limestone" },
+            "Quarried on the Swan Coastal Plain, which is most of why it is the default retaining material in Perth and not in Melbourne or Sydney. Blocks vary in size, colour and face. That variation is the look people want it for, and it is also why it takes longer to lay, because each block is selected and placed. It is lighter than reconstituted block, which helps where access is tight. It is soft and porous, so it weathers visibly over years and takes surface growth in damp, shaded positions.",
+            { subheading: "Reconstituted limestone" },
+            "Manufactured to consistent dimensions with a cement binder. Uniform face, faster to lay, more predictable to quote, and it holds its original colour longer than natural stone does. Heavier per block. Where a run is long, exposed, or is going to be rendered, it is often the more sensible of the two.",
+            { subheading: "Concrete block and besser" },
+            "Core-filled, reinforced concrete blockwork is a structural wall in its own right and will go higher than most domestic limestone walls before the design gets unusual. The catch is the finish: bare block reads as industrial, so it is normally rendered, painted or clad, and that finish is a second cost and often a second trade. Cladding it in limestone is a common Perth resolution and is covered on the [capping and cladding page](limestone-capping-cladding.html).",
+            { subheading: "Concrete sleepers" },
+            "Precast panels dropped between galvanised steel posts. The fastest of these to install and the least ground depth taken up, and on a straight run it is often among the cheaper ways to hold back a given height. It looks like what it is: a panelised, repeating grey wall, sometimes with a moulded stone or timber texture. On a rear boundary nobody looks at, that is often exactly the right trade. It is the least forgiving of curves.",
+            { subheading: "Sandstone" },
+            "A softer, warm-toned stone, laid either as sawn blocks or as rougher random-sized pieces. Visually it is the closest thing here to limestone, which is why the two get shortlisted against each other. Supply for these stones in Perth is more mixed than it is for limestone, and how much of that shows up in the price is worth asking your supplier about directly.",
+            { subheading: "Bluestone and granite" },
+            "Both turn up occasionally at the premium end. They are hard, dense and heavy, which makes them durable and makes them slow and expensive to place. In a Perth retaining wall they are more often a feature element, a cap, a step tread or a short feature wall, than the whole structure."
+          ]
+        },
+        {
+          heading: "How they compare",
+          body: [
+            { table: {
+              head: ["Material", "Look", "Weight and handling", "Curves", "Where it usually goes in Perth"],
+              rows: [
+                ["Natural limestone", "Varied, warm quarried face; weathers and softens with age", "Lighter than reconstituted; the easier of the two to hand-carry", "Handles curves well", "Retaining walls, front fences, feature walls"],
+                ["Reconstituted limestone", "Uniform face and colour; a consistent line over a long run", "Heavier per block, but consistent to handle", "Gentle curves fine; facets on a tight radius", "Long runs, walls to be rendered, retaining walls"],
+                ["Concrete block, core-filled", "Bare block reads industrial; almost always rendered, painted or clad", "Consistent, and a machine or two-person lift", "Difficult", "Higher walls, and walls that will be rendered or clad anyway"],
+                ["Concrete sleepers", "Panelised repeating grey, sometimes moulded with a texture", "Panels are heavy but few; the posts do the structural work", "Poorly suited", "Rear and side boundaries, level changes out of view"],
+                ["Sandstone", "Warm and soft-looking, closest here to limestone", "Heavy; larger blocks are a machine job", "Depends on block size", "Feature walls, gardens, heritage-style work"],
+                ["Bluestone or granite", "Dark, dense, formal", "Heavy and slow to place", "Cut to suit, at a cost", "Caps, treads and feature elements rather than whole walls"]
+              ]
+            } },
+            "Cost is deliberately left out of that table. Ranking six materials against each other on install cost would need a dated set of real Perth quotes behind it, not general trade impressions, and the same wall on two different blocks can already differ substantially on height and access alone, as set out on the [cost guide](cost-guide.html). Where cost is worth a comment for a specific material, it's covered in the paragraphs above rather than as a ranking."
+          ]
+        },
+        {
+          heading: "Perth sand, drainage, and what they actually decide",
+          body: [
+            "Perth's sandy profile is a real factor in these jobs, but it acts on the wall rather than on the choice of material, and it is worth being precise about which is which.",
+            "**Drainage is not a material property.** Every one of these walls needs the same thing behind it: agricultural pipe at the base laid to fall, free-draining aggregate rather than the sand out of the trench, geotextile so fines do not clog it, and somewhere defined for the water to discharge. A porous block does not drain a wall. Water that cannot leave pushes on the back of the wall whatever the wall is made of, and that is what makes walls lean. The detail is on the [limestone retaining walls page](limestone-retaining-walls.html).",
+            "**Sand acts on the footing, and the footing is shared by all of them.** It excavates easily, which helps every material equally, and it offers different bearing behaviour to clay, which is a footing design question rather than a material one. Where the excavator finds limestone shelf, that adds time regardless of what goes on top of it.",
+            "**Weight is where the site does select a material.** A heavier block is harder to place where a machine cannot reach the wall line, and on a tight rear yard reached through a side gate the lighter material can be the cheaper wall to build even where the block itself costs more. That is an access question dressed up as a material question, and it is worth asking a contractor to price it both ways if the site is difficult."
+          ]
+        },
+        {
+          heading: "Where each one tends to win",
+          body: [
+            { list: [
+              "**Natural limestone** where the wall is seen and the varied quarried face is the whole point",
+              "**Reconstituted limestone** where the run is long, the line should be clean, or the wall is going to be rendered",
+              "**Core-filled concrete block** where the height is beyond comfortable limestone territory, or the wall was always going to be rendered or clad",
+              "**Concrete sleepers** where the wall is out of sight, the run is straight, and the budget is the binding constraint",
+              "**Sandstone** where that specific look is what is wanted and the freight is acceptable",
+              "**Bluestone or granite** as an element, a cap or a tread rather than as a whole wall"
+            ] },
+            "None of that survives contact with an actual site, which is rather the point. If you are genuinely undecided, get the same wall quoted in more than one material and compare the footing and drainage line items rather than the totals."
+          ]
+        },
+        {
+          heading: "What does not change with the material",
+          body: [
+            "Four things are the same whichever way you go, and they are the four that cost people money when they are assumed away.",
+            { list: [
+              "**Approval.** Height thresholds are set by your council or shire and apply to the structure, not to what it is made of. The reference table is on the [limestone retaining walls page](limestone-retaining-walls.html).",
+              "**Engineering.** Where certification is required it is required regardless of material, and it is priced separately often enough to be worth confirming.",
+              "**Drainage.** Required behind any wall that is retaining, in every material above.",
+              "**Registration.** For building work requiring a building permit and contracted at $20,000 or more, whether the contractor is registered with Building and Energy. See the approval section on the [limestone retaining walls page](limestone-retaining-walls.html)."
+            ] },
+            "Whose land the wall sits on and who pays what share are the same conversation whatever it is built from, and are best settled in writing before construction rather than after."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "Which material is cheapest for a retaining wall in Perth?",
+          a: "On a straight run that nobody looks at, concrete sleepers are usually the lowest cost for a given height. Whether that is the right answer depends on whether the wall is visible, whether the run is curved, and how much access the site has. Height and access move a quote more than the choice of material does."
+        },
+        {
+          q: "Is limestone stronger than concrete?",
+          a: "A retaining wall gets its strength from the footing, the drainage and, above a certain height, the engineering behind it, rather than from the block. Core-filled concrete blockwork will go higher than most domestic limestone walls before the design gets unusual, but at typical domestic heights the material is not what decides whether the wall stands."
+        },
+        {
+          q: "Is sandstone the same as limestone?",
+          a: "No. They are different sedimentary stones and they look different close up, though both are warm-toned and are often shortlisted against each other. In Perth the practical difference is supply: limestone is quarried locally, which is much of why it is the default retaining material here."
+        },
+        {
+          q: "Can materials be mixed in one wall?",
+          a: "Yes, and it is common. A core-filled concrete wall clad in limestone gives the height of one and the face of the other, and limestone caps and step treads are regularly used on walls built of something else. Check that the structure behind can carry the cladding before assuming it, because cladding is a finish rather than a repair."
+        }
+      ]
     }
   ],
 
@@ -966,7 +1356,7 @@ window.SITE_CONFIG = {
       {
         heading: "What this business does",
         body: [
-          "We take enquiries from Perth homeowners about limestone retaining walls, fencing, and wall repairs and capping, and get them to a limestone contractor who does that type of work.",
+          "We take enquiries from Perth homeowners about limestone retaining walls, fencing, steps, garden bed walls, and wall repairs and capping, and get them to a limestone contractor who does that type of work.",
           "We do not build, excavate, lay block, attend site or certify anything. There is no crew and no equipment. Every physical part of a job is done by the contractor.",
           "The other half of what we do is research. The approval information on the [retaining walls page](limestone-retaining-walls.html) and the [cost guide](cost-guide.html) is written for homeowners who have never bought a limestone wall and do not yet know what to ask."
         ]
@@ -974,7 +1364,7 @@ window.SITE_CONFIG = {
       {
         heading: "What we don't cover, and why",
         body: [
-          "We stick to limestone walling: retaining walls, limestone fencing, and wall repairs and capping, including bullnose capping and cladding.",
+          "We stick to limestone walling: retaining walls, limestone fencing, steps and garden bed walls, and wall repairs and capping, including bullnose capping and cladding.",
           "Brickwork, rendering and paving are a separate trade with different contractors. Sending a brick fence or paving enquiry to a limestone contractor wastes the homeowner's time and the contractor's.",
           "Landscaping, reticulation, concreting and structural engineering are all adjacent trades we do not handle either."
         ]
