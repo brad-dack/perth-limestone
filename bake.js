@@ -6,7 +6,8 @@
        node bake.js           Regenerates every derived file from config.js:
                               all page HTML (baked title/meta/canonical/OG/
                               JSON-LD/H1/noscript), plus CNAME, robots.txt,
-                              sitemap.xml, 404.html, and favicon.svg.
+                              sitemap.xml, lastmod.json, 404.html, and
+                              favicon.svg.
                               config.js is the only file you edit by hand.
 
        node bake.js --check   Preflight. Writes nothing. Fails loudly (exit 1)
@@ -18,6 +19,7 @@
    files. Nothing runs automatically — the deployed site is plain static
    files with no pipeline. Plain Node, no dependencies.
 ============================================================================= */
+const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
@@ -392,6 +394,7 @@ const bakedFooter = () => {
       '<div><p class="footer-title">Pages</p><ul>' +
         '<li><a href="index.html">Home</a></li>' +
         '<li><a href="cost-guide.html">Cost Guide</a></li>' +
+        '<li><a href="limestone-vs-concrete-vs-sandstone.html">Material Comparison</a></li>' +
         '<li><a href="about.html">About</a></li>' +
         '<li><a href="privacy.html">Privacy Policy</a></li>' +
       "</ul></div>" +
@@ -1006,10 +1009,44 @@ const cnameContent = () => hostOf(cfg.domain) + "\n";
 const robotsContent = () => "User-agent: *\nAllow: /\n\nSitemap: " +
   cfg.domain + "/sitemap.xml\n";
 
-const sitemapContent = pageNames =>
+/* Sitemap <lastmod> dates live in lastmod.json, one entry per page holding a
+   hash of the page's <main> and the date that hash last changed. Hashing only
+   <main> means a header/footer tweak (which touches every page) doesn't bump
+   every date. Google ignores lastmod once it catches the dates lying, so they
+   should move only when the content a reader sees actually changes. */
+const LASTMOD_FILE = "lastmod.json";
+
+const mainHash = html => {
+  const m = html.match(/<main id="main">([\s\S]*?)<\/main>/);
+  return crypto.createHash("sha256")
+    .update((m ? m[1] : html).replace(/\r\n/g, "\n").trim())
+    .digest("hex").slice(0, 16);
+};
+
+const readLastmod = () => {
+  try { return JSON.parse(fs.readFileSync(path.join(__dirname, LASTMOD_FILE), "utf8")); }
+  catch (e) { return {}; }
+};
+
+const todayPerth = () => new Date().toLocaleDateString("en-CA", { timeZone: "Australia/Perth" });
+
+// Keeps each page's stored date unless its <main> hash changed.
+const nextLastmod = (pages, prev) => {
+  const out = {};
+  for (const [name, html] of pages) {
+    const hash = mainHash(html);
+    out[name] = prev[name] && prev[name].hash === hash ? prev[name] : { hash, date: todayPerth() };
+  }
+  return out;
+};
+
+const lastmodContent = manifest => JSON.stringify(manifest, null, 2) + "\n";
+
+const sitemapContent = (pageNames, manifest) =>
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-  pageNames.map(f => "  <url><loc>" + canonicalFor(f) + "</loc></url>").join("\n") +
+  pageNames.map(f => "  <url><loc>" + canonicalFor(f) + "</loc>" +
+    (manifest[f] ? "<lastmod>" + manifest[f].date + "</lastmod>" : "") + "</url>").join("\n") +
   "\n</urlset>\n";
 
 /* Self-contained on purpose: GitHub Pages serves 404.html for ANY missing
@@ -1104,10 +1141,12 @@ function bake() {
   }
 
   const pageNames = pages.map(([name]) => name);
+  const lastmod = nextLastmod(pages, readLastmod());
   const aux = [
     ["CNAME", cnameContent()],
     ["robots.txt", robotsContent()],
-    ["sitemap.xml", sitemapContent(pageNames)],
+    [LASTMOD_FILE, lastmodContent(lastmod)],
+    ["sitemap.xml", sitemapContent(pageNames, lastmod)],
     ["404.html", notFoundContent()],
     ["favicon.svg", faviconContent()]
   ];
@@ -1308,6 +1347,20 @@ function runCheck() {
       if (!locFiles.includes(f)) errors.push("config expects page " + f +
         " but it's not in sitemap.xml (run node bake.js)");
     }
+  }
+
+  /* -- 4b. lastmod.json matches page content, sitemap matches lastmod.json -- */
+  const storedLastmod = readLastmod();
+  const builtPages = buildPages();
+  for (const [name, html] of builtPages) {
+    if (!storedLastmod[name]) errors.push(LASTMOD_FILE + " has no entry for " + name + " (run node bake.js)");
+    else if (storedLastmod[name].hash !== mainHash(html)) {
+      errors.push(name + " content changed but its sitemap lastmod wasn't bumped (run node bake.js)");
+    }
+  }
+  if (sitemapRaw !== null &&
+      sitemapRaw !== sitemapContent(builtPages.map(([n]) => n), storedLastmod)) {
+    errors.push("sitemap.xml is out of step with " + LASTMOD_FILE + " (run node bake.js)");
   }
 
   /* -- 5. domain consistency across config / CNAME / sitemap / robots ------ */
