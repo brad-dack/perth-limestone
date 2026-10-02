@@ -96,10 +96,15 @@ window.SITE_CONFIG = {
   /* --- Pages -------------------------------------------------------------- */
   pages: {
     home: {
-      metaTitle: "Limestone Retaining Walls Perth | Get a Quote",
-      metaDescription: "Limestone retaining walls, fencing, repairs and capping across the Perth metro area. Tell us about your job and get a quote. No cost and no obligation.",
-      headline: "Limestone retaining walls in Perth",
-      subheadline: "Retaining walls, limestone fencing, and wall repairs and capping across the Perth metropolitan area. Tell us about your job and a local contractor will be in touch if they can help.",
+      /* 2026-10-03: retitled from "Limestone Retaining Walls Perth | Get a
+         Quote". GSC showed the homepage at ~position 63 with a 0.26% CTR
+         while limestone-retaining-walls.html ranked ~11 for the same head
+         term — the two were competing. The homepage now targets the broad
+         "limestone walls Perth" set and leaves retaining walls to its page. */
+      metaTitle: "Limestone Walls, Fencing & Repairs Perth | Get a Quote",
+      metaDescription: "Limestone walls across the Perth metro area: retaining walls, fencing, steps, garden edging, capping and repairs. Tell us about your job and get a quote, free.",
+      headline: "Limestone walls, fencing and repairs in Perth",
+      subheadline: "Retaining walls, limestone fencing, steps, garden edging, capping and wall repairs across the Perth metropolitan area. Tell us about your job and a local contractor will be in touch if they can help.",
       ctaText: "Tell us about your job",
       /* AI-generated illustrative image. Generic scene — no real address, no
          identifiable property — and never captioned as completed work.
@@ -659,9 +664,13 @@ window.SITE_CONFIG = {
       name: "Limestone Garden Beds & Edging",
       shortDescription: "Limestone garden bed walls, raised planters and edging in Perth, how they differ from a retaining wall, and what drives the cost on a small job.",
       metaTitle: "Limestone Garden Edging Perth | Beds and Low Walls",
-      metaDescription: "Limestone garden beds and edging in Perth: where a bed wall stops being a bed wall and becomes retaining, curved against straight runs, raised planters, and what it costs.",
-      headline: "Limestone garden beds and edging in Perth",
-      subheadline: "Low bed walls, raised planters and edging, and where they differ from a retaining wall.",
+      /* 2026-10-03: GSC had "limestone garden edging" + "... perth" at 141
+         impressions, ~pos 29-36, while the page mostly covered bed walls.
+         H1 and intro now lead with edging, and a dedicated edging section
+         (laying, mowing strips, paths) was added. */
+      metaDescription: "Limestone garden edging in Perth: how edging is laid so it stays put, mowing strips and path edges, curved against straight runs, raised beds, and what it costs.",
+      headline: "Limestone garden edging and beds in Perth",
+      subheadline: "Limestone edging, low bed walls and raised planters, and where they differ from a retaining wall.",
       ctaText: "Tell us about your job",
       image: {
         src: "images/garden-bed-edging.webp",
@@ -672,10 +681,20 @@ window.SITE_CONFIG = {
         sizes: INTRO_SIZES
       },
       intro: [
-        "Garden bed walls and edging are the smallest and least committing limestone jobs on this site. A course or two of block around a bed is a different proposition to a retaining wall in what it has to do, what it costs, and what is required of it.",
-        "This page covers where the line between a bed wall and a retaining wall actually sits, curved against straight runs, raised planters, and where this work overlaps with limestone fencing and where it does not."
+        "Limestone garden edging and low bed walls are the smallest and least committing limestone jobs on this site. A single course of edging along a lawn, or a course or two of block around a bed, is a different proposition to a retaining wall in what it has to do, what it costs, and what is required of it.",
+        "This page covers how limestone edging is laid so it stays put, where the line between a bed wall and a retaining wall actually sits, curved against straight runs, raised planters, and where this work overlaps with limestone fencing and where it does not."
       ],
       sections: [
+        {
+          heading: "Limestone garden edging",
+          body: [
+            "Edging is a single course of limestone laid along the edge of a bed, a lawn or a path. Its job is to hold a line: mulch and soil stay in the bed, lawn runners stay out of it, and the edge of the lawn stays where it was set out.",
+            "**How it is laid decides how long it lasts.** Edging set straight onto loose sand moves. Over a few seasons it sinks, tilts outward under the weight of the bed behind it, and opens up gaps that grass grows through. Edging laid on a compacted base, or bedded in mortar, holds its line far longer. On Perth sand that difference shows up quickly, so it is worth asking what the edging will sit on.",
+            "**As a mowing strip,** edging set flush with the lawn lets a mower wheel run along the top, which means no trimming along the bed edge. Set higher than the lawn, it reads as a defined border but has to be trimmed against.",
+            "**Along a path or driveway,** edging also stops paving or a loose gravel surface spreading at its edge. That is a slightly different job, because it can carry foot or wheel load, and it needs a firmer base than edging along a bed does.",
+            "**Joints** can be butted dry or mortared. Mortared joints keep the line rigid and stop grass coming through between blocks; dry joints are quicker and easier to lift and reset later."
+          ]
+        },
         {
           heading: "Garden bed wall, or retaining wall",
           body: [
@@ -735,6 +754,14 @@ window.SITE_CONFIG = {
         }
       ],
       faqs: [
+        {
+          q: "Why does limestone garden edging sink or lean?",
+          a: "Usually because it was laid straight onto loose sand. The weight of the bed behind pushes it outward and the sand under it settles. Edging laid on a compacted base, or bedded in mortar, holds its line much longer."
+        },
+        {
+          q: "Can limestone edging be used as a mowing strip?",
+          a: "Yes. Set flush with the lawn, a mower wheel can run along the top of the edging, so the bed edge does not need trimming. Edging set above the lawn gives a more defined border but has to be trimmed against."
+        },
         {
           q: "Is a garden bed wall a retaining wall?",
           a: "Not if it only holds the bed you have built behind it and the ground beyond it is unchanged. It becomes a retaining wall once it holds back ground that would otherwise move, which usually means it has been built up high or cut into a slope. Approval thresholds are measured as height above natural ground level regardless of what the wall is called."
@@ -864,10 +891,15 @@ window.SITE_CONFIG = {
       page: "limestone-capping-cladding.html",
       name: "Limestone Capping & Cladding",
       shortDescription: "New and replacement limestone capping including bullnose, and limestone cladding over an existing wall or pier, in Perth.",
-      metaTitle: "Limestone Capping Perth | Wall Capping & Cladding",
-      metaDescription: "Limestone capping and cladding in Perth: bullnose capping, recapping a wall whose original capping has failed, and cladding an existing structure in limestone.",
-      headline: "Limestone capping and cladding in Perth",
-      subheadline: "Bullnose and standard capping, recapping an existing wall, and limestone cladding over an existing structure.",
+      /* 2026-10-03: GSC showed "limestone capping" (126 impressions, ~pos 37)
+         with more impressions than this whole page had, i.e. other pages were
+         being shown for it. Title/H1 now lead with "limestone wall capping",
+         and the pier/fence capping and cladding-substrate sections were added
+         ("limestone piers" ~pos 5, "limestone cladding perth" ~pos 56). */
+      metaTitle: "Limestone Capping Perth | Bullnose Wall Capping & Cladding",
+      metaDescription: "Limestone wall capping in Perth: bullnose or split-face, capping piers and fence walls, recapping a wall whose capping has failed, and limestone cladding.",
+      headline: "Limestone wall capping and cladding in Perth",
+      subheadline: "Bullnose and split-face limestone capping for walls and piers, recapping an existing wall, and limestone cladding over an existing structure.",
       ctaText: "Tell us about your job",
       image: {
         src: "images/capping-bullnose.webp",
@@ -878,7 +910,7 @@ window.SITE_CONFIG = {
         sizes: INTRO_SIZES
       },
       intro: [
-        "Capping and cladding are finishing jobs, not retaining work. Capping is the course along the top of a wall; cladding is a limestone face applied over an existing structure. Neither is holding back soil, so both are quoted and built differently from a retaining wall.",
+        "Limestone capping and cladding are finishing jobs, not retaining work. Capping is the course along the top of a wall or pier; cladding is a limestone face applied over an existing structure. Neither is holding back soil, so both are quoted and built differently from a retaining wall.",
         "This page covers what each one is, what it involves, and what moves the price. Repairs to an existing wall's structure are on the [crack and structural repair page](limestone-crack-repair.html)."
       ],
       sections: [
@@ -902,6 +934,15 @@ window.SITE_CONFIG = {
           ]
         },
         {
+          heading: "Capping piers and fence walls",
+          body: [
+            "Limestone piers, whether they stand alone at a gate or carry the infill panels of a pier and infill fence, are capped the same way a wall is, with a single cap sized to the top of the pier rather than a run of capping block.",
+            "**A pier cap** usually overhangs the pier slightly on every side, so water drips clear of the face rather than running down it. Flat, bullnose-edged and pitched or domed caps are all used, and a pitched cap sheds water faster than a flat one.",
+            "**On a pier and infill fence,** the piers and the low wall between them are often capped in the same profile so the fence reads as one structure. It is worth settling that before the fence is quoted, because the pier caps and the wall capping are usually separate items.",
+            "Pier spacing, infill options and front fence height rules are on the [limestone fencing page](limestone-fencing.html)."
+          ]
+        },
+        {
           heading: "Recapping an existing wall",
           body: [
             "Recapping is fitting new capping to a wall whose original capping has cracked, lifted, weathered away, or was never installed in the first place. It is a job on its own, separate from building a new wall.",
@@ -912,7 +953,14 @@ window.SITE_CONFIG = {
           heading: "Limestone cladding",
           body: [
             "Cladding is a limestone face applied over an existing structure, a besser block wall, a pier, or a rendered wall, rather than a structural limestone wall in its own right.",
-            "It is a finish, not a retaining or load-bearing element, so it is priced differently to a wall. It is a way to get the limestone look on an existing structure without rebuilding it, provided the structure behind is sound and can carry the cladding. A structure that is not sound needs to be addressed first; cladding does not fix an underlying structural problem, it sits on top of it."
+            "It is a finish, not a retaining or load-bearing element, so it is priced differently to a wall. It is a way to get the limestone look on an existing structure without rebuilding it, provided the structure behind is sound and can carry the cladding. A structure that is not sound needs to be addressed first; cladding does not fix an underlying structural problem, it sits on top of it.",
+            "Before cladding goes on, a few things are worth confirming about the existing structure:",
+            { list: [
+              "**It is not moving.** Cracking or leaning in the wall behind will crack the cladding with it",
+              "**It is not wet.** A retaining wall with no drainage behind it pushes moisture through to the face, and that shows up as staining or loose cladding",
+              "**The surface will take a bond.** Paint, loose render or a sealed face may need to come off first",
+              "**The top and the ends are detailed,** with capping over the top and the returns at the ends finished, so the cladding reads as solid stone rather than a facing"
+            ] }
           ]
         },
         {
@@ -944,6 +992,14 @@ window.SITE_CONFIG = {
         {
           q: "What is split-face capping?",
           a: "Capping left with the rugged, broken face that splitting the stone produces, rather than dressed to a rounded edge. It reads as heavier and more textured than bullnose and sits closer to the look of the wall below it. Both shed water off the top of the wall equally well, so it is a choice about appearance and about whether people are in contact with the wall."
+        },
+        {
+          q: "Does a limestone wall need capping?",
+          a: "It is not structurally required, but capping sheds water off the top of the wall instead of letting it soak into the joints below, which slows mortar erosion. It also finishes the top line of the wall. Most limestone walls in Perth are capped for both reasons."
+        },
+        {
+          q: "Can limestone capping be replaced without rebuilding the wall?",
+          a: "Usually, yes. If the wall below is sound, failed capping can be lifted and a new course laid on top. If the wall itself is cracking or leaning, that needs addressing first, because new capping on a moving wall will crack again."
         },
         {
           q: "Is capping included when a limestone wall is built?",
@@ -1089,8 +1145,13 @@ window.SITE_CONFIG = {
     {
       slug: "cost-guide",
       name: "Cost guide",
-      metaTitle: "Limestone Retaining Wall Cost Perth | What Drives It",
-      metaDescription: "What a limestone retaining wall costs in Perth, what makes one quote different from another, and how to read a quote without getting caught by exclusions.",
+      /* 2026-10-03: retitled from "... | What Drives It". GSC had the page at
+         ~position 8.5 with 0 clicks from 33 impressions. The page deliberately
+         gives no price ranges (see the per-metre FAQ), so the snippet now sells
+         what it does have: the ranked drivers and the exclusions checklist.
+         The counts (9 drivers, 10 exclusions) match the lists below. */
+      metaTitle: "Limestone Retaining Wall Cost Perth | 9 Price Drivers",
+      metaDescription: "Why two Perth quotes for the same limestone wall can differ so much: the nine cost drivers ranked, ten things quotes often leave out, and how to compare them.",
       headline: "What a limestone retaining wall costs in Perth",
       /* No author or byline: no individual is named anywhere on this site.
          bake.js falls back to the Organization as the Article author. */
