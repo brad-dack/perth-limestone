@@ -332,7 +332,7 @@ window.SITE_CONFIG = {
         {
           heading: "Footings, Perth sand and mortar",
           body: [
-            "The footing does the structural work. It is sized to the wall, not to a rule of thumb, and it is where the money goes on a taller wall. Perth's sandy profile drains well, which helps, but it offers different bearing behaviour to clay and it moves when it is not confined.",
+            "The footing does the structural work. It is sized to the wall, not to a rule of thumb, and it is where the money goes on a taller wall. Perth's sandy profile drains well, which helps, but it offers different bearing behaviour to clay and it moves when it is not confined. Where the footing of an existing wall has already moved, footing repair is covered on the [crack and structural repair page](limestone-crack-repair.html).",
             "One quality difference a homeowner would not know to ask about is mortar colour. A wall can be pointed with default grey mortar, or with mortar tinted to match the limestone. Matched mortar reads as one material; grey mortar reads as block and lines. It is a real and visible difference, and worth raising when comparing quotes."
           ]
         },
@@ -636,6 +636,10 @@ window.SITE_CONFIG = {
           a: "Usually, subject to the council or shire's provisions and the neighbour question. Cost sharing sits under the Dividing Fences Act 1961 (WA) and is best agreed in writing first."
         },
         {
+          q: "What does visually permeable mean for a front fence?",
+          a: "It means the upper part of the fence can be seen through, with gaps spread across it rather than a solid face. Many Perth councils require it above about 1.2m within the front setback, often as a minimum share of open area such as 50%, and some also set the gap size. The front fence table above shows each council's rule."
+        },
+        {
           q: "Can you put a Colorbond fence on top of a limestone retaining wall?",
           a: "Yes, and it is a common combination on sloping Perth blocks. The wall should be designed for the extra load the fence puts on it, and how the posts are fixed is easiest to settle before the wall is built."
         },
@@ -657,7 +661,9 @@ window.SITE_CONFIG = {
       name: "Limestone Steps & Stairs",
       shortDescription: "Limestone steps built into a retaining wall or standing alone in a garden, what drives the cost, and where handrails and approval come into it.",
       metaTitle: "Limestone Steps Perth | Garden Stairs and Treads",
-      metaDescription: "Limestone steps and stairs in Perth: steps built into a retaining wall against standalone garden steps, rise and run, tread choices, handrails and what drives the cost.",
+      /* 2026-10-08: shortened from 168 chars (truncated in results);
+         "limestone steps" sat at ~pos 7.8 with 0 clicks from 26 impressions. */
+      metaDescription: "Limestone steps in Perth, built into a retaining wall or as a garden flight: rise and run, tread options, handrails, approval and what drives the cost.",
       headline: "Limestone steps and stairs in Perth",
       subheadline: "Steps built into a retaining wall, standalone garden steps, and what moves the price.",
       ctaText: "Tell us about your job",
@@ -890,7 +896,12 @@ window.SITE_CONFIG = {
       name: "Limestone Crack & Structural Repair",
       shortDescription: "Cracked, leaning or settled limestone walls in Perth: what causes it, how to tell a repair from a rebuild, and what a repair should fix.",
       metaTitle: "Limestone Repairs Perth | Crack & Structural Repair",
-      metaDescription: "Limestone crack and structural repair in Perth: what causes a wall to crack, lean or settle, how to tell a repair from a rebuild, and what a repair should fix.",
+      /* 2026-10-08: GSC (3 months to 10-05) showed broad repair searches
+         ("limestone repairs perth" 135 imp @40, "limestone repairs" 106 @54,
+         "limestone repair" 55, "retaining wall repairs perth" 26 @60) and
+         "limestone foundation repair" (103 imp @50) with nothing on the page
+         answering them directly. Added the triage and footing sections. */
+      metaDescription: "Limestone wall repairs in Perth: which repair a wall needs, why walls crack, lean or settle, footing repair, and how to tell a repair from a rebuild.",
       headline: "Limestone crack and structural repair in Perth",
       subheadline: "What causes a limestone wall to crack, lean or settle, and how to tell a repair from a rebuild.",
       ctaText: "Tell us about your job",
@@ -908,12 +919,24 @@ window.SITE_CONFIG = {
       ],
       sections: [
         {
+          heading: "Which limestone repair does your wall need?",
+          body: [
+            "Limestone wall repairs fall into three different jobs, and what the wall is doing tells you which one you have. A wall that is cracking, leaning or stepping needs a structural repair; a wall that is standing straight but has worn joints or staining needs restoration; and a wall whose top course has cracked or lifted needs recapping.",
+            { list: [
+              "**Cracking, leaning, bulging or one section sitting lower than the next.** Something underneath has moved, usually the drainage or the footing. That is a structural repair, and it is what the rest of this page covers. It applies equally to retaining walls, garden walls and limestone fences.",
+              "**Straight and solid, but the mortar joints are washed out, the face is stained or the colour has gone patchy.** That is cosmetic and surface work, covered on the [limestone restoration page](limestone-restoration.html).",
+              "**The wall is fine but the capping is cracked, loose or missing.** That is a recapping job, covered on the [capping and cladding page](limestone-capping-cladding.html)."
+            ] },
+            "Plenty of older Perth walls need more than one of these, for example a sound wall with one section that has settled and joints that have weathered along its full length. It helps to say which parts of the wall are doing what when you ask for a quote, and photos of the worst section are useful. To have a wall looked at, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
+          ]
+        },
+        {
           heading: "Why limestone walls crack, lean or settle",
           body: [
             "Most structural problems trace back to one of a few causes, and knowing which one matters, because the cause decides whether a repair will hold.",
             { list: [
               "**Drainage.** The most common cause of retaining wall movement. Water building up behind a wall that cannot drain adds pressure the wall was never designed to resist, and pushes it out of line. A repair that does not fix the drainage will not last.",
-              "**Footing or ground movement.** Settlement, or a footing that was undersized for the wall, lets it lean, crack or step. This is sometimes described as limestone foundation repair, since the footing is doing the job a foundation does.",
+              "**Footing or ground movement.** Settlement, or a footing that was undersized for the wall, lets it lean, crack or step. Footing repair has its own section below.",
               "**Mortar erosion.** Joints that have weathered and washed out over years can let blocks shift against each other, which is a structural issue once it goes beyond the surface.",
               "**Impact or added load.** A vehicle, tree roots, or a surcharge load the wall was never designed for, such as a driveway or paving added later."
             ] },
@@ -927,6 +950,17 @@ window.SITE_CONFIG = {
               caption: "Example of settlement crack."
             } },
             "Diagnosing the cause before quoting the repair is the difference between a fix and a patch. This is also why searches for limestone repair or stone wall repair rarely have a single right answer without seeing the wall."
+          ]
+        },
+        {
+          heading: "Limestone footing repair, sometimes called foundation repair",
+          body: [
+            "When a limestone wall settles because its footing has moved or was too small for the wall, the repair happens at footing level: the affected section is taken down, the footing is extended or replaced, and the wall is relaid on it. This is usually what limestone foundation repair means for a garden wall, fence or retaining wall, because the footing is the wall's foundation.",
+            "**Signs the footing is the problem.** A crack that steps down through the mortar joints, one section sitting visibly lower than its neighbour, a gap opening under the capping, or a wall leaning from its base rather than bowing in the middle.",
+            "**What undermines a footing on Perth sand.** Sand under a footing stays put while it is confined and dry. Water running under the wall is the usual culprit: a leaking reticulation line, a downpipe or stormwater pipe discharging at the base, or a broken drain washing sand out over time. Excavation close to the footing, such as a pool, a trench or a neighbour's works, can remove the support beside it, and tree roots can lift or crack it.",
+            "**Why the water comes first.** Rebuilding a footing in the same wet, washed-out ground repeats the failure. A footing repair should name the source of the water and deal with it, as well as the footing itself.",
+            "If the repair means taking down and rebuilding a significant length of wall, it can raise the same council or shire approval questions as a new wall, which are covered in the approval section on the [limestone retaining walls page](limestone-retaining-walls.html).",
+            { note: "This section is about the footings of limestone walls, fences and steps. Cracking in a house that sits on limestone footings is a different job for a structural engineer or builder, and is not something arranged through this site." }
           ]
         },
         {
@@ -980,6 +1014,18 @@ window.SITE_CONFIG = {
         {
           q: "How much does limestone wall repair cost in Perth?",
           a: "It depends on the cause and the extent of the work, which is why a figure quoted without seeing the wall is not reliable. The cost guide sets out the considerations that move the price on any limestone job — height, access, drainage, extent of work — so you know what a fair quote should account for."
+        },
+        {
+          q: "What does limestone foundation repair involve?",
+          a: "For a limestone wall, the foundation is the footing. Repairing it usually means taking down the affected section, extending or replacing the footing, dealing with whatever water undermined it, and relaying the wall to line and level."
+        },
+        {
+          q: "Will a leaning limestone wall get worse if it is left?",
+          a: "Usually, yes. The causes behind a lean, water behind the wall or a footing that has moved, rarely stop on their own. A wall leaning towards a path, driveway or a neighbour's property is worth having looked at sooner rather than later."
+        },
+        {
+          q: "Can cracks in a house on limestone footings be repaired through this site?",
+          a: "No. This site covers limestone walls, fences, steps and their footings. Cracking in a house is a job for a structural engineer or builder."
         }
       ]
     },
@@ -1045,21 +1091,43 @@ window.SITE_CONFIG = {
           heading: "Recapping an existing wall",
           body: [
             "Recapping is fitting new capping to a wall whose original capping has cracked, lifted, weathered away, or was never installed in the first place. It is a job on its own, separate from building a new wall.",
-            "The main consideration on a recap is matching: block colour and face, and capping profile, against a wall that has already weathered. An exact match is not always possible, particularly on an older wall, and it is worth asking what the finish will look like against the existing block before committing."
+            "The main consideration on a recap is matching: block colour and face, and capping profile, against a wall that has already weathered. An exact match is not always possible, particularly on an older wall, and it is worth asking what the finish will look like against the existing block before committing.",
+            "Where the joints below the capping have worn as well, repointing and cleaning are often done at the same visit. That work is covered on the [limestone restoration page](limestone-restoration.html)."
           ]
         },
+        /* 2026-10-08: expanded. "limestone cladding perth" had 86 impressions
+           at ~pos 56 (GSC, 3 months to 10-05) with only a short section here.
+           Title deliberately unchanged; it was retitled on 2026-10-03. */
         {
-          heading: "Limestone cladding",
+          heading: "Limestone cladding in Perth",
           body: [
-            "Cladding is a limestone face applied over an existing structure, a besser block wall, a pier, or a rendered wall, rather than a structural limestone wall in its own right.",
-            "It is a finish, not a retaining or load-bearing element, so it is priced differently to a wall. It is a way to get the limestone look on an existing structure without rebuilding it, provided the structure behind is sound and can carry the cladding. A structure that is not sound needs to be addressed first; cladding does not fix an underlying structural problem, it sits on top of it.",
+            "Limestone cladding is a limestone face fixed over an existing structure, such as a concrete block wall, a pier or a rendered fence, rather than a structural limestone wall in its own right. It gives an existing wall the limestone look without rebuilding it, provided the structure behind is sound and can carry the weight.",
+            "It is a finish, not a retaining or load-bearing element, so it is priced differently to a wall. A structure that is not sound needs to be addressed first; cladding does not fix an underlying structural problem, it sits on top of it.",
+            { subheading: "What gets clad" },
+            { list: [
+              "**Concrete block retaining walls.** A core-filled block wall does the structural work and the cladding provides the face. It is a common way to get height from block and the look of limestone, and it is compared with other options on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html).",
+              "**Rendered or painted front fences and piers,** where the render has cracked or the owner wants a stone finish instead.",
+              "**Feature walls and letterbox or entry piers,** where a small area of stone does a lot visually."
+            ] },
+            { subheading: "How it is fixed" },
+            "Cladding is usually thinner limestone pieces cut for the purpose rather than full-size walling block, bonded to the face of the structure. Heavier pieces, or cladding high on a wall, can need mechanical fixings as well as adhesive. The fixing method should follow the cladding supplier's instructions for that product on that type of wall, so it is worth asking what is proposed and why.",
+            { subheading: "Checking the wall first" },
             "Before cladding goes on, a few things are worth confirming about the existing structure:",
             { list: [
               "**It is not moving.** Cracking or leaning in the wall behind will crack the cladding with it",
               "**It is not wet.** A retaining wall with no drainage behind it pushes moisture through to the face, and that shows up as staining or loose cladding",
               "**The surface will take a bond.** Paint, loose render or a sealed face may need to come off first",
               "**The top and the ends are detailed,** with capping over the top and the returns at the ends finished, so the cladding reads as solid stone rather than a facing"
-            ] }
+            ] },
+            { subheading: "What moves the price of cladding" },
+            { list: [
+              "**Area,** in square metres of face rather than metres of wall",
+              "**Preparation,** removing paint or loose render, or repairing the wall first",
+              "**Corners, returns and openings,** which mean cut pieces and more labour than a plain face",
+              "**Height,** where cladding high on a wall needs scaffolding or extra fixing",
+              "**Capping** over the top, often priced as a separate item"
+            ] },
+            "To have a cladding job priced, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote) with the rough length and height of the wall and what it is made of now."
           ]
         },
         {
@@ -1111,6 +1179,18 @@ window.SITE_CONFIG = {
         {
           q: "Can cladding be added to any wall?",
           a: "Only if the structure behind it is sound enough to carry it. Cladding is a finish, not a repair, so an unsound wall needs to be addressed first."
+        },
+        {
+          q: "Can a concrete block retaining wall be clad in limestone?",
+          a: "Yes, provided the wall is sound, is not moving and has drainage behind it. Moisture pushing through an undrained retaining wall shows up as staining or loose cladding on the face."
+        },
+        {
+          q: "How is limestone cladding fixed to a wall?",
+          a: "Usually bonded to the face of the structure, with mechanical fixings added for heavier pieces or higher areas. The method should follow the supplier's instructions for that product and that type of wall."
+        },
+        {
+          q: "Is cladding cheaper than building a new limestone wall?",
+          a: "It can be, where the existing structure is sound, because there is no footing or wall to build. If the wall needs significant preparation or repair first, that gap narrows, so it is worth pricing both."
         }
       ]
     },
@@ -1121,7 +1201,10 @@ window.SITE_CONFIG = {
       page: "limestone-restoration.html",
       name: "Limestone Restoration",
       shortDescription: "Restoring an older limestone wall's appearance in Perth: repointing, cleaning and colour matching a wall that is still structurally sound.",
-      metaTitle: "Limestone Restoration Perth | Restore a Wall",
+      /* 2026-10-08: retitled from "... | Restore a Wall". GSC (3 months to
+         10-05): "limestone restoration perth" 154 imp @48, "limestone
+         restoration" 120 @55; the old title did not name the work. */
+      metaTitle: "Limestone Restoration Perth | Repointing & Cleaning",
       metaDescription: "Limestone restoration in Perth: repointing eroded mortar, cleaning and matching an ageing wall's colour, and how to tell restoration from a structural repair.",
       headline: "Limestone restoration in Perth",
       subheadline: "Restoring the appearance of an ageing limestone wall that is still structurally sound.",
@@ -1157,6 +1240,21 @@ window.SITE_CONFIG = {
               "**Staining.** Efflorescence, grime, moss or general Perth weather leaves marks on the block face over time.",
               "**Colour fade or unevenness.** Sun and weather can leave a wall looking patchier than it did when new, even without any damage."
             ] }
+          ]
+        },
+        {
+          heading: "How a limestone wall restoration is done",
+          body: [
+            "A restoration usually runs in the same order: confirm the wall is sound, clean it, rake out and repoint the joints, replace anything broken, then seal if that is wanted. The order matters, because each step sets up the next one, and doing them out of sequence is how a restored wall ends up patchy.",
+            { olist: [
+              "**Check the wall is sound.** A wall that is cracking, leaning or stepping needs the cause fixed first, which is covered on the [crack and structural repair page](limestone-crack-repair.html). Repointing a moving wall hides the problem for a season.",
+              "**Clean the face.** Cleaning comes before repointing, so the colour the new mortar is matched to is the wall's real colour rather than its grime, and so dirt is not trapped under new work. Natural limestone is soft, so the method matters; ask how the wall will be cleaned and have a small area tested out of sight first.",
+              "**Rake out the eroded joints** to a consistent depth, removing loose and washed-out mortar back to sound material.",
+              "**Repoint with matched mortar.** Mortar looks different wet and dry, so a test patch left to dry is the honest way to check the colour match before the whole wall is done.",
+              "**Replace what is broken.** Individual damaged blocks can usually be cut out and replaced, and cracked or missing capping can be relaid, which is covered on the [capping and cladding page](limestone-capping-cladding.html).",
+              "**Seal, if you choose to,** once the wall is clean and dry. More on that below."
+            ] },
+            "It also pays to find out why the joints wore in the first place. Reticulation spraying the same face every morning, or a downpipe running down the wall, will wear new mortar the same way as the old. To have a wall looked at, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
           ]
         },
         {
@@ -1213,6 +1311,18 @@ window.SITE_CONFIG = {
         {
           q: "Does mortar colour matter on a restoration?",
           a: "Yes, more than on most limestone jobs. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar in an otherwise restored wall looks like a patch rather than a finish."
+        },
+        {
+          q: "Can individual damaged limestone blocks be replaced?",
+          a: "Usually, yes. A broken or badly eroded block can be cut out and a new one set in its place. The challenge is matching the colour and face of a wall that has already weathered, so ask to see the replacement block before it goes in."
+        },
+        {
+          q: "Is it safe to pressure clean a limestone wall?",
+          a: "Care is needed. Natural limestone is soft, and high pressure can wear the face and wash out weak mortar. Ask how the wall will be cleaned and test a small area out of sight first."
+        },
+        {
+          q: "Why have the mortar joints on my limestone wall worn away?",
+          a: "Usually water running over the same part of the wall for years, from reticulation, a downpipe or runoff from above. Repointing restores the joints, but fixing where the water comes from is what stops it happening again."
         }
       ]
     }
