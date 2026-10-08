@@ -233,9 +233,14 @@
     document.documentElement.setAttribute("data-pattern", cfg.brand.pattern || "none");
   }
 
-  /* Deferred to idle time: gtag.js is ~90 KB of third-party JavaScript that
-     competes with rendering for the main thread. Nothing on the page depends
-     on it, so it waits until the browser is free (or 3s, whichever is first).
+  /* Deferred until the page has painted: gtag.js is ~90 KB of third-party
+     JavaScript and ~250ms of script evaluation that competes with rendering
+     for the main thread. It used to wait for requestIdleCallback, but an idle
+     period can come before the first paint, and PageSpeed mobile then scored
+     the page ~90 instead of ~99 (observed first paint landing after "load").
+     Now it waits for "load" AND the browser's first largest-contentful-paint
+     report. Browsers without LCP entries (Safari, Firefox) load it on "load";
+     the 5s timeout covers a tab that never paints (opened in the background).
      The page_view still fires — just after the visitor can see the page. */
   function injectGA4() {
     var id = cfg.ga4Id;
@@ -244,13 +249,27 @@
        gtag.js replays dataLayer when it finally loads. */
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    if (window.requestIdleCallback) {
-      window.requestIdleCallback(loadGA4, { timeout: 1500 });
-    } else {
-      setTimeout(loadGA4, 1200);
+    var loaded = false;
+    if (document.readyState === "complete") afterLoad();
+    else window.addEventListener("load", afterLoad, { once: true });
+
+    function afterLoad() {
+      var types = window.PerformanceObserver && PerformanceObserver.supportedEntryTypes;
+      if (!types || types.indexOf("largest-contentful-paint") === -1) return loadGA4();
+      try {
+        new PerformanceObserver(function (list, obs) {
+          obs.disconnect();
+          setTimeout(loadGA4, 0);
+        }).observe({ type: "largest-contentful-paint", buffered: true });
+      } catch (e) {
+        return loadGA4();
+      }
+      setTimeout(loadGA4, 5000);
     }
 
     function loadGA4() {
+      if (loaded) return;
+      loaded = true;
       var s = document.createElement("script");
       s.async = true;
       s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
