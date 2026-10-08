@@ -150,7 +150,7 @@ window.SITE_CONFIG = {
               "**Access,** whether a machine can reach the wall line or whether every block goes through a side gate by hand",
               "**Drainage requirements,** including where the water is taken",
               "**Ground conditions** at footing level",
-              "**Spoil removal,** because excavated sand has to go somewhere"
+              "**Spoil removal,** because excavated sand has to go somewhere. Site preparation and earthworks are set out on the [retaining walls page](limestone-retaining-walls.html)"
             ] },
             "How these interact, and how to read a quote, is set out on the [cost guide](cost-guide.html)."
           ]
@@ -214,6 +214,18 @@ window.SITE_CONFIG = {
       headline: "Limestone retaining walls in Perth",
       subheadline: "How they are built, what drives the cost, and whether approval applies.",
       ctaText: "Tell us about your job",
+      /* 2026-10-08: the only service page without an intro image, while the
+         Perth competitors lean heavily on photos. Reuses the homepage hero
+         (AI-generated illustrative image, generic scene, never captioned as
+         completed work). Replace with real Perth photography when it exists. */
+      image: {
+        src: "images/retainingwall434knl.webp",
+        alt: "A limestone retaining wall holding back a raised garden bed in a Perth backyard",
+        width: 1259,
+        height: 747,
+        widths: [400, 560, 720, 960],
+        sizes: INTRO_SIZES
+      },
       intro: [
         "A limestone retaining wall is doing a structural job. It holds back soil that would otherwise move, and how well it does that comes down to things you cannot see once it is finished: the footing, the drainage and the backfill.",
         "This page is for someone who has worked out they probably need a retaining wall and does not yet know what they are buying. It covers how one is built, what makes one quote different from another, whether approval applies, and what to ask."
@@ -243,6 +255,40 @@ window.SITE_CONFIG = {
             "**Reconstituted limestone.** Manufactured block, consistent size and face. Faster to lay because there is no selection process, generally cheaper to install for the same wall, and easier to quote accurately because the labour is predictable.",
             "Availability is worth asking about separately, because it moves. Natural block is quarried rather than manufactured, so what is available at any point depends on what the quarries are producing and how much of it comes out as usable walling block. Reconstituted is made to consistent dimensions and can be produced to meet demand, which makes it the more predictable of the two to source. Ask your contractor or a supplier what is actually available when you are planning the job, rather than relying on what any website tells you, including this one. It matters most if you want a consistent look across a long wall or need a large quantity.",
             "Height, budget, access and appearance decide it, and it is a question worth settling on site rather than in advance. How limestone compares with concrete and sandstone for the same wall is on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html)."
+          ]
+        },
+        /* 2026-10-08: added after the competitor review. "1 metre blocks" are
+           offered by Perth limestone builders; dimensions and weight below are
+           from the supplier's own product page, checked 2026-10-08. */
+        {
+          heading: "Large-format blocks for taller and longer walls",
+          body: [
+            "Reconstituted limestone is also made as large-format blocks around a metre long, usually called metre blocks, alongside the standard-size block most domestic walls are built from. Each one is far too heavy to lift by hand, so they are placed by machine, which makes them a fit for long runs and taller walls on sites with open access rather than a backyard reached through a side gate.",
+            "To give a sense of scale, one Perth manufacturer's metre block is 1000 x 350 x 350mm and weighs around 268kg, and the supplier lists retaining walls, boundary walls, subdivisions and major landscaping among its uses. Sizes and weights differ between products, so check the block your contractor is actually proposing.",
+            { list: [
+              "**Where they suit.** Long, straight runs, where fewer and larger blocks mean fewer joints and a faster lay once the machine is on site. Bigger level changes, where the wall line is open enough for a machine to work along it.",
+              "**Where they do not.** Tight access, because a block that needs a machine to lift it needs a machine to reach the wall line. Tight curves, where a metre-long face shows every change of direction. Low garden walls, where the scale of the block is out of proportion with the bed."
+            ] },
+            "Bigger blocks do not change the engineering. Retained height, the footing, the drainage behind the wall and whether approval applies are assessed the same way whatever the block size, and a wall built from heavier blocks still needs everything set out in the drainage section below. If you are weighing up block sizes for a particular wall, [tell us about your job](#quote) and include how wide the access to the wall line is.",
+            { note: "Block dimensions and weight from Midland Brick's [Metre Blocks product page](https://www.midlandbrick.com.au/product/metre-blocks), checked 8 October 2026. Mentioned as an example of the format, not a recommendation of a particular product." }
+          ]
+        },
+        {
+          heading: "Site preparation and earthworks before the wall goes up",
+          body: [
+            "Before any block is laid, the wall line has to be cleared and excavated, and on most retaining jobs the ground behind it is cut back or built up to its finished level. On a Perth block that mostly means moving sand, and it is often a bigger share of the job than people expect, because the earthworks decide where every block sits.",
+            "What site preparation usually covers:",
+            { list: [
+              "**Clearing the wall line.** Turf, garden beds, an old wall or fence, roots or paving that sit where the footing has to go.",
+              "**Locating services.** [Before You Dig Australia](https://www.byda.com.au) is a free service that sends plans of underground power, gas, water and telecommunications assets near the work site. The plans show approximate positions, so anything close to the wall line is usually confirmed on site before digging.",
+              "**Cut or fill.** Levelling a slope means cutting into it, which leaves a face to retain and sand to deal with, or filling it, which means bringing material in and compacting it behind the wall. Which one the design calls for changes the wall height, the spoil and the price.",
+              "**Footing excavation.** The trench for the footing, sized to the wall. Perth sand digs easily, but limestone shelf, old fill or a previous footing in the wall line all slow the job down.",
+              "**Compaction.** Fill behind the wall placed and compacted in layers rather than tipped in all at once. Loose fill settles, and settlement behind a wall shows up later as sunken paving or a gap opening along the capping.",
+              "**Spoil.** Excavated sand either spread elsewhere on the block or loaded and trucked away."
+            ] },
+            "**Machine or hand.** On an open block a small excavator or bobcat does most of this work quickly. Where the only way into the backyard is a narrow side gate, the same excavation is done with smaller equipment or by hand, and that is one of the main reasons two quotes for the same wall can differ. Measuring the narrowest point of the access path before asking for quotes saves a round of questions.",
+            "**Digging near the boundary.** Excavation that could undermine a neighbour's land is work affecting other land under the Building Act 2011 (WA), and the neighbour's consent is generally needed before it starts, using the BA20 notice. Several Perth local governments, including the Cities of Cockburn and Kalamunda, also state that an owner who excavates below or fills above natural ground level at a boundary has to retain it. Both points are covered in the approval section below.",
+            "Whether earthworks are in a quote is one of the first things to check, along with spoil removal and reinstatement. The common exclusions are listed on the [cost guide](cost-guide.html). To have a job looked at, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
           ]
         },
         {
@@ -377,7 +423,7 @@ window.SITE_CONFIG = {
                "Last reviewed" date below each time. */
             { note: "Where a council does not publish a clear threshold, this table records \"not published, contact council\" rather than a guess. Council policy changes without notice, so confirm the current position with your council before relying on a row." },
             { subheading: "Shared boundaries" },
-            "A retaining wall on or near a common boundary raises ownership and cost questions the Building Act does not answer. The Dividing Fences Act 1961 (WA) governs dividing fences and cost sharing between adjoining owners, and a retaining wall is not automatically a dividing fence. Who pays what share, whose land the wall sits on, and the finished levels on both sides are best settled in writing before construction, not after.",
+            "A retaining wall on or near a common boundary raises ownership and cost questions the Building Act does not answer. The Dividing Fences Act 1961 (WA) governs dividing fences and cost sharing between adjoining owners, and a retaining wall is not automatically a dividing fence. Who pays what share, whose land the wall sits on, and the finished levels on both sides are best settled in writing before construction, not after. Where a fence is going on top of the wall, the extra design, height and cost questions are covered under fences on retaining walls on the [limestone fencing page](limestone-fencing.html).",
             { subheading: "Engineering and certification" },
             "Where engineering is required, a structural engineer assesses the wall against the retained height, any surcharge loads, ground conditions, footing size, drainage and overall stability. The output is a design and a certification the council or shire will want to see with a building permit application. Two shorter walls terraced up a slope are not automatically the same as one tall wall, and not automatically separate walls either, which is a common way a job that looked exempt turns out not to be. Which height triggers certification varies by council; see the reference table above.",
             { subheading: "The $20,000 registration point" },
@@ -392,6 +438,7 @@ window.SITE_CONFIG = {
               "Is engineering required, and is it included?",
               "For work contracted at $20,000 or more, is the contractor registered with Building and Energy?"
             ] },
+            "The wider set of questions to put to a contractor, and the WA contract rules that apply to a retaining wall job, are on the [guide to choosing a limestone contractor](choosing-a-limestone-contractor.html).",
             { note: "Last reviewed: 27/07/2026. Council and shire policy changes without notice; confirm the current position before relying on anything in this section." }
           ]
         }
@@ -412,6 +459,30 @@ window.SITE_CONFIG = {
         {
           q: "How long does a limestone retaining wall last?",
           a: "Limestone walls in Perth commonly stand for decades. What shortens that is almost always water: drainage that was never installed properly, or backfill that traps water behind the wall. The drainage detail matters more than the block."
+        },
+        {
+          q: "Are earthworks included in a retaining wall quote?",
+          a: "Sometimes. Digging the footing is part of building the wall, but clearing the wall line, levelling the ground behind it, bringing in fill and removing spoil are often priced separately or left out. Ask for each to be listed as included or excluded."
+        },
+        {
+          q: "Can a retaining wall be built where a machine can't get in?",
+          a: "Yes. The excavation and block handling are done with smaller equipment or by hand, which takes longer and usually costs more. Natural block is lighter than reconstituted, which can make it easier to place in those yards."
+        },
+        {
+          q: "Do I need my neighbour's consent to dig near the boundary?",
+          a: "Often, yes. Excavation that could undermine or otherwise adversely affect adjoining land generally needs the neighbour's consent under the Building Act 2011 (WA) before work starts. Your council or shire can confirm what applies to your job."
+        },
+        {
+          q: "What are metre blocks?",
+          a: "Large-format reconstituted limestone blocks around a metre long, heavy enough that they are placed by machine. They suit long runs and taller walls on sites where a machine can reach the wall line."
+        },
+        {
+          q: "Are large limestone blocks cheaper than standard blocks?",
+          a: "Not automatically. There are fewer blocks to lay, but each one needs a machine to place it and the site has to allow for that. Whether they work out cheaper depends on the length, height and access of the specific wall."
+        },
+        {
+          q: "Do bigger blocks mean a wall doesn't need engineering?",
+          a: "No. Engineering and approval depend on the retained height, the loads behind the wall and your council or shire's rules, not on the size of the block."
         }
       ]
     },
@@ -420,7 +491,7 @@ window.SITE_CONFIG = {
       name: "Limestone Fencing",
       shortDescription: "Solid limestone fences and pier and infill fencing in Perth, what moves the price, and front fence approval.",
       metaTitle: "Limestone Fencing Perth | Fences, Piers and Infill",
-      metaDescription: "Limestone fencing in Perth: solid limestone fences, pier and infill, front fence height limits and setbacks, and what moves the price on a quote.",
+      metaDescription: "Limestone fencing in Perth: solid limestone fences, pier and infill, fences on top of retaining walls, front fence height limits, and what moves the price.",
       headline: "Limestone fencing in Perth",
       subheadline: "Solid limestone fences, pier and infill, and what moves the price.",
       ctaText: "Tell us about your job",
@@ -529,6 +600,22 @@ window.SITE_CONFIG = {
             "A limestone fence on a common boundary is a shared asset and a shared cost question. The Dividing Fences Act 1961 (WA) governs dividing fences and cost sharing between adjoining owners.",
             "Who pays what share, whose land the fence sits on, and who maintains it are best settled in writing before construction."
           ]
+        },
+        /* 2026-10-08: added after the competitor review (a Perth competitor
+           sells limestone wall + steel fence "packages"). Council measuring
+           rules quoted here are taken from the rows already in this file's
+           two approval tables, not from new research. */
+        {
+          heading: "Putting a fence on top of a limestone retaining wall",
+          body: [
+            "A fence can sit on top of a limestone retaining wall, and on sloping Perth blocks it is a common boundary arrangement: limestone holding the level change, with Colorbond, slat or other infill above it for privacy. The wall needs to be designed for the fence from the start, because a fence adds load to the top of the wall, and councils generally look at the combined height of the two.",
+            "**Design the wall for the fence.** A solid fence panel catches the wind, and that force is passed into the top of the retaining wall as a load the wall and its footing have to resist. Where engineering applies, tell the engineer there will be a fence on top so it is part of the design. Adding a fence to a wall that was never designed for one is the same kind of problem as adding a driveway behind a wall later: a load it was not built to carry.",
+            "**How the posts are fixed.** Fence posts can be set into the top of the wall, set in their own footings behind it, or fixed to the wall with brackets. Which suits depends on the wall and the fence, and it is far easier to decide before the wall is built than to work around afterwards.",
+            "**Combined height and approval.** Councils and shires measure a fence on a retaining wall in different ways. In the tables on this site, the Town of Bassendean measures front fence height from natural ground level or the base of a supporting retaining wall, the Town of Mosman Park measures from the higher ground level side where retaining forms part of a fence, and the City of Kalamunda caps a front setback fence above a retaining wall at 1.5m and 50% permeable. The same wall and fence can be fine in one area and need approval in another, so check the front fence table above and the retaining wall table on the [limestone retaining walls page](limestone-retaining-walls.html), then confirm with your own local government.",
+            "**Who pays for which part.** The Dividing Fences Act 1961 (WA) deals with dividing fences, and a retaining wall is not automatically a dividing fence, so the fence on top and the wall underneath can be separate cost questions. Where one owner changed the ground level, several Perth local governments, including the Cities of Cockburn and Kalamunda, state that it is that owner who has to retain it. Settle who pays for each part, and whose land each part sits on, in writing before work starts.",
+            "**Who builds which part.** The limestone wall and the fence above it are often different trades. If they are, agree who sets the posts and when, so the fixing is built into the wall rather than drilled in afterwards. Fencing on top of a wall is one of the items quotes commonly leave out, as listed on the [cost guide](cost-guide.html).",
+            "We arrange the limestone side of the job. To have the wall priced with the fence in mind, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote) and mention the fence you plan to put on top."
+          ]
         }
       ],
       faqs: [
@@ -547,6 +634,18 @@ window.SITE_CONFIG = {
         {
           q: "Can a limestone fence be built on the boundary?",
           a: "Usually, subject to the council or shire's provisions and the neighbour question. Cost sharing sits under the Dividing Fences Act 1961 (WA) and is best agreed in writing first."
+        },
+        {
+          q: "Can you put a Colorbond fence on top of a limestone retaining wall?",
+          a: "Yes, and it is a common combination on sloping Perth blocks. The wall should be designed for the extra load the fence puts on it, and how the posts are fixed is easiest to settle before the wall is built."
+        },
+        {
+          q: "How high can a fence on a retaining wall be?",
+          a: "It depends on your council or shire and where on the block the fence is. Many look at the combined height of wall and fence, and they measure it in different ways, so check with your local government before committing."
+        },
+        {
+          q: "Who pays for a retaining wall under a dividing fence?",
+          a: "The Dividing Fences Act 1961 (WA) covers dividing fences, and a retaining wall is not automatically a dividing fence, so the two can be separate cost questions. Where one owner changed the ground level, that owner is generally expected to retain it. Agree each share in writing before work starts."
         }
       ]
     },
@@ -1156,7 +1255,7 @@ window.SITE_CONFIG = {
       /* No author or byline: no individual is named anywhere on this site.
          bake.js falls back to the Organization as the Article author. */
       datePublished: "2026-07-27",
-      dateModified: "2026-07-27",
+      dateModified: "2026-10-08",
       lastReviewed: "27/07/2026",
       intro: [
         "Most cost pages give a per metre figure and stop. That figure is close to useless on its own, because the same wall on two different blocks can differ substantially in price for reasons that have nothing to do with its length.",
@@ -1190,7 +1289,7 @@ window.SITE_CONFIG = {
               "**Drainage and discharge.** Ag pipe, aggregate, geotextile, and where the water is taken. A discharge point a few metres away is a different job to one piped around the house to the front verge.",
               "**Ground conditions.** Perth's sand is generally straightforward to excavate, but limestone shelf, rock, fill, existing footings or services in the wall line all add time.",
               "**Spoil removal.** Excavated material has to go somewhere. Truck movements and tip fees are real costs, and spoil remaining on site versus spoil removed is a common source of quote difference.",
-              "**Block type.** Natural block generally costs more to install than reconstituted for the same wall, because selection and fitting take longer. Limestone against concrete and sandstone is compared on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html).",
+              "**Block type.** Natural block generally costs more to install than reconstituted for the same wall, because selection and fitting take longer. Large-format metre blocks change the equation again, because they need a machine to place them; they are covered on the [retaining walls page](limestone-retaining-walls.html). Limestone against concrete and sandstone is compared on the [material comparison guide](limestone-vs-concrete-vs-sandstone.html).",
               "**Length.** It matters, but less than people expect on a per metre basis, because mobilisation, setup and access costs spread across it.",
               "**Approval and engineering.** Application fees, engineering fees and the time to lodge. Sometimes in the price, sometimes on top."
             ] }
@@ -1204,12 +1303,12 @@ window.SITE_CONFIG = {
               "**Spoil removal.** Whether excavated sand is taken away or left on the block",
               "**Council or shire application fees,** and who lodges the application",
               "**Engineering fees** and certification",
-              "**Site clearing,** removal of an existing wall, fence, tree or paving in the wall line",
+              "**Site clearing and earthworks,** removal of an existing wall, fence, tree or paving in the wall line, and any cut or fill behind it. What site preparation involves is set out on the [retaining walls page](limestone-retaining-walls.html)",
               "**Service location and protection,** and work required if services are found in the wall line",
               "**Drainage discharge,** particularly where it has to be piped a long way",
               "**Reinstatement,** turf, paving, irrigation and garden beds disturbed during the works",
               "**Capping,** sometimes included, sometimes extra",
-              "**Fencing or infill on top of the wall,** often a different trade",
+              "**Fencing or infill on top of the wall,** often a different trade. See fences on retaining walls on the [limestone fencing page](limestone-fencing.html)",
               "**Gates, motors and electrical work** on fencing jobs"
             ] },
             "It is reasonable to ask for each of these to be addressed explicitly in writing, as included or excluded."
@@ -1226,7 +1325,8 @@ window.SITE_CONFIG = {
             "**Inclusions.** Work through the exclusion list above item by item.",
             "**Approval.** Who lodges, who pays the fee, whether engineering is included.",
             "**Registration.** For work contracted at $20,000 or more, whether the contractor is registered with Building and Energy. See the approval section on the [retaining walls page](limestone-retaining-walls.html).",
-            "The cheapest quote is often the one that has excluded the most, and the exclusions are usually below ground where they cannot be seen."
+            "The cheapest quote is often the one that has excluded the most, and the exclusions are usually below ground where they cannot be seen.",
+            "What to ask before you reach the quote stage, and the WA registration and contract rules that apply, are on the [guide to choosing a limestone contractor](choosing-a-limestone-contractor.html)."
           ]
         },
         {
@@ -1272,7 +1372,7 @@ window.SITE_CONFIG = {
       /* No author or byline, same as the cost guide: no individual is named
          anywhere on this site. */
       datePublished: "2026-09-03",
-      dateModified: "2026-09-03",
+      dateModified: "2026-10-08",
       lastReviewed: "03/09/2026",
       intro: [
         "Most comparisons of walling materials are written by someone who sells one of them. This one sits on a site about limestone, so read it with that in mind. The aim is to set out what actually separates these materials on a Perth block, including the situations where limestone is the wrong answer.",
@@ -1292,7 +1392,7 @@ window.SITE_CONFIG = {
             { subheading: "Natural limestone" },
             "Quarried on the Swan Coastal Plain, which is most of why it is the default retaining material in Perth and not in Melbourne or Sydney. Blocks vary in size, colour and face. That variation is the look people want it for, and it is also why it takes longer to lay, because each block is selected and placed. It is lighter than reconstituted block, which helps where access is tight. It is soft and porous, so it weathers visibly over years and takes surface growth in damp, shaded positions.",
             { subheading: "Reconstituted limestone" },
-            "Manufactured to consistent dimensions with a cement binder. Uniform face, faster to lay, more predictable to quote, and it holds its original colour longer than natural stone does. Heavier per block. Where a run is long, exposed, or is going to be rendered, it is often the more sensible of the two.",
+            "Manufactured to consistent dimensions with a cement binder. Uniform face, faster to lay, more predictable to quote, and it holds its original colour longer than natural stone does. Heavier per block. Where a run is long, exposed, or is going to be rendered, it is often the more sensible of the two. It is also made as large-format metre blocks, placed by machine, which are covered on the [limestone retaining walls page](limestone-retaining-walls.html).",
             { subheading: "Concrete block and besser" },
             "Core-filled, reinforced concrete blockwork is a structural wall in its own right and will go higher than most domestic limestone walls before the design gets unusual. The catch is the finish: bare block reads as industrial, so it is normally rendered, painted or clad, and that finish is a second cost and often a second trade. Cladding it in limestone is a common Perth resolution and is covered on the [capping and cladding page](limestone-capping-cladding.html).",
             { subheading: "Concrete sleepers" },
@@ -1375,6 +1475,104 @@ window.SITE_CONFIG = {
           a: "Yes, and it is common. A core-filled concrete wall clad in limestone gives the height of one and the face of the other, and limestone caps and step treads are regularly used on walls built of something else. Check that the structure behind can carry the cladding before assuming it, because cladding is a finish rather than a repair."
         }
       ]
+    },
+    /* 2026-10-08: added after the competitor review. Every WA rule on this
+       page was checked against wa.gov.au on 2026-10-08; sources are in the
+       note at the end of the registration section. */
+    {
+      slug: "choosing-a-limestone-contractor",
+      name: "Choosing a contractor",
+      metaTitle: "How to Choose a Limestone Wall Contractor in Perth",
+      metaDescription: "What to ask a Perth limestone wall contractor before you sign: the quote, footing and drainage, permits and engineering, WA registration and contract rules.",
+      headline: "How to choose a limestone wall contractor in Perth",
+      /* No author or byline, same as the other guides. */
+      datePublished: "2026-10-08",
+      dateModified: "2026-10-08",
+      lastReviewed: "08/10/2026",
+      intro: [
+        "Choose on what the quote shows rather than on the total: a good limestone contractor will look at the site and put the footing, the drainage, who handles approval and what is excluded in writing. In Western Australia, also check their Building and Energy registration where the job needs a building permit and is contracted at $20,000 or more, and get the contract in writing.",
+        "We pass enquiries to Perth limestone contractors, so read this with that in mind. It applies whoever you end up hiring, including a contractor you found yourself."
+      ],
+      sections: [
+        {
+          heading: "Questions to ask before you get a price",
+          body: [
+            "These are the questions that separate a contractor who has thought about your wall from one who is pricing a length of block.",
+            { list: [
+              "**Will you look at the site first?** Height, access, ground conditions and where the water will go all move the price, and none of them can be judged properly over the phone.",
+              "**Is any part of this wall retaining?** If the ground is higher on one side, the footing, drainage and approval position all change. The difference is explained on the [retaining walls page](limestone-retaining-walls.html).",
+              "**Natural or reconstituted block, and why?** Either can be right. The answer should come from the wall, the access and the look you want.",
+              "**What footing is allowed for, and what is it sized to?**",
+              "**What is the drainage detail, and where does the water discharge?**",
+              "**Is the mortar tinted to match the limestone?** It is a visible difference on a finished wall and rarely appears on a quote unless asked.",
+              "**Who lodges any council or shire application, and is engineering needed?**",
+              "**What happens to the spoil, and who reinstates the garden, paving or reticulation afterwards?**",
+              "**What happens if you hit limestone shelf, old footings or services in the wall line?**"
+            ] }
+          ]
+        },
+        {
+          heading: "What a good quote shows",
+          body: [
+            "A quote worth comparing lists the parts of the job you will never see again once the wall is backfilled: the footing, the drainage and what goes behind the wall. It also says plainly what is included and what is not.",
+            "The items most often left out are spoil removal, earthworks behind the wall, application and engineering fees, reinstatement, capping and any fencing on top. The full list, and how to compare two quotes line by line, is on the [cost guide](cost-guide.html). If one quote is much cheaper than another, the difference is usually in that list rather than in the block."
+          ]
+        },
+        {
+          heading: "Permits, engineering and the neighbour",
+          body: [
+            "Whether a wall needs a building permit, planning approval or engineering depends on your council or shire, the height and what the wall holds up. There is no single Perth-wide rule, and a contractor who says approval is never needed has not checked. The council-by-council reference table is in the approval section of the [retaining walls page](limestone-retaining-walls.html).",
+            "Ask who prepares and lodges the paperwork and whether the fees are in the price. Where engineering is required, the engineer's design is what the wall should be built to, so ask to see it.",
+            "If the work could undermine or encroach on a neighbour's land, the Building Act 2011 (WA) generally requires the neighbour's consent before it starts, and the BA20 notice is the form used to ask for it. A contractor used to boundary work will raise this without being prompted."
+          ]
+        },
+        {
+          heading: "Registration, contracts and insurance in WA",
+          body: [
+            "Three pieces of WA law are worth knowing before you sign anything.",
+            "**Builder registration.** Building work that needs a building permit and is contracted at $20,000 or more generally has to be done by a contractor registered with Building and Energy. Most small domestic walls fall under that figure and larger ones do not. Check a registration on the Building and Energy licence and registration search rather than taking it on trust.",
+            "**The Home Building Contracts Act 1991.** It covers fixed-price contracts for home building work and associated work, which includes retaining walls and fencing, where the contract is worth between $7,500 and $500,000. Within that range, Building and Energy can deal with contractual disputes lodged within three years of the cause arising, and a fixed price generally cannot be increased without your consent except in limited circumstances. Workmanship complaints can be lodged within six years of completion, whatever the contract value.",
+            "**Home indemnity insurance.** It is required for residential building work over $20,000, but Building and Energy's guidance is that it is not required for associated work done on its own under a separate contract, and it gives a fence or retaining wall as an example. If the wall is part of a larger contract to build or renovate a home, the position can be different, so ask.",
+            "Separately from the law, it is reasonable to ask any contractor working on your property whether they hold public liability insurance.",
+            { note: "Checked 8 October 2026 against wa.gov.au: [Do I need to be a registered building contractor?](https://www.wa.gov.au/government/publications/do-i-need-be-registered-building-contractor), [Home Building Contracts Act](https://www.wa.gov.au/sites/default/files/announcements/home-building-contracts-act), [Home indemnity insurance](https://www.wa.gov.au/sites/default/files/announcements/home-indemnity-insurance) and the [Building and Energy licence and registration search](https://www.wa.gov.au/organisation/building-and-energy/building-and-energy-licence-and-registration-search). This is general information, not legal advice; confirm anything that matters with Building and Energy on 1300 489 099." }
+          ]
+        },
+        {
+          heading: "Warning signs",
+          body: [
+            { list: [
+              "**A price without a site visit** on anything more than a small garden wall",
+              "**No drainage line item** on a wall that is retaining",
+              "**Dry-stacked construction** offered for a structural retaining wall. The reasons are on the [retaining walls page](limestone-retaining-walls.html)",
+              "**\"You won't need approval\"** before they know your council or shire, the height or what the wall holds up",
+              "**No written quote or contract,** or reluctance to list what is excluded",
+              "**No registration** on a job that needs a building permit and is contracted at $20,000 or more",
+              "**A large payment up front** before any work or materials arrive, or pressure to sign on the day"
+            ] }
+          ]
+        },
+        {
+          heading: "Getting a contractor through this site",
+          body: [
+            "When you enquire here, your job goes to one Perth limestone contractor who does that type of work, rather than to a list of buyers. The quote is free and there is no obligation to go ahead, and every question on this page is still worth asking them. How the service works and how it is paid for is on the [about page](about.html).",
+            "To get started, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "How do I check a builder's registration in WA?",
+          a: "Use the Building and Energy licence and registration search on wa.gov.au. Registration is generally required where the work needs a building permit and is contracted at $20,000 or more."
+        },
+        {
+          q: "Does a retaining wall need home indemnity insurance in WA?",
+          a: "Not when it is done on its own under a separate contract, according to Building and Energy's guidance, because it counts as associated work. If it is part of a contract to build or renovate a home worth over $20,000, the position can be different, so check with Building and Energy."
+        },
+        {
+          q: "Should a contractor see the site before quoting?",
+          a: "Yes. Height, access, ground conditions and drainage all change the price of a limestone wall, and none of them can be judged accurately over the phone or from a couple of photos."
+        }
+      ]
     }
   ],
 
@@ -1434,7 +1632,8 @@ window.SITE_CONFIG = {
         heading: "What happens after you enquire",
         body: [
           "After you submit the form, you will be contacted by a local limestone contractor if they can help with your job. If nothing's a fit, we'll tell you and point you somewhere useful rather than leaving you without an answer.",
-          "Your job goes to one contractor rather than to everyone buying leads that day, so you get one conversation instead of several calls. Your details are not sold, not added to a marketing list, and not shared with advertisers. The full position is in the [privacy policy](privacy.html)."
+          "Your job goes to one contractor rather than to everyone buying leads that day, so you get one conversation instead of several calls. Your details are not sold, not added to a marketing list, and not shared with advertisers. The full position is in the [privacy policy](privacy.html).",
+          "Whoever you end up hiring, the [guide to choosing a limestone contractor](choosing-a-limestone-contractor.html) sets out what to ask and the WA registration and contract rules worth knowing."
         ]
       },
       {

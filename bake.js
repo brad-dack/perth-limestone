@@ -395,6 +395,7 @@ const bakedFooter = () => {
         '<li><a href="index.html">Home</a></li>' +
         '<li><a href="cost-guide.html">Cost Guide</a></li>' +
         '<li><a href="limestone-vs-concrete-vs-sandstone.html">Material Comparison</a></li>' +
+        '<li><a href="choosing-a-limestone-contractor.html">Choosing a Contractor</a></li>' +
         '<li><a href="about.html">About</a></li>' +
         '<li><a href="privacy.html">Privacy Policy</a></li>' +
       "</ul></div>" +
