@@ -482,9 +482,11 @@ const quoteButtonHtml = (text, extraClass) =>
 
 /* Mirrors imgTag() in main.js — content images (service intro, guide
    figures, photos). The hero has its own heroImg() above because it's
-   always fetchpriority=high and never lazy; content images are the
-   opposite, so this always sets loading="lazy". */
-function contentImg(image, className) {
+   always fetchpriority=high and never lazy. Content images are lazy, except
+   the service intro image (eager=true): on desktop it sits beside the intro
+   copy above the fold and is the LCP element, and Lighthouse flagged it as a
+   lazy-loaded LCP image (2026-10-08). */
+function contentImg(image, className, eager) {
   if (!image || !image.src) return "";
   const dot = image.src.lastIndexOf(".");
   const base = image.src.slice(0, dot), ext = image.src.slice(dot);
@@ -498,7 +500,7 @@ function contentImg(image, className) {
     ' title="' + esc(image.title || image.alt || "") + '"' +
     (image.width ? ' width="' + image.width + '"' : "") +
     (image.height ? ' height="' + image.height + '"' : "") +
-    ' loading="lazy">';
+    (eager ? ">" : ' loading="lazy">');
 }
 
 // Renders one content block: a string (paragraph) or {list|olist|table|subheading|note|image}.
@@ -689,7 +691,7 @@ function homeContent() {
 }
 
 function serviceContent(svc) {
-  const svcMedia = contentImg(svc.image, "service-img");
+  const svcMedia = contentImg(svc.image, "service-img", true);
   const includedBlock = (svc.included && svc.included.length)
     ? '<section class="section section-alt"><div class="container narrow">' +
         '<div class="grid-2">' +

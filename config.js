@@ -71,7 +71,7 @@ window.SITE_CONFIG = {
 
   /* --- Brand ----------------------------------------------------------- */
   brand: {
-    color: "#a9702e",         // warm sandstone — reads as limestone
+    color: "#966229",         // warm sandstone — reads as limestone. Darkened from #a9702e on 2026-10-08: links were 4.16:1 on white / 3.9:1 on table shading (Lighthouse contrast fail); this is 5.15:1 / 4.83:1
     colorDark: "#8a5a24",
     colorContrast: "#ffffff",
     style: "classic",

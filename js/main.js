@@ -121,7 +121,7 @@
       ' title="' + esc(image.title || image.alt || "") + '"' +
       (image.width ? ' width="' + image.width + '"' : "") +
       (image.height ? ' height="' + image.height + '"' : "") +
-      (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ">";
+      (lazy === true ? ' loading="lazy"' : lazy === "eager" ? "" : ' fetchpriority="high"') + ">";
   }
 
   function faqItems(list) {
@@ -568,7 +568,7 @@
       return;
     }
 
-    var svcMedia = imgTag(svc.image, "service-img", true);
+    var svcMedia = imgTag(svc.image, "service-img", "eager");
 
     // Optional "What's included / Typical pricing" block — only rendered when
     // the service supplies an `included` list (short service-style pages).
