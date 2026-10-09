@@ -113,6 +113,37 @@
       (image.sizes ? ' sizes="' + esc(image.sizes) + '"' : "");
   }
 
+  /* ---------- lead attribution ---------------------------------------------
+     Which page an enquiry came from and how the visitor arrived, sent with the
+     lead as _page, _landing and _referrer (the backend stores them apart from
+     the form answers, so they never reach the contractor as form fields). The
+     first page of the session and the referring ORIGIN are remembered in
+     sessionStorage: never a full referrer URL or query string. A referrer on
+     the site's own origin is stored as "". Storage can throw (private modes,
+     blocked cookies), so every access falls back to the current path and "".
+     Ported from the template (d257368), 2026-10-09. */
+  function attribution() {
+    var landing = location.pathname;
+    var referrer = "";
+    try {
+      var storedLanding = sessionStorage.getItem("landing");
+      if (storedLanding === null) {
+        try {
+          if (document.referrer) {
+            var origin = new URL(document.referrer).origin;
+            if (origin !== location.origin) referrer = origin;
+          }
+        } catch (e) { referrer = ""; }
+        sessionStorage.setItem("landing", landing);
+        sessionStorage.setItem("referrer", referrer);
+      } else {
+        landing = storedLanding;
+        referrer = sessionStorage.getItem("referrer") || "";
+      }
+    } catch (e) { /* keep the fallbacks */ }
+    return { landing: landing, referrer: referrer };
+  }
+
   function imgTag(image, className, lazy) {
     if (!image || !image.src) return "";
     return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
@@ -933,6 +964,7 @@
       var gotcha = document.getElementById("qf-gotcha");
       var submissionIdField = document.getElementById("qf-id");
       var turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
+      var visit = attribution();
       var payload = {
         service: service.value,
         suburb: suburb.value.trim(),
@@ -945,6 +977,9 @@
         _secret: cfg.ingestSecret,
         _gotcha: gotcha ? gotcha.value : "",
         _id: submissionIdField ? submissionIdField.value : submissionId(),
+        _page: location.pathname,
+        _landing: visit.landing,
+        _referrer: visit.referrer,
         "cf-turnstile-response": turnstileResponse ? turnstileResponse.value : ""
       };
 
@@ -1021,6 +1056,7 @@
 
   applyBrand();
   injectGA4();
+  attribution();
   trackPhoneClicks();
   renderHeader();
   renderFooter();

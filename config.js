@@ -188,7 +188,7 @@ window.SITE_CONFIG = {
       metaTitle: "Privacy Policy | Perth Limestone Group",
       metaDescription: "How Perth Limestone Group collects, uses and shares the details you submit through this website, and how to access, correct or delete them.",
       headline: "Privacy policy",
-      lastUpdated: "09/08/2026"
+      lastUpdated: "09/10/2026"
     }
   },
 
@@ -1790,6 +1790,7 @@ window.SITE_CONFIG = {
         heading: "What we collect",
         body: [
           "When you submit the enquiry form we collect what you enter: what you need, your suburb, a rough description of the job, your timeframe, and your name, phone number and email address. If you phone or email us, we have whatever you choose to tell us. There are no accounts or logins on this site.",
+          "Alongside the details you enter, the page the enquiry was sent from, the first page you viewed on this site, and the referring website (if any, the site address only) are recorded with the enquiry. We use them to see which pages produce enquiries. They are not passed to the contractor as part of your enquiry.",
           "The site may use basic analytics to understand how many people visit and which pages they read. That data is aggregated and is not used to identify you."
         ]
       },
