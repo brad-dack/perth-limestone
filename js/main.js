@@ -168,7 +168,11 @@
   function inline(s) {
     return esc(s)
       .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (m, text, href) {
+        return /^https?:\/\//.test(href)
+          ? '<a href="' + href + '" target="_blank" rel="noopener">' + text + "</a>"
+          : '<a href="' + href + '">' + text + "</a>";
+      });
   }
 
   /* Renders one content block. A block is either a string (paragraph) or an

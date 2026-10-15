@@ -466,10 +466,14 @@ function iconSvg(name) {
 }
 
 // Escapes first, then re-applies **bold** and [text](href) — mirrors inline() in main.js.
+// External http(s) links open in a new tab so council PDFs don't end the visit.
 function inline(s) {
   return esc(s)
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, text, href) =>
+      /^https?:\/\//.test(href)
+        ? '<a href="' + href + '" target="_blank" rel="noopener">' + text + "</a>"
+        : '<a href="' + href + '">' + text + "</a>");
 }
 
 const faqItems = list => list.map(f =>

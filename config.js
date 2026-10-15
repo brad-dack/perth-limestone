@@ -209,7 +209,7 @@ window.SITE_CONFIG = {
       page: "limestone-retaining-walls.html",
       name: "Limestone Retaining Walls",
       shortDescription: "How limestone retaining walls are built in Perth, what drives the cost, and the council approval and engineering position.",
-      metaTitle: "Limestone Retaining Walls Perth | What to Know First",
+      metaTitle: "Limestone Retaining Walls Perth | Cost, Drainage, Approval",
       metaDescription: "How limestone retaining walls are built in Perth, what drives the cost, drainage, and whether council or shire approval applies. What to ask before you commit.",
       headline: "Limestone retaining walls in Perth",
       subheadline: "How they are built, what drives the cost, and whether approval applies.",
@@ -301,7 +301,7 @@ window.SITE_CONFIG = {
               "**Laying.** Blocks laid to line and level, usually with a slight backward lean into the retained ground on taller walls, jointed or dry laid depending on block and design.",
               "**Drainage.** Agricultural pipe run behind the base of the wall, surrounded by free draining aggregate, separated with geotextile so fines do not clog the aggregate. The ag pipe has to discharge somewhere sensible.",
               "**Backfill and compaction.** Free draining material immediately behind the wall, then backfill and compaction in layers behind that. Backfilling straight against the wall with the sand that came out of the trench defeats the drainage.",
-              "**Finish.** Capping if specified, mortar tidied, spoil removed, site cleaned up."
+              "**Finish.** [Limestone wall capping](limestone-capping-cladding.html) if specified, mortar tidied, spoil removed, site cleaned up."
             ] }
           ]
         },
@@ -591,7 +591,8 @@ window.SITE_CONFIG = {
               ]
             } },
             { note: "Town of Mosman Park: its fencing local law was under community consultation as part of a 2026 local laws review at the time this was checked, with a council decision expected mid-2026. The state-default figures above may be superseded; re-check before relying on this row." },
-            "The building permit and planning approval distinction is explained in the approval section on the [retaining walls page](limestone-retaining-walls.html), and it applies to fencing as much as to retaining."
+            "The building permit and planning approval distinction is explained in the approval section on the [retaining walls page](limestone-retaining-walls.html), and it applies to fencing as much as to retaining.",
+            "Once you know the height and setback your council allows, the price comes down to length, finish and whether there is a retaining wall under the fence. To price a fence that fits those rules, [tell us about your job](#quote) or [call (08) 9516 1538](tel:+61895161538)."
           ]
         },
         {
@@ -611,6 +612,7 @@ window.SITE_CONFIG = {
             "A fence can sit on top of a limestone retaining wall, and on sloping Perth blocks it is a common boundary arrangement: limestone holding the level change, with Colorbond, slat or other infill above it for privacy. The wall needs to be designed for the fence from the start, because a fence adds load to the top of the wall, and councils generally look at the combined height of the two.",
             "**Design the wall for the fence.** A solid fence panel catches the wind, and that force is passed into the top of the retaining wall as a load the wall and its footing have to resist. Where engineering applies, tell the engineer there will be a fence on top so it is part of the design. Adding a fence to a wall that was never designed for one is the same kind of problem as adding a driveway behind a wall later: a load it was not built to carry.",
             "**How the posts are fixed.** Fence posts can be set into the top of the wall, set in their own footings behind it, or fixed to the wall with brackets. Which suits depends on the wall and the fence, and it is far easier to decide before the wall is built than to work around afterwards.",
+            "The top of the fence is normally finished with [limestone wall capping](limestone-capping-cladding.html), bullnose or split-face, which also sheds water off the joints below.",
             "**Combined height and approval.** Councils and shires measure a fence on a retaining wall in different ways. In the tables on this site, the Town of Bassendean measures front fence height from natural ground level or the base of a supporting retaining wall, the Town of Mosman Park measures from the higher ground level side where retaining forms part of a fence, and the City of Kalamunda caps a front setback fence above a retaining wall at 1.5m and 50% permeable. The same wall and fence can be fine in one area and need approval in another, so check the front fence table above and the retaining wall table on the [limestone retaining walls page](limestone-retaining-walls.html), then confirm with your own local government.",
             "**Who pays for which part.** The Dividing Fences Act 1961 (WA) deals with dividing fences, and a retaining wall is not automatically a dividing fence, so the fence on top and the wall underneath can be separate cost questions. Where one owner changed the ground level, several Perth local governments, including the Cities of Cockburn and Kalamunda, state that it is that owner who has to retain it. Settle who pays for each part, and whose land each part sits on, in writing before work starts.",
             "**Who builds which part.** The limestone wall and the fence above it are often different trades. If they are, agree who sets the posts and when, so the fixing is built into the wall rather than drilled in afterwards. Fencing on top of a wall is one of the items quotes commonly leave out, as listed on the [cost guide](cost-guide.html).",
@@ -930,6 +932,15 @@ window.SITE_CONFIG = {
             "Plenty of older Perth walls need more than one of these, for example a sound wall with one section that has settled and joints that have weathered along its full length. It helps to say which parts of the wall are doing what when you ask for a quote, and photos of the worst section are useful. To have a wall looked at, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
           ]
         },
+        /* 2026-10-16: GSC 28d to 10-12 had "retaining wall repairs perth" (10
+           imp @53), "... near me" (9 @75), "retaining wall repair near me"
+           (5 @81) and "stone wall repair" (8 @43) with no section on them. */
+        {
+          heading: "Retaining wall repairs",
+          body: [
+            "A limestone retaining wall that is cracking, leaning or bulging is holding back ground, so the repair has to deal with that load, not just the crack on the face. That usually means clearing or adding drainage behind the wall, checking the footing, and relaying the section that has moved. Rebuilding a retained section can raise the same approval questions as a new wall, covered on the [retaining walls page](limestone-retaining-walls.html)."
+          ]
+        },
         {
           heading: "Why limestone walls crack, lean or settle",
           body: [
@@ -1065,6 +1076,7 @@ window.SITE_CONFIG = {
             "Capping is the finishing course along the top of a limestone wall. It is not only cosmetic: it sheds water off the top of the wall rather than letting it soak into the joints below, which is a genuine durability difference over the life of the wall.",
             "Capping comes in more than one profile. The two seen most often in Perth are bullnose and split-face, and they are compared in the next section.",
             "This work is sometimes searched for as stone wall capping services rather than limestone capping specifically. It is the same job regardless of what it is called.",
+            "Limestone capping is not only for limestone walls. It is also laid on brick, rendered and concrete-block walls to give the top of the wall a stone finish without cladding the whole face. The wall underneath needs to be sound and level first, for the reasons covered under recapping below.",
             "Capping is sometimes included in a new wall's quote and sometimes priced as an extra, so it is worth confirming which before comparing quotes."
           ]
         },
