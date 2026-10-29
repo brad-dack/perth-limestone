@@ -22,10 +22,8 @@
    guide (limestone-vs-concrete-vs-sandstone) intended as a linkable asset,
    plus capping-profile, sealing and dry-stacked/mortared subsections on the
    existing pages. Nothing location-specific was taken from any competitor.
-   Three [VERIFY] items sit in reader-facing copy deliberately, so the
-   preflight blocks a live bake until they are resolved: the handrail and
-   egress trigger heights on the steps page, and the cost ranking and the
-   sandstone supply position on the comparison guide.
+   The three [VERIFY] items that pass left in reader-facing copy have since
+   been resolved; the preflight still fails on any new one.
 
    2026-08-30: limestone-wall-repairs.html was split into the three service
    pages above (GSC showed it absorbing three distinct query intents at
@@ -166,14 +164,14 @@ window.SITE_CONFIG = {
           heading: "Fencing, repairs and capping",
           body: [
             "Not every limestone job is a retaining wall. Limestone fencing, wall repairs, capping and cladding are all common in Perth and are a different build with a different cost profile.",
-            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping including bullnose and limestone cladding are on the [capping and cladding page](limestone-capping-cladding.html), and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html).",
-            "Steps built into a wall or cut into a slope are on the [steps and stairs page](limestone-steps-stairs.html), and low garden bed walls, raised planters and edging are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping and cladding, including [bullnose limestone capping](limestone-capping-cladding.html), have their own page, and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html).",
+            "Steps built into a wall or cut into a slope are on the [steps and stairs page](limestone-steps-stairs.html), and [limestone garden edging and bed walls](limestone-garden-beds-edging.html), including raised planters, have their own page."
           ]
         },
         {
           heading: "Where we cover",
           body: [
-            "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered.",
+            "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, send it through.",
             "Jobs outside the metro area can still be sent through, but there is just no guarantee anyone covers that far out."
           ]
         }
@@ -344,7 +342,7 @@ window.SITE_CONFIG = {
             "Mortared construction is the normal way a structural limestone retaining wall is built in Perth. The blocks are bedded and jointed in mortar, which ties the courses together so the wall resists the soil load as one structure rather than as a stack of separate blocks.",
             "**Dry-stacked** work has no mortar at all: the blocks are laid to line and held by their own weight and by how well they are fitted. It is a legitimate technique and it is a distinct look, but its place is low garden and feature walls rather than structural retaining. With nothing tying a course to the one above it, height, any surcharge load behind the wall, and anything that needs engineering certification all point back to mortared construction.",
             "Manufactured segmental retaining systems are designed to stack without mortar, which is sometimes offered as a counter-example. They are an engineered product with interlocking geometry holding the courses together, which is a different thing from limestone block laid dry.",
-            "So if a quote for a retaining wall describes dry-stacked construction, that is worth asking about specifically rather than treating as a finish preference. Low bed walls, where the technique does belong, are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+            "So if a quote for a retaining wall describes dry-stacked construction, that is worth asking about specifically rather than treating as a finish preference. Low bed walls, where the technique does belong, are covered with [limestone garden edging](limestone-garden-beds-edging.html)."
           ]
         },
         {
@@ -742,7 +740,7 @@ window.SITE_CONFIG = {
               "**Set-out and ground conditions,** because even rises across an uneven slope are work done before anything is laid",
               "**Access,** the same machine against barrow question as any limestone job"
             ] },
-            "How cost works across limestone jobs generally, and what tends to be left out of a quote, is on the [cost guide](cost-guide.html). Low garden bed walls and edging, which often run alongside a flight of steps, are on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+            "How cost works across limestone jobs generally, and what tends to be left out of a quote, is on the [cost guide](cost-guide.html). [Limestone garden edging](limestone-garden-beds-edging.html) and low bed walls, which often run alongside a flight of steps, have their own page."
           ]
         }
       ],
@@ -777,7 +775,7 @@ window.SITE_CONFIG = {
          impressions, ~pos 29-36, while the page mostly covered bed walls.
          H1 and intro now lead with edging, and a dedicated edging section
          (laying, mowing strips, paths) was added. */
-      metaDescription: "Limestone garden edging in Perth: how edging is laid so it stays put, mowing strips and path edges, curved against straight runs, raised beds, and what it costs.",
+      metaDescription: "Limestone garden edging in Perth: edging blocks, how they are laid so they stay put, mowing strips, curves, raised beds, and when to have it laid rather than DIY.",
       headline: "Limestone garden edging and beds in Perth",
       subheadline: "Limestone edging, low bed walls and raised planters, and where they differ from a retaining wall.",
       ctaText: "Tell us about your job",
@@ -803,6 +801,17 @@ window.SITE_CONFIG = {
             "**As a mowing strip,** edging set flush with the lawn lets a mower wheel run along the top, which means no trimming along the bed edge. Set higher than the lawn, it reads as a defined border but has to be trimmed against.",
             "**Along a path or driveway,** edging also stops paving or a loose gravel surface spreading at its edge. That is a slightly different job, because it can carry foot or wheel load, and it needs a firmer base than edging along a bed does.",
             "**Joints** can be butted dry or mortared. Mortared joints keep the line rigid and stop grass coming through between blocks; dry joints are quicker and easier to lift and reset later."
+          ]
+        },
+        /* 2026-10-29: audit local keyword ideas: "limestone block garden
+           edging" 30/mo @34, "limestone garden edging blocks" (difficulty 3),
+           and the "... bunnings" variants ~40/mo combined. Product intent. */
+        {
+          heading: "Limestone edging blocks: laying them yourself or having them laid",
+          body: [
+            "Limestone edging blocks are sold by landscape suppliers and hardware stores, and a short straight run along a bed is a job plenty of owners do themselves.",
+            "What decides whether it lasts is the base, covered above: blocks set straight onto loose sand sink and tilt. Long runs, curves, mowing strips that have to sit level with the lawn, and edging along a driveway that carries wheel load are where having it laid tends to pay.",
+            "For a price, send the length and a photo through the [quote form](#quote)."
           ]
         },
         {
@@ -837,6 +846,18 @@ window.SITE_CONFIG = {
             ] },
             "The raised planter is the one worth thinking about. The back face of that wall is wet for much of the year, which is not the case for edging or a low bed wall, and soil washing out through the joints is the usual complaint. Ask what is proposed behind the face and where the water is expected to go, because it is not the same detail as a wall with dry ground behind it.",
             "As a planter gets taller, the volume of wet soil behind it stops being trivial and it turns into the retaining question in the section above."
+          ]
+        },
+        /* 2026-10-29: answers People also ask from the audit SERPs: "Is
+           limestone good for garden beds?", "What is the best garden edging
+           in Australia?", "What type of stone is best for landscape edging?" */
+        {
+          heading: "Is limestone good for garden edging?",
+          body: [
+            "In Perth it is the default for the same reason it is the default for walls here: it is quarried locally, and it sits naturally against sandy soil and pale paving.",
+            "**The trade-offs come from the stone itself.** Natural limestone is soft and porous. It can chip along the top edge where a mower or a line trimmer catches it, and it takes up stains from soil, mulch and reticulation water more readily than a denser stone. Reconstituted block is more uniform and holds its colour longer, at the cost of the varied face natural block has.",
+            "**Next to the plants.** Limestone is calcium carbonate, which is alkaline. If a bed is planted with acid-loving plants such as azaleas or camellias, it is worth asking a nursery whether limestone beside them is a concern for that bed.",
+            "Whether it is the best edging for a given garden comes down to the look you want and how the edge is used. What matters more than the material is how it is laid, which is covered at the top of this page."
           ]
         },
         {
@@ -935,6 +956,20 @@ window.SITE_CONFIG = {
               "**The wall is fine but the capping is cracked, loose or missing.** That is a recapping job, covered on the [capping and cladding page](limestone-capping-cladding.html)."
             ] },
             "Plenty of older Perth walls need more than one of these, for example a sound wall with one section that has settled and joints that have weathered along its full length. It helps to say which parts of the wall are doing what when you ask for a quote, and photos of the worst section are useful. To have a wall looked at, [call (08) 9516 1538](tel:+61895161538) or [tell us about your job](#quote)."
+          ]
+        },
+        /* 2026-10-29: "limestone crack repair" 47 imp @16.2 (GSC 28d to
+           10-26) and People also ask "How to fix a crack in limestone?" with
+           no section answering it directly. */
+        {
+          heading: "How a crack in a limestone wall is fixed",
+          body: [
+            "It depends on whether the wall is still moving.",
+            { list: [
+              "**A hairline crack in the mortar of a wall that has not moved** is raked out and repointed in matched mortar, which is restoration work, covered on the [limestone restoration page](limestone-restoration.html).",
+              "**A crack through a block on a sound wall** usually means cutting that block out and setting a new one.",
+              "**A crack that steps through the joints, has widened, or runs with a lean** means the wall is moving, and filling it only hides that for a season. The drainage or footing behind it is fixed first, then the section is relaid. The rest of this page covers that work."
+            ] }
           ]
         },
         /* 2026-10-16: GSC 28d to 10-12 had "retaining wall repairs perth" (10
@@ -1083,6 +1118,7 @@ window.SITE_CONFIG = {
         {
           heading: "What limestone capping does",
           body: [
+            "**Short answer:** limestone capping is the finishing course along the top of a wall or pier. It sheds water off the top, it comes mainly in bullnose and split-face profiles, and it is priced by the linear metre plus any pier caps. For a price, send the wall length, what the wall is built from and the profile you want through the [quote form](#quote).",
             "Capping is the finishing course along the top of a limestone wall. It is not only cosmetic: it sheds water off the top of the wall rather than letting it soak into the joints below, which is a genuine durability difference over the life of the wall.",
             "Capping comes in more than one profile. The two seen most often in Perth are bullnose and split-face, and they are compared in the next section.",
             "This work is sometimes searched for as stone wall capping services rather than limestone capping specifically. It is the same job regardless of what it is called.",
@@ -1115,6 +1151,17 @@ window.SITE_CONFIG = {
             "Recapping is fitting new capping to a wall whose original capping has cracked, lifted, weathered away, or was never installed in the first place. It is a job on its own, separate from building a new wall.",
             "The main consideration on a recap is matching: block colour and face, and capping profile, against a wall that has already weathered. An exact match is not always possible, particularly on an older wall, and it is worth asking what the finish will look like against the existing block before committing.",
             "Where the joints below the capping have worn as well, repointing and cleaning are often done at the same visit. That work is covered on the [limestone restoration page](limestone-restoration.html)."
+          ]
+        },
+        /* 2026-10-29: audit local keyword ideas had "limestone capping
+           bunnings" 30/mo, and "limestone cap" 57 imp @13.3 (GSC 28d to
+           10-26) reads as product intent. Capping page: 36 sessions, 0 leads. */
+        {
+          heading: "Buying limestone capping off the shelf, or having it laid",
+          body: [
+            "Capping block is sold by landscape suppliers and hardware stores, and some owners lay a short run on a new wall themselves.",
+            "It gets harder on an existing wall. The top has to be sound and level before anything goes on it, old capping has to come off without damaging the course below, new block is bedded in mortar rather than sat on top, and a weathered wall rarely matches block off a store pallet. Those are the jobs worth having priced.",
+            "Send the length and a photo of the top of the wall through the [quote form](#quote), or [call (08) 9516 1538](tel:+61895161538)."
           ]
         },
         /* 2026-10-08: expanded. "limestone cladding perth" had 86 impressions
@@ -1241,7 +1288,7 @@ window.SITE_CONFIG = {
       },
       intro: [
         "Limestone restoration is cosmetic and surface work on a wall that is structurally sound but showing its age: worn mortar, staining, or a tired grey line where the block itself is fine. It is a different job from fixing a wall that is actually moving.",
-        "This page covers what restoration typically involves and how to tell it apart from a structural repair. If the wall is cracking, leaning or stepping, that is covered on the [crack and structural repair page](limestone-crack-repair.html) instead."
+        "This page covers what restoration typically involves and how to tell it apart from a structural repair. If the wall is cracking, leaning or stepping, that is [limestone crack repair](limestone-crack-repair.html), which has its own page."
       ],
       sections: [
         {
@@ -1284,6 +1331,7 @@ window.SITE_CONFIG = {
           body: [
             "Repointing is removing the old, eroded mortar from between the blocks to a consistent depth and replacing it with fresh mortar. It is the main restoration technique for a wall whose joints have worn but whose blocks and footing are sound.",
             "Done well, repointing restores both the look of the wall and the mortar's job of shedding water at the joint, which slows the same erosion happening again.",
+            "The new mortar should be no harder than the limestone it sits in, a principle applied in heritage stone work: a hard cement mortar forces water and salts out through the stone instead of the joint, and the block wears instead of the mortar.",
             "One thing to establish first is whether the wall was mortared at all. A dry-stacked wall, laid without mortar, has no joints to repoint, so restoring it is a matter of cleaning it and resetting anything that has shifted. Dry-stacked work belongs to low garden and feature walls; a structural limestone retaining wall in Perth is normally mortared, and that is the wall repointing is for."
           ]
         },
@@ -1291,6 +1339,7 @@ window.SITE_CONFIG = {
           heading: "Cleaning and colour matching",
           body: [
             "Surface staining and grime can often be cleaned off a limestone wall without touching the mortar at all, depending on what has caused the staining and how long it has been there.",
+            "Limestone is calcium carbonate, so acid-based cleaners, including brick cleaners and vinegar, etch the face. Start with water and a soft brush, then a mild pH-neutral detergent, tested out of sight.",
             "Mortar colour matters here as much as on any other limestone job. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar dropped into an otherwise restored wall looks like a patch rather than a finish. It is worth asking directly whether colour matching is included."
           ]
         },
@@ -1357,12 +1406,11 @@ window.SITE_CONFIG = {
      file and `--check` verifies it isn't stale and isn't also listed in
      sitemap.xml.
 
-     IMPORTANT — this is a client-side stand-in, not a real HTTP 301. GitHub
-     Pages can't issue one, and this site sits behind Cloudflare, so the
-     correct production fix is a Cloudflare Redirect Rule (Rules > Redirect
-     Rules > create a 301 from /limestone-wall-repairs.html to
-     /limestone-crack-repair.html) — add that in the Cloudflare dashboard;
-     it isn't something this file can configure. */
+     This is a client-side stand-in, not a real HTTP 301 — GitHub Pages can't
+     issue one. The real 301 is a Cloudflare Redirect Rule, and the one for
+     /limestone-wall-repairs.html -> /limestone-crack-repair.html is live
+     (checked 2026-10-29). A new entry here needs its own rule added in the
+     Cloudflare dashboard; this file can't configure it. */
   redirects: [
     { from: "limestone-wall-repairs.html", to: "limestone-crack-repair.html" }
   ],
@@ -1526,7 +1574,7 @@ window.SITE_CONFIG = {
             { subheading: "Reconstituted limestone" },
             "Manufactured to consistent dimensions with a cement binder. Uniform face, faster to lay, more predictable to quote, and it holds its original colour longer than natural stone does. Heavier per block. Where a run is long, exposed, or is going to be rendered, it is often the more sensible of the two. It is also made as large-format metre blocks, placed by machine, which are covered on the [limestone retaining walls page](limestone-retaining-walls.html).",
             { subheading: "Concrete block and besser" },
-            "Core-filled, reinforced concrete blockwork is a structural wall in its own right and will go higher than most domestic limestone walls before the design gets unusual. The catch is the finish: bare block reads as industrial, so it is normally rendered, painted or clad, and that finish is a second cost and often a second trade. Cladding it in limestone is a common Perth resolution and is covered on the [capping and cladding page](limestone-capping-cladding.html).",
+            "Core-filled, reinforced concrete blockwork is a structural wall in its own right and will go higher than most domestic limestone walls before the design gets unusual. The catch is the finish: bare block reads as industrial, so it is normally rendered, painted or clad, and that finish is a second cost and often a second trade. Cladding it in limestone is a common Perth resolution and is covered on the page on [limestone capping and cladding](limestone-capping-cladding.html).",
             { subheading: "Concrete sleepers" },
             "Precast panels dropped between galvanised steel posts. The fastest of these to install and the least ground depth taken up, and on a straight run it is often among the cheaper ways to hold back a given height. It looks like what it is: a panelised, repeating grey wall, sometimes with a moulded stone or timber texture. On a rear boundary nobody looks at, that is often exactly the right trade. It is the least forgiving of curves.",
             { subheading: "Sandstone" },
@@ -1716,7 +1764,7 @@ window.SITE_CONFIG = {
     },
     {
       q: "Do you cover my suburb?",
-      a: "We cover the whole Perth metropolitan area: north through Joondalup, Scarborough and Morley, central across Perth and Victoria Park, east to Midland and Kalamunda, west to Fremantle and Cottesloe, and south to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered. Jobs outside the metro area can still be sent through, but there is no guarantee anyone covers that far out."
+      a: "We take enquiries from the whole Perth metropolitan area: north through Joondalup, Scarborough and Morley, central across Perth and Victoria Park, east to Midland and Kalamunda, west to Fremantle and Cottesloe, and south to Armadale and Rockingham. If your suburb sits anywhere between those, send it through. Jobs outside the metro area can still be sent through, but there is no guarantee anyone covers that far out."
     },
     {
       q: "Can I get a price over the phone?",
@@ -1778,7 +1826,7 @@ window.SITE_CONFIG = {
       {
         heading: "Where we cover",
         body: [
-          "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, it is covered.",
+          "The whole Perth metropolitan area. North through Joondalup, Scarborough and Morley. Central across Perth and Victoria Park. East to Midland and Kalamunda. West to Fremantle and Cottesloe. South to Armadale and Rockingham. If your suburb sits anywhere between those, send it through.",
           "Jobs outside the metro area can still be sent through, but there is just no guarantee anyone covers that far out."
         ]
       },
@@ -1820,7 +1868,7 @@ window.SITE_CONFIG = {
         heading: "Why we collect it, and who it goes to",
         body: [
           "We collect your enquiry for one purpose: to get your job quoted.",
-          "**Your details are passed to a limestone contractor working in your area** so they can contact you about the job and arrange a quote. Perth Limestone Group has a commercial arrangement with that contractor, under which the contractor pays for the enquiry. You pay nothing.",
+          "**If a limestone contractor working in your area can take your job, your details are passed to them** so they can contact you and arrange a quote. Where that happens, it is under a commercial arrangement in which the contractor pays for the enquiry. You pay nothing.",
           "What we do not do:",
           { list: [
             "We do not sell or broadcast your details to a list of businesses. One contractor receives your enquiry.",
@@ -1875,7 +1923,7 @@ window.SITE_CONFIG = {
        sits in formNote directly below the form, so it is not repeated here.
        Backported from the Canberra Tiling build, 2 September 2026.
        See the template's LAUNCH_PLAYBOOK.md, phase 2, for the full position. */
-    reassurance: "No spam and no obligation. Your details go to a limestone contractor in your area so they can quote your job - the contractor pays for the enquiry, you do not. We never sell your details or add you to a marketing list.",
+    reassurance: "No spam and no obligation. If a limestone contractor covering your area can take the job, your details go to them so they can quote it - the contractor pays for the enquiry, you do not. We never sell your details or add you to a marketing list.",
     formNote: "If a limestone contractor covers your job, they'll be in touch. If nothing's a fit, we'll tell you and point you somewhere useful. Your details are used to get your job quoted and are handled as set out in our [privacy policy](privacy.html).",
     step1Label: "What do you need?",
     step2Label: "Your job and contact details",

@@ -929,6 +929,21 @@
 
     renderTurnstile(document.getElementById("turnstile-widget"));
 
+    /* On a service page the visitor has already told us what they need, so
+       tick that service and open step 2 rather than making them pick it from
+       the list. They can still change it. No focus() here: that would scroll
+       the page down to the form on load. */
+    var pageSvc = cfg.services.find(function (s) { return s.page === currentFile(); });
+    if (pageSvc) {
+      var radios = form.querySelectorAll('input[name="service"]');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].value === pageSvc.name) {
+          radios[i].checked = true;
+          step2.hidden = false;
+        }
+      }
+    }
+
     form.addEventListener("change", function (e) {
       if (e.target.name === "service" && step2.hidden) {
         step2.hidden = false;
