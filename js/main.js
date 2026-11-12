@@ -144,6 +144,34 @@
     return { landing: landing, referrer: referrer };
   }
 
+  /* ---------- internal-traffic opt-out --------------------------------------
+     Opening any page with ?internal=1 marks this browser as the owner's: the
+     flag is kept in localStorage, GA4 is configured with traffic_type
+     "internal" (dropped by the property's Internal Traffic data filter) and
+     enquiries carry internal: true. ?internal=0 clears it. The parameter is
+     then removed from the address bar. Storage can throw (private modes), in
+     which case the visit is treated as normal traffic. */
+  function internalTraffic() {
+    var flag = false;
+    var param = null;
+    try {
+      var url = new URL(location.href);
+      param = url.searchParams.get("internal");
+      if (param !== null) {
+        url.searchParams.delete("internal");
+        history.replaceState(history.state, "", url.pathname + url.search + url.hash);
+      }
+    } catch (e) { param = null; }
+    try {
+      if (param === "1") localStorage.setItem("internal", "1");
+      else if (param === "0") localStorage.removeItem("internal");
+    } catch (e) { /* storage unavailable */ }
+    try {
+      flag = localStorage.getItem("internal") === "1";
+    } catch (e) { flag = false; }
+    return flag;
+  }
+
   function imgTag(image, className, lazy) {
     if (!image || !image.src) return "";
     return '<img class="' + (className || "") + '" src="' + esc(image.src) + '"' +
@@ -310,7 +338,8 @@
       s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
       document.head.appendChild(s);
       window.gtag("js", new Date());
-      window.gtag("config", id);
+      if (isInternal) window.gtag("config", id, { traffic_type: "internal" });
+      else window.gtag("config", id);
     }
   }
 
@@ -1001,6 +1030,7 @@
         _referrer: visit.referrer,
         "cf-turnstile-response": turnstileResponse ? turnstileResponse.value : ""
       };
+      if (isInternal) payload.internal = true;
 
       fetch(ingestUrl, {
         method: "POST",
@@ -1074,6 +1104,7 @@
   /* ---------- boot --------------------------------------------------------- */
 
   applyBrand();
+  var isInternal = internalTraffic();
   injectGA4();
   attribution();
   trackPhoneClicks();

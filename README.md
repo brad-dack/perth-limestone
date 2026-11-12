@@ -75,6 +75,8 @@ What to edit in `config.js`:
    contains `XXXX`, the tracking snippet is not injected, so you get no
    analytics and no `click_to_call` events — meaning no call-volume proof
    to show a future renter. (The placeholder is safe to develop with.)
+   Open any page once with `?internal=1` to tag that browser's GA4 traffic as `traffic_type=internal` (excluded by the property's filter) and mark its enquiries `internal: true`.
+   Open a page with `?internal=0` to clear the flag; it is stored per browser in localStorage, so repeat on each device.
 5. **ingestUrl / ingestSecret / turnstileSiteKey** — form leads post to our
    own ingest endpoint, not to a third-party form service. `ingestUrl` is the
    endpoint, `ingestSecret` is the shared secret it checks, and
