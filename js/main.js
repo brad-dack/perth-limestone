@@ -911,8 +911,10 @@
         '<input id="qf-name" name="name" type="text" autocomplete="name" required></div>' +
         '<div class="form-field"><label for="qf-phone">Phone</label>' +
         '<input id="qf-phone" name="phone" type="tel" autocomplete="tel" required></div>' +
-        '<div class="form-field"><label for="qf-email">Email</label>' +
-        '<input id="qf-email" name="email" type="email" autocomplete="email" required></div>' +
+        // Email optional since 2026-11-17 (11 form starts, 4 leads in 28 days).
+        // Phone stays required; ingest-form stores an empty email as null.
+        '<div class="form-field"><label for="qf-email">Email (optional)</label>' +
+        '<input id="qf-email" name="email" type="email" autocomplete="email"></div>' +
         // Honeypot: real visitors never see this (off-screen, not display:none — some bots
         // skip display:none fields specifically) or fill it in. Server treats any value here
         // as spam.

@@ -645,8 +645,8 @@ function quoteFormHtml() {
       '<input id="qf-name" name="name" type="text" autocomplete="name" required></div>' +
       '<div class="form-field"><label for="qf-phone">Phone</label>' +
       '<input id="qf-phone" name="phone" type="tel" autocomplete="tel" required></div>' +
-      '<div class="form-field"><label for="qf-email">Email</label>' +
-      '<input id="qf-email" name="email" type="email" autocomplete="email" required></div>' +
+      '<div class="form-field"><label for="qf-email">Email (optional)</label>' +
+      '<input id="qf-email" name="email" type="email" autocomplete="email"></div>' +
       '<input type="text" id="qf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
         'style="position:absolute;left:-9999px;top:-9999px">' +
       '<input type="hidden" id="qf-id" name="_id" value="">' +

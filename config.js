@@ -164,7 +164,7 @@ window.SITE_CONFIG = {
           heading: "Fencing, repairs and capping",
           body: [
             "Not every limestone job is a retaining wall. Limestone fencing, wall repairs, capping and cladding are all common in Perth and are a different build with a different cost profile.",
-            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are on the [crack and structural repair page](limestone-crack-repair.html), new capping and cladding, including [bullnose limestone capping](limestone-capping-cladding.html), have their own page, and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html).",
+            "Solid limestone fences and pier and infill fencing are covered on the [limestone fencing page](limestone-fencing.html). Cracked, leaning or settled walls are covered under [limestone wall repairs](limestone-crack-repair.html), new capping and cladding, including [bullnose limestone capping](limestone-capping-cladding.html), have their own page, and refreshing an older wall's appearance is on the [limestone restoration page](limestone-restoration.html).",
             "Steps built into a wall or cut into a slope are on the [steps and stairs page](limestone-steps-stairs.html), and [limestone garden edging and bed walls](limestone-garden-beds-edging.html), including raised planters, have their own page."
           ]
         },
@@ -236,7 +236,7 @@ window.SITE_CONFIG = {
           body: [
             "A retaining wall holds back soil that would otherwise move. If the finished ground level is higher on one side than the other, the wall is retaining, and it has to be built to resist that load.",
             "The load is not static. Soil is heavier when it is wet, and Perth sand behaves differently saturated than it does dry. A wall designed only for the weight of dry sand is a wall designed for the easy half of the year.",
-            "If ground levels are equal on both sides, it is a boundary or garden wall instead. Different footing, different price, usually a different approval position. Low garden bed walls and edging are on the [garden beds and edging page](limestone-garden-beds-edging.html), and steps cut into a wall or a slope are on the [steps and stairs page](limestone-steps-stairs.html).",
+            "If ground levels are equal on both sides, it is a boundary or garden wall instead. Different footing, different price, usually a different approval position. Low garden bed walls and edging are covered under [limestone garden edging and bed walls](limestone-garden-beds-edging.html), and steps cut into a wall or a slope are on the [steps and stairs page](limestone-steps-stairs.html).",
             { image: {
               src: "images/explanatory_diagram_retaining_vs_garden_wall.webp",
               alt: "Diagram comparing a garden wall with level ground on both sides to a retaining wall holding back higher ground",
@@ -332,7 +332,7 @@ window.SITE_CONFIG = {
         {
           heading: "Footings, Perth sand and mortar",
           body: [
-            "The footing does the structural work. It is sized to the wall, not to a rule of thumb, and it is where the money goes on a taller wall. Perth's sandy profile drains well, which helps, but it offers different bearing behaviour to clay and it moves when it is not confined. Where the footing of an existing wall has already moved, footing repair is covered on the [crack and structural repair page](limestone-crack-repair.html).",
+            "The footing does the structural work. It is sized to the wall, not to a rule of thumb, and it is where the money goes on a taller wall. Perth's sandy profile drains well, which helps, but it offers different bearing behaviour to clay and it moves when it is not confined. Where the footing of an existing wall has already moved, footing repair is covered under [retaining wall repairs](limestone-crack-repair.html).",
             "One quality difference a homeowner would not know to ask about is mortar colour. A wall can be pointed with default grey mortar, or with mortar tinted to match the limestone. Matched mortar reads as one material; grey mortar reads as block and lines. It is a real and visible difference, and worth raising when comparing quotes."
           ]
         },
@@ -515,7 +515,7 @@ window.SITE_CONFIG = {
             "**Solid limestone fence.** Limestone the full length and height, for privacy, noise and appearance. Perth block sizes and the appetite for solid front walls make this a frequent job. It is the more expensive format per metre because it is block the whole way.",
             "**Pier and infill.** Limestone piers with infill panels between them, commonly steel, aluminium slat, timber or rendered panel. This is the front fence format seen repeatedly across the western and southern suburbs. It costs less across a full frontage because the piers carry the structure and the infill is cheaper per metre.",
             "A limestone pier and slat infill fence still reads as a limestone fence from the street, at a lower cost than solid block.",
-            "A low limestone wall in the front setback gets assessed against the same fence provisions even where it is really holding a garden bed in off the street. That overlap is covered on the [garden beds and edging page](limestone-garden-beds-edging.html)."
+            "A low limestone wall in the front setback gets assessed against the same fence provisions even where it is really holding a garden bed in off the street. That overlap is covered on the [limestone garden edging](limestone-garden-beds-edging.html) page."
           ]
         },
         {
@@ -689,7 +689,8 @@ window.SITE_CONFIG = {
             "**Steps built into a retaining wall.** The flight is part of the wall. It interrupts the wall line, the footing has to carry it, and the block courses either side have to resolve around it. It is designed and priced with the wall rather than after it, which is why adding a flight to a wall that has already been set out costs more than allowing for it from the start.",
             "**Standalone garden steps.** A flight through a slope, a lawn or a path, with nothing holding back soil either side. Each step still needs a stable base and something to stop it creeping downhill, but there is no retained load behind the flight and no drainage system, so the requirements are lighter and the price sits a long way below the first case.",
             "**The in-between case,** and the common one, is a short flight cut into a bank with low cheek walls either side holding the bank off the treads. Whether those cheek walls are retaining is decided the same way as any other wall: by whether the finished ground is higher on one side. If it is, everything on the [limestone retaining walls page](limestone-retaining-walls.html) applies to them.",
-            "Working out which of the three you have before quotes arrive is the single most useful thing you can do here, because a quote for a garden flight and a quote for steps built into a retaining wall are not comparable numbers."
+            "Working out which of the three you have before quotes arrive is the single most useful thing you can do here, because a quote for a garden flight and a quote for steps built into a retaining wall are not comparable numbers.",
+            "Not sure which of the three you have? Send a photo of the slope and the rough height through the [quote form](#quote), or [call (08) 9516 1538](tel:+61895161538)."
           ]
         },
         {
@@ -712,7 +713,18 @@ window.SITE_CONFIG = {
             "**Matching limestone.** The step is finished in the same block as the wall it sits in, so the flight and the wall read as one structure. Limestone is a relatively soft stone, so on a heavily used flight the front edge of the tread shows wear sooner than a harder material would.",
             "**A paved, stone or tiled tread.** A harder finish laid over the step. This is common where the steps continue a paved area, a pool surround or an alfresco, because the tread then matches what it runs into rather than what it is built from. It usually means a second trade, so it is worth being clear about who is quoting which part.",
             "**A hybrid** is common too: limestone risers with a paved tread, which keeps the limestone face visible from the front and puts the harder material where the wear is.",
-            "Whichever it is, ask whether the tread falls slightly forward. A tread laid dead level holds water on it, and a step that holds water is the one that goes slippery."
+            "Whichever it is, ask whether the tread falls slightly forward. A tread laid dead level holds water on it, and a step that holds water is the one that goes slippery.",
+            "Steps and seating walls are often finished with [bullnose limestone capping](limestone-capping-cladding.html), because the rounded front edge has no square corner to catch a shin."
+          ]
+        },
+        /* 2026-11-17: audit People also ask "How to repair broken limestone
+           steps?" and "How long do limestone steps last?", plus local idea
+           "limestone step repair" with no page answering it. */
+        {
+          heading: "Repairing broken or worn limestone steps",
+          body: [
+            "A loose or cracked tread, a chipped front edge, or a step that has dropped at one end are the usual problems on an older limestone flight. A single cracked or worn block can usually be cut out and replaced, and a loose tread lifted and rebedded.",
+            "A step that has dropped or tilted points to the base underneath, often sand washed out by water running down the flight, and that is fixed before anything is relaid, the same way as [a settled wall](limestone-crack-repair.html). Matching the block on an older flight is the hard part, so ask to see the replacement block before it goes in."
           ]
         },
         {
@@ -760,6 +772,10 @@ window.SITE_CONFIG = {
         {
           q: "Should the treads be limestone or pavers?",
           a: "Both are common. Matching limestone reads as one structure with the wall. A paved, stone or tiled tread is harder wearing and suits steps that continue a paved area or a pool surround. It is a choice about appearance and wear rather than a right answer."
+        },
+        {
+          q: "How long do limestone steps last?",
+          a: "There is no fixed figure. It depends mostly on the base under each step, whether water drains off the treads, and how heavily the flight is used. The front edge of a well-used limestone tread wears first, which is why a harder paved tread over limestone risers is common."
         }
       ]
     },
@@ -923,7 +939,10 @@ window.SITE_CONFIG = {
       page: "limestone-crack-repair.html",
       name: "Limestone Crack & Structural Repair",
       shortDescription: "Cracked, leaning or settled limestone walls in Perth: what causes it, how to tell a repair from a rebuild, and what a repair should fix.",
-      metaTitle: "Limestone Repairs Perth | Crack & Structural Repair",
+      /* 2026-11-17: "Wall" added. Google Ads Perth: "limestone wall repairs
+         perth" 30/mo (GSC pos 14.5), "limestone wall repairs" 20/mo (12.8),
+         every other repair phrase 10 or fewer. H1 held. */
+      metaTitle: "Limestone Wall Repairs Perth | Crack & Structural Repair",
       /* 2026-10-08: GSC (3 months to 10-05) showed broad repair searches
          ("limestone repairs perth" 135 imp @40, "limestone repairs" 106 @54,
          "limestone repair" 55, "retaining wall repairs perth" 26 @60) and
@@ -1098,7 +1117,9 @@ window.SITE_CONFIG = {
       /* 2026-10-27: GSC 28d to 10-23: "limestone bullnose capping" 74 imp
          @19.4 (was 3), "limestone cap" 51 @14.8, "stone wall capping
          services" 64 @26.3. Bullnose H2 and meta now name them; title held. */
-      metaDescription: "Limestone capping in Perth: bullnose or split-face wall capping, pier caps, recapping a failed wall, capping brick or render walls, and cladding.",
+      /* 2026-11-17: "limestone cap" 60 imp @8.2, 0 clicks (GSC 28d to
+         11-13). Meta only; title still held. */
+      metaDescription: "Limestone capping and pier caps in Perth: bullnose or split-face wall capping, recapping a failed wall, brick or render walls, and cladding. Free quotes.",
       headline: "Limestone wall capping and cladding in Perth",
       subheadline: "Bullnose and split-face limestone capping for walls and piers, recapping an existing wall, and limestone cladding over an existing structure.",
       ctaText: "Tell us about your job",
@@ -1296,7 +1317,7 @@ window.SITE_CONFIG = {
           body: [
             "The distinction matters because it changes what the job actually is.",
             "**Restoration** is for a wall that is standing straight and doing its job, but looks its age: eroded mortar joints, surface staining, a dull or uneven colour. Nothing here is a safety issue, and the work is cosmetic.",
-            "**Structural repair** is for a wall that is cracking, leaning, stepping or has moved. That points to a cause underneath, usually drainage or the footing, and covering it over does not fix it. See the [crack and structural repair page](limestone-crack-repair.html).",
+            "**Structural repair** is for a wall that is cracking, leaning, stepping or has moved. That points to a cause underneath, usually drainage or the footing, and covering it over does not fix it. See [limestone wall repairs](limestone-crack-repair.html).",
             "It is common for a wall to need a bit of both: a genuinely sound wall with one section that has moved. Worth being upfront about which parts of the wall are which when asking for a quote."
           ]
         },
@@ -1336,8 +1357,11 @@ window.SITE_CONFIG = {
           ]
         },
         {
-          heading: "Cleaning and colour matching",
+          /* 2026-11-17: gap "limestone cleaning" / "cleaning limestone" (210/mo
+             each, national estimates) and three cleaning People also ask. */
+          heading: "Cleaning a limestone wall, and colour matching",
           body: [
+            "**Short answer:** clean limestone with water and a soft brush first, then a mild pH-neutral detergent tested out of sight. Avoid acid cleaners, and keep the pressure low: natural limestone is soft, and high pressure wears the face and washes out weak mortar.",
             "Surface staining and grime can often be cleaned off a limestone wall without touching the mortar at all, depending on what has caused the staining and how long it has been there.",
             "Limestone is calcium carbonate, so acid-based cleaners, including brick cleaners and vinegar, etch the face. Start with water and a soft brush, then a mild pH-neutral detergent, tested out of sight.",
             "Mortar colour matters here as much as on any other limestone job. New mortar tinted to match the existing, weathered limestone reads as one material; grey mortar dropped into an otherwise restored wall looks like a patch rather than a finish. It is worth asking directly whether colour matching is included."
